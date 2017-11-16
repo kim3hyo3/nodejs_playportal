@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/main">PLAYAUTO_AccountManage</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="javascript:void(0);" onclick="changeLang('en-US');">English</a></li>
+        <li><a href="javascript:void(0);" onclick="changeLang('ko-KR');">한국어</a></li>
+        <li>
+          <a class="btn">
+            <span class="badge">&nbsp;<%= token %>&nbsp;</span>
+          </a>
+        </li>
+        <li>
+          <a href="/logout" class="btn btn-sm">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

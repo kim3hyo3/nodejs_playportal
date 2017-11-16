@@ -1,0 +1,313 @@
+<script type="text/javascript" src="javascripts/jquery.ajax-cross-origin.min.js"></script><!-- 크로스도메인 해결 플러그인 -->
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $(window).on('message', function(ev) {
+            if(ev.originalEvent.data === "form-submit") {
+                //$(this).css("border", "1px solid red");
+                setTimeout(function(){
+                    $('.my_typeform').slideUp(1000, function(){
+                        var typeFormId = $(this).attr('typeFormId');
+                        //$(".crfListTab[typeformid=" + typeFormId + "]").parent().parent().toggle();
+                        //$("div[typeformid=" + typeFormId + "]").toggle();
+                        setTimeout(function(){
+                            $("div[typeformid=" + typeFormId + "]").click();
+                        }, 500);
+                        setTimeout(function(){
+                            $("div[typeformid=" + typeFormId + "]").click();
+                        }, 1500);
+                        //$("div[typeformid=" + typeFormId + "]").click();
+
+                    });
+                }, 2000);
+            }
+        });
+    });
+
+    function  getCrfResult(json) {
+        var url
+
+        $.ajax({
+            type: "post",
+            url: "/SendTypeform",
+            data: json,
+            async: false,
+            dataType: "text",
+            success: function (result) {
+                url = result
+            }
+        });
+
+        return url
+    }
+
+    function dateTimeParser(dateTime) {
+        var date = new Date(dateTime);
+        var year = date.getFullYear() + "";
+        var month = date.getMonth() + "";
+        var day = date.getDay() + "";
+        var hours = date.getHours() + "";
+        var minutes = "0"+date.getMinutes() + "";
+        var seconds = "0"+date.getSeconds() + "";
+
+        //console.log(date);
+
+        return year +"-" + month + "-" + day;
+    }
+
+    function dateTimeSecondParser(dateTime) {
+        var date = new Date(dateTime);
+        var year = date.getFullYear() + "";
+        var month = date.getMonth() + "";
+        var day = date.getDay() + "";
+        var hours = date.getHours() + "";
+        var minutes = "0"+date.getMinutes() + "";
+        var seconds = "0"+date.getSeconds() + "";
+
+        //console.log(date);
+
+        return year +"-" + month + "-" + day +" " + hours + ":" + minutes + ":" + seconds;
+    }
+
+    $(document).ready(function () {
+        var dateLastVisit = parseInt($('#dateLastVisitText').text());
+        $('#dateLastVisitText').text(dateTimeSecondParser(dateLastVisit));
+        var dom = null;
+        $(".btnStudyName").click(function () {
+            var crfList
+            var crfName
+            dom = $(this);
+            var studyOid = $(this).parent().children('.studyOid').val();
+
+            $(document).ajaxStart(function(){
+                dom.find('.loadingbar').show();
+            }).ajaxStop(function(){
+                $('.loadingbar').hide();
+            });
+
+            $.ajax({
+                type: "post",
+                url: "/subject/selectStudyEventAndCRFEvent",
+                data : {
+                    "userName": $('#username').val(),
+                    "studyOid": studyOid
+                },
+                dataType: "json",
+                success: function (data) {
+                    crfList = data;
+                },
+                complete:function() {
+                    $(".crfListTab").empty()
+
+
+                    for (var i = 0; i < crfList.length; i++) {
+                        crfName = crfList[i].crfName;
+
+                        if (crfList[i].crfeventstatusid != 1) {
+                            $('.crfListTab').append('<a href="javascript://" class="list-group-item list-group-item-danger" id ="'+crfList[i].crfversionocoid+'"><span class="badge" style="float:left;">success</span>' + crfName + '<span class="badge">' + dateTimeParser(crfList[i].dateStart) + '~' + dateTimeParser(crfList[i].dateEnd) + '</span> </a>');
+                        } else {
+                            var params = {
+                                "studyOid": studyOid,
+                                "studySubjectOid": crfList[i].studysubjectoid,
+                                "studyEventOid": crfList[i].studyeventoid,
+                                "crfVersionOcOid": crfList[i].crfversionocoid,
+                                "crfFormId": crfList[i].crfformid,
+                                "userName": $('#username').val()
+                            }
+                            var getUrl = getCrfResult(params)
+                            $('.crfListTab').append('<a href="' + getUrl + '" class="list-group-item list-group-item-info btnTypeForm typeform-share" typeFormId="typeFormId_'+studyOid+'"><span class="badge" style="float:left;">uncomplited</span>' + crfName + '<span class="badge">' + dateTimeParser(crfList[i].dateStart) + '~' + dateTimeParser(crfList[i].dateEnd) + '</span> </a>');
+                        }
+                    }
+
+                    (function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()
+                    $('.btnTypeForm').click(function(){
+                        var typeFormId = $(this).attr("typeFormId");
+                        $(this).append('<iframe class="my_typeform" style="width:100%; height:450px; border:0;" src="' + $(this).attr("href") + '" typeFormId="'+typeFormId+'"></iframe>');
+                        return false;
+                    });
+
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        })
+    });
+
+</script>
+
+<div class="translation" xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" scrolling=yes>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">
+                                        <h3><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span
+                                                    data-i18n="A:infomation"></span></h3></div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <button type="button" class="btn btn-default btn-sm" id="username" disabled="disabled" value="<%= session.username %>">username : <%= session.username %>
+                                            </button>
+                                            <li class="list-group-item" id="firstName"><span data-i18n="A:firstname"></span> : <%= userInfo.firstName %></li>
+                                            <li class="list-group-item" id="lastName"><span data-i18n="A:lastname"></span> : <%= userInfo.lastName %></li>
+                                            <li class="list-group-item" id="email"><span data-i18n="A:email"></span> : <%= userInfo.email %></li>
+                                            <li class="list-group-item" id="phone"><span data-i18n="A:phone"></span> : <%= userInfo.phone %></li>
+                                            <li class="list-group-item" id="dateLastvisit"><span data-i18n="A:datelastvisit"></span> : <span id="dateLastVisitText"><%= userInfo.dateLastvisit %></span></li>
+                                            <li class="list-group-item" id="dateOfBirth"><span data-i18n="A:dateofbirth"></span> : <%= userInfo.dateOfBirth %></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                                        <span data-i18n="A:allSurvey"></span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+                                        <span data-i18n="A:messages"></span>
+                                        <span class="badge">2</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                        <span data-i18n="A:settings"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <% for(var i = 0; i < result.length;i++){ %>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                       href="#collapse_<%=result[i].studySubjectId%>" aria-expanded="false"
+                                                       aria-controls="collapse_<%=result[i].studySubjectId%>">
+                                                        <input type="hidden" class="studyOid" id="studyOid" value="<%= result[i].studyoid %>">
+                                                        <div class="panel-heading btnStudyName" typeFormId="typeFormId_<%= result[i].studyoid %>">
+                                                            <%= result[i].studyName %> <span class="badge" style="float:right;"><%= result[i].enrollmentDate%></span>
+                                                            <img src="images/loadingbar.gif" class="loadingbar" style="float:right; display:none;" />
+                                                        </div>
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapse_<%=result[i].studySubjectId%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="list-group crfListTab"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="messages">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <img src="images/message.jpg" />
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="settings">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span data-i18n="A:alramsetting"></span> : <input type="checkbox" checked data-toggle="toggle">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/scripts.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/1.9.0/i18next.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $.i18n.init({
+        //lng: 'en-US',
+        lng: 'ko-KR',
+        debug: true,
+        useLocalStorage: false,
+        localStorageExpirationTime: 86400000, // in ms, default 1 week
+        ns: {
+            namespaces: ['A', 'B'],
+            defaultNs: 'A'
+        },
+        //resGetPath: 'js/locales/translation.json'
+        resStore: {
+            "en-US": {
+                "A": {
+                    "alramsetting" : "Alram On/Off",
+                    "mypage": "Mypage",
+                    "about": "About",
+                    "logout": "Logout",
+                    "infomation": "User Infomation",
+                    "firstname" : "FirstName",
+                    "lastname" : "LastName",
+                    "email" : "Email",
+                    "phone" : "Phone",
+                    "datelastvisit" : "DateLastVisit",
+                    "dateofbirth" : "Date Of Birth",
+                    "allSurvey": "All Questionnaires",
+                    "messages": "Messages",
+                    "settings": "Settings"
+                }
+            },
+            "ko-KR": {
+                "A": {
+                    "alramsetting" : "알람 설정 On/Off",
+                    "mypage": "내 정보",
+                    "about": "주제",
+                    "logout": "로그아웃",
+                    "infomation": "정보",
+                    "firstname" : "이름",
+                    "lastname" : "성",
+                    "email" : "이메일",
+                    "phone" :"전화번호",
+                    "datelastvisit" : "마지막 방문",
+                    "dateofbirth" : "생년월일",
+                    "allSurvey": "모든 설문지",
+                    "messages": "메세지",
+                    "settings": "설정"
+                }
+            }
+        }
+    }, function () {
+        $('.translation').i18n();
+    });
+
+    var changeLang = function (lang) {
+        $.i18n.setLng(lang);
+        $('.translation').i18n();
+    }
+</script>
+

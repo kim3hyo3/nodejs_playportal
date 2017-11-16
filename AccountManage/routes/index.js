@@ -1,41 +1,44 @@
 var express = require('express');
 var router = express.Router();
 
-var session = require('express-session');
-
-var app = express();
-
-//session
-app.set('trust proxy', 1);// trust first proxy
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {secure: true}
-}));
-
 //login_page
 router.get('/', function(req, res, next) {
   res.render('login');
 });
 
 //log_login
-router.post('/login', function(req, res, next) {
-    console.log(test);
-    console.log(req.body.username);
-    console.log(req.body.password);
+//mysql 검증 부분 추가해줄 곳 select inform validated
+//tmp_working SELECT id_name password 맞춰서 진행
 
-    session.username = req.body.username;
-    session.password = req.body.password;
+router.post('/login', function (req, res) {
+  console.log(req.body.username);
 
-    //mysql 검증 부분 추가해줄 곳 select inform validated
-    //tmp insert id_name password 맞춰서 진행
+  /*connection.connect();
 
-    if (session.username == null || session.username == "") {
-        res.redirect('/');
-    } else if (session.username != null) {
-        res.redirect('/main');
-    }
+  var select = 'SELECT person_id FROM table_person WHERE name =?';
+
+  connection.query(, function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].person_id);
+  });
+
+  connection.end();
+
+  if(==req.body.username){
+
+  } else if{
+
+  }*/
+
+  sess = req.session;
+
+  sess.username = req.body.username;
+  // session.password = req.body.password;
+  if (sess.username === null || sess.username === "") {
+    res.redirect('/');
+  } else if (sess.username !== null) {
+    res.render('main', {token: sess.username} );
+  }
 });
 
 //log_logout
