@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 //log_login
-//mysql 검증 부분 추가해줄 곳 select inform validated
+//login.ejs에서 id, pass를 post로 받고 req.body로 받아서 (로그인 검증을 하고) 세션에 담아준다.
+//로그인 검증 req.body를 mysql에 있는 person_id person_pass하고 비교후 일치 여부를 확인후 통고시켜준다 select inform validated
 //tmp_working SELECT id_name password 맞춰서 진행
 
 router.post('/login', function (req, res) {
@@ -66,7 +67,14 @@ router.get('/logout', function (req, res, next){
   }
 });
 
+/*
+link info를 받아와야하고
+메인화면에 전체적인 포털을 보여주고 부분적으로 로그인이 가능하게 만들어야 한다
+메인화면에 로그인 입력창이 필요하다. 부분적으로 들어갔을 경우
+*/
+
 router.get('/main', function(req, res, next) {
+
     res.render('main', { title: 'Express' });
 });
 
