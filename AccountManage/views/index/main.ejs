@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../layout/head.ejs %>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% include ../layout/nav.ejs %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">
+            외부링크
+          </a>
+          <!--http://books.playauto.org/-->
+
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="https://www.docswave.com/v2/myurl/playauto">전자결재</button>
+            </form>
+          </li>
+
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://manual.playauto.co.kr/login.html">사용설명서</button>
+            </form>
+          </li>
+
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://www.playauto.co.kr/_mobile/seminar.php">회의실예약</button>
+            </form>
+          </li>
+
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://redmine3.playauto.co.kr/login?back_url=http%3A%2F%2Fredmine3.playauto.co.kr%2F">레드마인</button>
+            </form>
+          </li>
+
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://books.playauto.org/">도서</button>
+            </form>
+          </li>
+
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">
+            경영지원
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="caption">
+              <h3>각종규정</h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="caption">
+              <h3>홍보자료</h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="caption">
+              <h3>구매요청</h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="caption">
+              <h3>명함신청</h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="caption">
+              <h3>지원요청</h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">
+            복리후생
+          </a>
+          <a href="/culture" class="list-group-item">문생비잔액확인</a>
+          <a href="#" class="list-group-item">리조트예약</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">
+            관리자
+          </a>
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://admin.playauto.co.kr/main/login">자산관리</button>
+            </form>
+          </li>
+          <li class="list-group-item">
+            <form action="/main/containlink" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://www.krsmart.com/">대여관리</button>
+            </form>
+          </li>
+          <a href="#" class="list-group-item">사이트관리</a>
+          <a href="#" class="list-group-item">근태관리</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
