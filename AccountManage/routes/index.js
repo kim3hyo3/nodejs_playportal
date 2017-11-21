@@ -98,24 +98,25 @@ router.get('/culture', function (req, res, next) {
   var workbook = XLSX.readFile('culture_balance01.xlsx');
 
   /* DO SOMETHING WITH workbook HERE */
-
+  //BringSheetName
   var first_sheet_name = workbook.SheetNames[0];
+  console.log('01'+first_sheet_name);
 
+  //settingAddressOfCell
   var address_of_cell = 'B1';
 
   /* Get worksheet */
-
+  //
   var worksheet = workbook.Sheets[first_sheet_name];
+  console.log(worksheet);
 
   /* Find desired cell */
-
   var desired_cell = worksheet[address_of_cell];
+  console.log(desired_cell);
 
   /* Get the value */
-
   var desired_value = desired_cell.v;
-
-  console.log(desired_value);
+  console.log('04'+desired_value);
 
   /* output format determined by filename */
 
