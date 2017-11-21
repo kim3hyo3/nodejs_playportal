@@ -58,10 +58,32 @@
       <div class="col-md-10">
         <!--iframe windows-->
         <!-- 16:9 aspect ratio -->
-        <div class="embed-responsive embed-responsive-16by9">
+        <!--<div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="..."></iframe>
+        </div>-->
+        <div class="modal-header bg-grey-salsa bg-font-grey-salsa">
+          <h3 class="modal-title">Excel 상품 등록/수정</h3>
         </div>
-        <%=siteList[1].site_title%>
+        <!--<div>
+          <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+        </div>-->
+        <div class="modal-body">
+          <p>* Excel 파일로 대량의 상품을 일괄로 업로드 하실때는 반드시 표준 상품 샘플 Excel의 형식대로 Excel의 셀을 구성해주시기 바랍니다.</p>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" ng-model="uploadFile.name" readonly>
+                <span class="input-group-btn">
+                  <span class="btn grey border-grey-silver" ngf-select="fileSelect($file, $invalidFiles)" ng-model="selectFile" ngf-pattern="'.xls,.csv,.xlsx'">찾아보기</span>
+                </span>
+              </div>
+              <span class="help-block"><small>.xls / .xlsx / .csv 확장자 파일만 업로드 가능합니다.</small></span>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
   </div>

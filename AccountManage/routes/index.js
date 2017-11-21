@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 //login_page
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index/login');
 });
 
 //log_logout
-router.get('/logout', function (req, res, next){
+router.get('/logout', function (req, res, next) {
   //first login way
   /*if(session != null) {
     session = null;
@@ -17,9 +17,9 @@ router.get('/logout', function (req, res, next){
   }
   */
   //second login way
-  if(req.session.username){
-    req.session.destroy(function(err){
-      if(err){
+  if (req.session.username) {
+    req.session.destroy(function (err) {
+      if (err) {
         console.log(err);
       } else {
         res.redirect('/');
@@ -81,48 +81,83 @@ router.post('/main', function (req, res) {
   }
 });
 
-router.post('/main/containlink', function(req, res, next) {
+router.post('/main/containlink', function (req, res, next) {
   console.log(req.body.containlink);
   var link = req.body.containlink;
 
   res.render('index/containlink', {token: req.session.username, link: link});
 });
 
-router.get('/culture', function(req, res, next) {
+router.get('/culture', function (req, res, next) {
   console.log(req.session);
-  conn.connect();
+
+  //excel upload
+  //
+  if (typeof require !== 'undefined') XLSX = require('xlsx');
+
+  var workbook = XLSX.readFile('culture_balance01.xlsx');
+
+  /* DO SOMETHING WITH workbook HERE */
+
+  var first_sheet_name = workbook.SheetNames[0];
+
+  var address_of_cell = 'B1';
+
+  /* Get worksheet */
+
+  var worksheet = workbook.Sheets[first_sheet_name];
+
+  /* Find desired cell */
+
+  var desired_cell = worksheet[address_of_cell];
+
+  /* Get the value */
+
+  var desired_value = desired_cell.v;
+
+  console.log(desired_value);
+
+  /* output format determined by filename */
+
+  XLSX.writeFile(workbook, 'culture_balance01_out.xlsx');
+
+  /* at this point, out.xlsx is a file that you can distribute */
+
   var select = 'SELECT site_title, site_content FROM view_site;';
-  conn.query(select, function (err, rows, fields) {
-    /*
-    if (error) throw error;
-    console.log('The solution is: ', results[0].site_title);
-    */
-    if (err) {
-      console.error('SELECT ERROR', err);
-      return;
-    }
-    if (rows) {
-      console.log('The solution is: ', rows[0].site_title);
-      console.log('SELECT count :', rows.length);
-      rows.forEach(function (i) {
-        console.log('SELECT i :', i);
-      });
-    }
-    res.render('index/culture', {token: req.session.username, siteList: rows});
+
+  pool.getConnection(function(err,connection){
+    connection.query(select, function (err, rows, fields) {
+      /*
+      if (error) throw error;
+      console.log('The solution is: ', results[0].site_title);
+      */
+      if (err) {
+        console.error('SELECT ERROR', err);
+        return;
+      }
+      if (rows) {
+        console.log('rows[0].site_title is: ', rows[0].site_title);
+        console.log('SELECT count :', rows.length);
+        rows.forEach(function (i) {
+          console.log('SELECT i :', i);
+        });
+      }
+      res.render('index/culture', {token: req.session.username, siteList: rows});
+      connection.release();
+    });
   });
-  conn.end();
 });
 
-router.get('/table', function(req, res, next) {
-    res.render('table', { title: 'Express' });
+router.get('/table', function (req, res, next) {
+  res.render('table', {title: 'Express'});
 });
 
-router.get('/table/nodeOne', function(req, res, next) {
-    res.render('table_nodeOne', { title: 'Express' });
+router.get('/table/nodeOne', function (req, res, next) {
+  res.render('table_nodeOne', {title: 'Express'});
 });
 
-router.get('/table/nodeTwo', function(req, res, next) {
-    res.render('table_nodeTwo', { title: 'Express' });
+router.get('/table/nodeTwo', function (req, res, next) {
+  res.render('table_nodeTwo', {title: 'Express'});
 });
 
 module.exports = router;

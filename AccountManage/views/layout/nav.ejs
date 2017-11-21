@@ -1,35 +1,52 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/main">
-        <img alt="Brand" src="images/PLAYAUTO_LOGO_2016.png">
-      </a>
-    </div>
+<style>
+  .playauto .navbar-brand {
+    height: 80px;
+  }
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:void(0);" onclick="changeLang('en-US');">English</a></li>
-        <li><a href="javascript:void(0);" onclick="changeLang('ko-KR');">한국어</a></li>
-        <li>
-          <a class="btn">
-            <span class="badge">&nbsp;<%= token %>&nbsp;</span>
-          </a>
-        </li>
-        <li>
-          <a href="/logout" class="btn btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Log out
-          </a>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+  .playauto .nav >li >a {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .playauto .navbar-toggle {
+    padding: 10px;
+    margin: 25px 15px 25px 0;
+  }
+</style>
+
+<div class="playauto">
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/main">
+          <img src="images/playauto_logo_clarity.png" alt="PLAYAUTO">
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="javascript:void(0);" onclick="changeLang('en-US');"><h4>English</h4></a></li>
+          <li><a href="javascript:void(0);" onclick="changeLang('ko-KR');"><h4>한국어</h4></a></li>
+          <li>
+            <a class="btn">
+              <span class="badge"><h5>&nbsp;<%=token%>&nbsp;</h5></span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout" class="btn btn-sm">
+              <h4><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log out&nbsp;</h4>
+            </a>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>

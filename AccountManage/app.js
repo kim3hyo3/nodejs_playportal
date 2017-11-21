@@ -10,7 +10,7 @@ var users = require('./routes/users');
 
 var mysql = require('mysql');
 
-conn = mysql.createConnection({
+pool = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
   password : '14231423',
@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 //session
 app.use(session({
   /*genid: function(req) {

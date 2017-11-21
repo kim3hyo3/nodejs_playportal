@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97df2ed0-eeed-477f-bf6f-e0c9bd795e91" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/views/index/containlink.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/views/index/culture.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/views/index/main.ejs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AccountManage/.liveserver.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AccountManage/liveserver.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AccountManage/views/body.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AccountManage/views/culture.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AccountManage/views/main.ejs" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/public/images/PLAYAUTO_LOGO_NEW_2016.png" afterPath="$PROJECT_DIR$/AccountManage/public/images/PLAYAUTO_LOGO_2016.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/views/head.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/layout/head.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/views/login.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/index/login.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/views/nav.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/layout/nav.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/views/refer_body.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/body_refer00.ejs" />
+    <list default="true" id="97df2ed0-eeed-477f-bf6f-e0c9bd795e91" name="Default" comment="bootstrapRepair, sessionBugFix, feature-buttonAdd_externalLinkAdd_linkIframeAdd">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/culture_balance01.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/public/images/playauto_logo_black.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountManage/public/images/playauto_logo_blue.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/AccountManage/public/images/PLAYAUTO_LOGO_2016.png" afterPath="$PROJECT_DIR$/AccountManage/public/images/playauto_logo_clarity.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/app.js" afterPath="$PROJECT_DIR$/AccountManage/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/package.json" afterPath="$PROJECT_DIR$/AccountManage/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/routes/index.js" afterPath="$PROJECT_DIR$/AccountManage/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/views/index/containlink.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/index/containlink.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/views/index/culture.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/index/culture.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/views/index/login.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/index/login.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/views/index/main.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/index/main.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountManage/views/layout/nav.ejs" afterPath="$PROJECT_DIR$/AccountManage/views/layout/nav.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,8 +36,8 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+                <state relative-caret-position="315">
+                  <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -50,8 +46,8 @@
           <file leaf-file-name="login.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/index/login.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="125">
-                  <caret line="309" column="0" lean-forward="true" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
+                <state relative-caret-position="-3353">
+                  <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -60,9 +56,14 @@
           <file leaf-file-name="nav.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/nav.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="51" lean-forward="false" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-                  <folding />
+                <state relative-caret-position="705">
+                  <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#1409#1415#0#HTML" expanded="true" />
+                    <element signature="e#1425#1431#0#HTML" expanded="true" />
+                    <element signature="e#1609#1615#0#HTML" expanded="true" />
+                    <element signature="e#1622#1628#0#HTML" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -70,18 +71,18 @@
           <file leaf-file-name="head.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/head.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.ejs" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/index/main.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="239">
-                  <caret line="91" column="12" lean-forward="true" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
+                <state relative-caret-position="255">
+                  <caret line="17" column="58" lean-forward="false" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
                   <folding />
                 </state>
               </provider>
@@ -90,8 +91,8 @@
           <file leaf-file-name="containlink.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/index/containlink.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="915">
-                  <caret line="61" column="56" lean-forward="false" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
+                <state relative-caret-position="515">
+                  <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -100,18 +101,18 @@
           <file leaf-file-name="culture.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/views/index/culture.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+                <state relative-caret-position="532">
+                  <caret line="74" column="54" lean-forward="true" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AccountManage/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="185">
-                  <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+                <state relative-caret-position="532">
+                  <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -120,8 +121,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/AccountManage/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="453">
-                  <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+                <state relative-caret-position="668">
+                  <caret line="148" column="3" lean-forward="true" selection-start-line="148" selection-start-column="3" selection-end-line="148" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
@@ -131,21 +132,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="main.ejs" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/AccountManage/views/index/main.ejs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="446">
-                  <caret line="113" column="132" lean-forward="false" selection-start-line="113" selection-start-column="132" selection-end-line="113" selection-end-column="132" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AccountManage/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1305">
-                  <caret line="87" column="68" lean-forward="true" selection-start-line="87" selection-start-column="68" selection-end-line="87" selection-end-column="68" />
+                <state relative-caret-position="598">
+                  <caret line="143" column="7" lean-forward="true" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -166,6 +157,9 @@
       <find>include</find>
       <find>navbar-brand</find>
       <find>NEW</find>
+      <find>#</find>
+      <find>width</find>
+      <find>pool</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,17 +187,19 @@
         <option value="$PROJECT_DIR$/AccountManage/views/body.ejs" />
         <option value="$PROJECT_DIR$/AccountManage/liveserver.json" />
         <option value="$PROJECT_DIR$/AccountManage/.liveserver.json" />
-        <option value="$PROJECT_DIR$/AccountManage/package.json" />
         <option value="$PROJECT_DIR$/AccountManage/views/main.ejs" />
         <option value="$PROJECT_DIR$/AccountManage/views/culture_body.ejs" />
         <option value="$PROJECT_DIR$/AccountManage/views/head.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/views/index/containLink.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/views/index/login.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/views/index/containlink.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/views/index/main.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/package.json" />
         <option value="$PROJECT_DIR$/AccountManage/views/layout/nav.ejs" />
+        <option value="$PROJECT_DIR$/AccountManage/routes/culture.js" />
         <option value="$PROJECT_DIR$/AccountManage/views/index/culture.ejs" />
         <option value="$PROJECT_DIR$/AccountManage/app.js" />
-        <option value="$PROJECT_DIR$/AccountManage/views/index/containLink.ejs" />
-        <option value="$PROJECT_DIR$/AccountManage/views/index/containlink.ejs" />
         <option value="$PROJECT_DIR$/AccountManage/routes/index.js" />
-        <option value="$PROJECT_DIR$/AccountManage/views/index/main.ejs" />
       </list>
     </option>
   </component>
@@ -357,14 +353,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/AccountManage/public/excel" />
       <recent name="$PROJECT_DIR$/AccountManage/views/index" />
       <recent name="$PROJECT_DIR$/AccountManage" />
       <recent name="$PROJECT_DIR$/AccountManage/views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/AccountManage/views/index" />
-      <recent name="$PROJECT_DIR$/AccountManage/views/layout" />
+      <recent name="$PROJECT_DIR$/AccountManage" />
+      <recent name="$PROJECT_DIR$/AccountManage/public" />
+      <recent name="$PROJECT_DIR$/AccountManage/public/excel" />
       <recent name="$PROJECT_DIR$/AccountManage/public/images" />
+      <recent name="$PROJECT_DIR$/AccountManage/views/index" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -407,7 +406,7 @@
       <workItem from="1510913853175" duration="32000" />
       <workItem from="1510913990410" duration="16396000" />
       <workItem from="1511154963199" duration="218000" />
-      <workItem from="1511155215065" duration="42505000" />
+      <workItem from="1511155215065" duration="61710000" />
     </task>
     <task id="LOCAL-00001" summary="setting express">
       <created>1510649782332</created>
@@ -437,11 +436,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511190172314</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="bootstrapRepair, sessionBugFix, feature-buttonAdd_externalLinkAdd_linkIframeAdd">
+      <created>1511251311250</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1511251311250</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129219000" />
+    <option name="totallyTimeSpent" value="148424000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1921" y="-1057" width="1919" height="1057" extended-state="6" />
@@ -455,11 +461,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2886049" sideWeight="0.48935038" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19382322" sideWeight="0.48601973" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="FAQ Robot" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1113479" sideWeight="0.6407186" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15610015" sideWeight="0.6407186" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32215446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32161874" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1512247" sideWeight="0.7028061" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39945653" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11341853" sideWeight="0.35928145" order="7" side_tool="true" content_ui="tabs" />
@@ -520,47 +526,24 @@
     <MESSAGE value="temporary_save" />
     <MESSAGE value="개발-로그인-시나리오&#10;post.('/') login.ejs에서 inputform에서 req.body로 받아온 입력정보를(구현)&#10;DB에 있는 회원정보를 불러와서 검증하고 일치한다면(미구현)(db-table-구현)(연결-미구현)&#10;단방향 암호화 시키고(미구현)&#10;session에 담아서(구현)&#10;로그인 유지한다(미확인)" />
     <MESSAGE value="bootstrap-repair" />
-    <option name="LAST_COMMIT_MESSAGE" value="bootstrap-repair" />
+    <MESSAGE value="bootstrapRepair, sessionBugFix, feature-buttonAdd_externalLinkAdd_linkIframeAdd" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrapRepair, sessionBugFix, feature-buttonAdd_externalLinkAdd_linkIframeAdd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/AccountManage/app.js</url>
-          <line>55</line>
+          <url>file://$PROJECT_DIR$/AccountManage/routes/index.js</url>
+          <line>148</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AccountManage/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AccountManage/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -710,14 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -782,6 +757,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/public/images/playauto_logo_blue.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/public/images/playauto_logo_clarity.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/routes/culture.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/nav.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding>
+            <element signature="e#1409#1415#0#HTML" expanded="true" />
+            <element signature="e#1425#1431#0#HTML" expanded="true" />
+            <element signature="e#1609#1615#0#HTML" expanded="true" />
+            <element signature="e#1622#1628#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3353">
+          <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/main.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="58" lean-forward="false" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/containlink.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/culture.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="74" column="54" lean-forward="true" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AccountManage/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -790,74 +852,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/culture.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AccountManage/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/containlink.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="56" lean-forward="false" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
+        <state relative-caret-position="532">
+          <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AccountManage/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="309" column="0" lean-forward="true" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/nav.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="51" lean-forward="false" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/layout/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccountManage/views/index/main.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="91" column="12" lean-forward="true" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
+        <state relative-caret-position="598">
+          <caret line="143" column="7" lean-forward="true" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
           <folding />
         </state>
       </provider>
