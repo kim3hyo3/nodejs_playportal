@@ -31,6 +31,7 @@ router.get('/logout', function (req, res, next) {
 });
 
 /*
+//develope-login-scenario
 개발-로그인-시나리오
 post.('/') login.ejs -> inputform -> post.('/main') -> req.body 받아온 입력정보를(구현)
 DB에 있는 회원정보를 불러와서 검증하고 일치한다면(미구현)(db-table-구현)(연결-미구현)
@@ -40,6 +41,7 @@ session에 담아서(구현)
 */
 
 /*
+//mysql-apply-code
 connection.connect();
 var select = 'SELECT site_title, site_content FROM view_site;';
 connection.query(select, function (err, rows, fields) {
@@ -90,43 +92,8 @@ router.post('/main/containlink', function (req, res, next) {
 
 router.get('/culture', function (req, res, next) {
   console.log(req.session);
-
-  //excel upload
-  //
-  if (typeof require !== 'undefined') XLSX = require('xlsx');
-
-  var workbook = XLSX.readFile('culture_balance01.xlsx');
-
-  /* DO SOMETHING WITH workbook HERE */
-  //BringSheetName
-  var first_sheet_name = workbook.SheetNames[0];
-  console.log('01'+first_sheet_name);
-
-  //settingAddressOfCell
-  var address_of_cell = 'B1';
-
-  /* Get worksheet */
-  //
-  var worksheet = workbook.Sheets[first_sheet_name];
-  console.log(worksheet);
-
-  /* Find desired cell */
-  var desired_cell = worksheet[address_of_cell];
-  console.log(desired_cell);
-
-  /* Get the value */
-  var desired_value = desired_cell.v;
-  console.log('04'+desired_value);
-
-  /* output format determined by filename */
-
-  XLSX.writeFile(workbook, 'culture_balance01_out.xlsx');
-
-  /* at this point, out.xlsx is a file that you can distribute */
-
-  var select = 'SELECT site_title, site_content FROM view_site;';
-
   pool.getConnection(function(err,connection){
+  var select = 'SELECT `grant`, `use`, `extinction`, `balance` FROM `culturelife`;';
     connection.query(select, function (err, rows, fields) {
       /*
       if (error) throw error;
@@ -137,13 +104,13 @@ router.get('/culture', function (req, res, next) {
         return;
       }
       if (rows) {
-        console.log('rows[0].site_title is: ', rows[0].site_title);
+        console.log('rows[0].grant is: ', rows[0].grant);
         console.log('SELECT count :', rows.length);
         rows.forEach(function (i) {
           console.log('SELECT i :', i);
         });
       }
-      res.render('index/culture', {token: req.session.username, siteList: rows});
+      res.render('index/culture', {token: req.session.username, cultureData: rows});
       connection.release();
     });
   });
@@ -166,22 +133,23 @@ router.get('/attendence', function (req, res, next) {
   res.render('attendence', {title: 'Express'});
 });
 
+/*
 router.post('/attendence', function (req, res, next) {
   app.post('/upload',upload.array('userfile',2), function(req, res) {
     var workbook_am = XLSX.readFile('upxls/1.xls');
     var workbook = XLSX.readFile('upxls/2.xls');
 
     var ws = []
-    var sheet_am = workbook_am.SheetNames[0]; 
+    var sheet_am = workbook_am.SheetNames[0];
     ws[0] = workbook_am.Sheets[sheet_am];
-    var sheet_pm = workbook.SheetNames[0]; 
+    var sheet_pm = workbook.SheetNames[0];
     ws[1] = workbook.Sheets[sheet_pm];
-    
+
     var aph = 'ABCDE';
     var i=0, j=0;
-    
-    /* 퇴근 */
-    
+
+    /!* 퇴근 *!/
+
     var arr_am = new Array();
     var name_am = new Array();
     var date_am = new Array();
@@ -218,8 +186,6 @@ router.post('/attendence', function (req, res, next) {
         }
     }
     // ---------------------------여기까지 양쪽 이름 다 받음 ------------------------------
-    
-     
     arr_am = new Array();
     arr_pm = new Array();
     var year = 17;
@@ -236,16 +202,16 @@ router.post('/attendence', function (req, res, next) {
     var newTime_pm = new Array();
     var newTime_am = new Array();
     var name = new Array();
-    
+
     for ( var i = 0 ; i < name_am.length; i++) {
         name.push(name_am[i]);
     }
     for ( var i = 0 ; i < name_pm.length; i++) {
         name.push(name_pm[i]);
     }
-    
+
     name.sort(1);
-    
+
     var na = '';
     for(var i = 0 ; i < name.length ; i++) {    //정렬한 이름을 6개로 저장
         if(na != name[i]) {
@@ -260,7 +226,7 @@ router.post('/attendence', function (req, res, next) {
             newDate.push(day[j]);
         }
     }
-    
+
     i = 0;
     j = 0;
     while(i < newName.length) {
@@ -275,14 +241,14 @@ router.post('/attendence', function (req, res, next) {
             if(name_pm[j] == name_pm[j-1] && date_pm[j] == date_pm[j-1]) {  //같은날 두번찍으면 i감소
                 i--;
             }
-        } else { 
+        } else {
             newTime_pm[i] = '';
-            i++; 
+            i++;
         }
     }
-    
+
     //만약 퇴근시간이 6시 전이라면 전날 시간에 저장
-    /* 출근 */
+    /!* 출근 *!/
     i = 0;
     j = 0;
     while(i < newName.length) {
@@ -294,9 +260,9 @@ router.post('/attendence', function (req, res, next) {
             if(name_am[j] == name_am[j-1] && date_am[j] == date_am[j-1]) {  //같은날 두번찍으면 i감소
                 i--;
             }
-        } else { 
+        } else {
             newTime_am[i] = '';
-            i++; 
+            i++;
         }
     }
 console.log(newName[1]+4);
@@ -316,6 +282,41 @@ console.log(newName[1]+4);
     res.redirect('/');
 })
   res.render('attendence', {title: 'Express'});
-});
+});*/
+
+
+/*
+  //excel upload
+  if (typeof require !== 'undefined') XLSX = require('xlsx');
+
+  var workbook = XLSX.readFile('culture_balance01.xlsx');
+
+  /!* DO SOMETHING WITH workbook HERE *!/
+  //BringSheetName
+  var first_sheet_name = workbook.SheetNames[0];
+  console.log('01'+first_sheet_name);
+
+  //settingAddressOfCell
+  var address_of_cell = 'B1';
+
+  /!* Get worksheet *!/
+  //
+  var worksheet = workbook.Sheets[first_sheet_name];
+  console.log(worksheet);
+
+  /!* Find desired cell *!/
+  var desired_cell = worksheet[address_of_cell];
+  console.log(desired_cell);
+
+  /!* Get the value *!/
+  var desired_value = desired_cell.v;
+  console.log('04'+desired_value);
+
+  /!* output format determined by filename *!/
+
+  XLSX.writeFile(workbook, 'culture_balance01_out.xlsx');
+
+  /!* at this point, out.xlsx is a file that you can distribute *!/
+*/
 
 module.exports = router;

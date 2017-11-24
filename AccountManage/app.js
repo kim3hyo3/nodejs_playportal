@@ -13,8 +13,8 @@ var mysql = require('mysql');
 pool = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
-  password : '14231423',
-  database : 'createdb'
+  password : '24682468',
+  database : 'playauto_account_manage'
 });
 
 var app = express();
