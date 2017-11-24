@@ -93,12 +93,9 @@ router.post('/main/containlink', function (req, res, next) {
 router.get('/culture', function (req, res, next) {
   console.log(req.session);
   pool.getConnection(function(err,connection){
-  var select = 'SELECT `grant`, `use`, `extinction`, `balance` FROM `culturelife`;';
-    connection.query(select, function (err, rows, fields) {
-      /*
-      if (error) throw error;
-      console.log('The solution is: ', results[0].site_title);
-      */
+  var select01 = 'SELECT `grant`, `use`, `extinction`, `balance` FROM `culturelife`;';
+    connection.query(select01, function (err, result01, fields) {
+      /*console.log(rows);
       if (err) {
         console.error('SELECT ERROR', err);
         return;
@@ -109,9 +106,15 @@ router.get('/culture', function (req, res, next) {
         rows.forEach(function (i) {
           console.log('SELECT i :', i);
         });
+      }*/
+      /*for(var i=0;i<result01.length;i++){
+        console.log(result01[i].grant);
       }
-      res.render('index/culture', {token: req.session.username, cultureData: rows});
-      connection.release();
+      var select02 = 'SELECT `m_id`, `m_password` FROM `member`;';
+      connection.query(select02, function (err, rows, fields) {
+        res.render('index/culture', {token: req.session.username, cultureData: rows});
+        connection.release();
+      }*/
     });
   });
 });

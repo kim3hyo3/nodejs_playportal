@@ -12,7 +12,7 @@ var mysql = require('mysql');
 
 pool = mysql.createPool({
   host     : 'localhost',
-  user     : 'root',
+  user     : 'player01',
   password : '24682468',
   database : 'playauto_account_manage'
 });
