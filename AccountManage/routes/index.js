@@ -93,10 +93,12 @@ router.post('/main/containlink', function (req, res, next) {
 router.get('/culture', function (req, res, next) {
   console.log(req.session);
   pool.getConnection(function(err,connection){
-  var select01 = 'SELECT `grant`, `use`, `extinction`, `balance` FROM `culturelife`;';
-    connection.query(select01, function (err, result01, fields) {
-      /*console.log(rows);
-      if (err) {
+  var select = 'SELECT member.m_name, culturelife.grant, culturelife.use, culturelife.extinction, culturelife.balance ' +
+    'FROM culturelife INNER JOIN member ' +
+    'ON culturelife.id_member = member.id_member;';
+    connection.query(select, function (err, rows, fields) {
+      console.log(rows);
+      /*if (err) {
         console.error('SELECT ERROR', err);
         return;
       }
@@ -107,14 +109,11 @@ router.get('/culture', function (req, res, next) {
           console.log('SELECT i :', i);
         });
       }*/
-      /*for(var i=0;i<result01.length;i++){
-        console.log(result01[i].grant);
+      for(var i = 0; i < rows.length; i++){
+        console.log(rows[i].grant);
       }
-      var select02 = 'SELECT `m_id`, `m_password` FROM `member`;';
-      connection.query(select02, function (err, rows, fields) {
-        res.render('index/culture', {token: req.session.username, cultureData: rows});
-        connection.release();
-      }*/
+      res.render('index/culture', {token: req.session.username, cultureData: rows});
+      connection.release();
     });
   });
 });

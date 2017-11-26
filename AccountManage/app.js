@@ -12,9 +12,9 @@ var mysql = require('mysql');
 
 pool = mysql.createPool({
   host     : 'localhost',
-  user     : 'player01',
+  user     : 'user01',
   password : '24682468',
-  database : 'playauto_account_manage'
+  database : 'player_portal'
 });
 
 var app = express();
