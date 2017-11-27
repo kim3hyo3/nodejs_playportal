@@ -163,7 +163,7 @@ router.get('/table/nodeTwo', function (req, res, next) {
 
 
 router.get('/attendence', function (req, res, next) {
-  res.render('attendence', {title: 'Express'});
+  res.render('index/attendence');
 });
 
 router.post('/attendence', function (req, res, next) {
