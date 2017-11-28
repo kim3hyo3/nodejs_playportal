@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-2">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
@@ -71,7 +71,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="col-md-10">
         <!--iframe windows-->
@@ -81,11 +81,11 @@
         </div>-->
 
         <div class="list-group">
-          <li class="list-group-item active"><h4>cultureLifeCost_Test</h4></li>
+          <li class="list-group-item active"><h4>cultureLifeCost_test</h4></li>
           <li class="list-group-item">
             <table class="table table-bordered">
               <tr>
-                <th>cultureLifeCost_Test</th>
+                <th>cultureLifeCost_test</th>
                 <th>grant</th>
                 <th>use</th>
                 <th>extinction</th>
@@ -93,7 +93,7 @@
               </tr>
               <%for(var i = 0; i < cultureData.length;i++){%>
               <tr>
-                <td>user_name</td>
+                <td><%= cultureData[i].m_name %></td>
                 <td><%= cultureData[i].grant %></td>
                 <td><%= cultureData[i].use %></td>
                 <td><%= cultureData[i].extinction %></td>

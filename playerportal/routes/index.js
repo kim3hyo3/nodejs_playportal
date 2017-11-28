@@ -90,12 +90,10 @@ router.post('/main/containlink', function (req, res, next) {
   res.render('index/containlink', {token: req.session.username, link: link});
 });
 
-router.get('/culture', function (req, res, next) {
+router.get('/culturelife', function (req, res, next) {
   console.log(req.session);
   pool.getConnection(function(err,connection){
-  var select = 'SELECT member.m_name, culturelife.grant, culturelife.use, culturelife.extinction, culturelife.balance ' +
-    'FROM culturelife INNER JOIN member ' +
-    'ON culturelife.id_member = member.id_member;';
+  var select = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON  member.m_cd = culturelife_m.m_cd;';
     connection.query(select, function (err, rows, fields) {
       console.log(rows);
       /*if (err) {
@@ -109,16 +107,18 @@ router.get('/culture', function (req, res, next) {
           console.log('SELECT i :', i);
         });
       }*/
-      for(var i = 0; i < rows.length; i++){
+      /*for(var i = 0; i < rows.length; i++){
         console.log(rows[i].grant);
-      }
-      res.render('index/culture', {token: req.session.username, cultureData: rows});
+      }*/
+      res.render('index/culturelife', {token: req.session.username, cultureData: rows});
       connection.release();
     });
   });
 });
 
-router.get('/table', function (req, res, next) {
+router.get('/support', function (req, res, next) {
+
+
   res.render('table', {title: 'Express'});
 });
 
