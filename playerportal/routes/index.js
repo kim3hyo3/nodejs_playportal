@@ -17,7 +17,7 @@ router.get('/logout', function (req, res, next) {
   }
   */
   //second login way
-  if (req.session.username) {
+  if (req.session.username !== null) {
     req.session.destroy(function (err) {
       if (err) {
         console.log(err);
@@ -87,8 +87,11 @@ router.post('/main', function (req, res) {
   //console.log(req.body.username);
   /*
   login process
-    if(mysql.db.userInfo==req.body.username){
-    } else if{
+  //입력받은 req.body.name 하고
+  if(mysql.db.userInfo==req.body.username)
+    if(mysql.db.userInfo==req.body.password){
+    }
+    else if({
     }
   */
   req.session.username = req.body.username;
@@ -133,21 +136,6 @@ router.get('/culturelife', function (req, res, next) {
     });
   });
 });
-
-router.get('/support', function (req, res, next) {
-
-
-  res.render('table', {title: 'Express'});
-});
-
-router.get('/table/nodeOne', function (req, res, next) {
-  res.render('table_nodeOne', {title: 'Express'});
-});
-
-router.get('/table/nodeTwo', function (req, res, next) {
-  res.render('table_nodeTwo', {title: 'Express'});
-});
-
 
 router.get('/attendence', function (req, res, next) {
   res.render('attendence', {title: 'Express'});
