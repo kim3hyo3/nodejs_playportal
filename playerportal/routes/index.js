@@ -65,6 +65,24 @@ connection.query(select, function (err, rows, fields) {
 connection.end();
 */
 
+router.get('/main', function (req, res) {
+  //console.log(req.body.username);
+  /*
+  login process
+    if(mysql.db.userInfo==req.body.username){
+    } else if{
+    }
+  */
+  // req.session.username = req.body.username;
+  var logVal = req.session.username;
+  // se.password = req.body.password;
+  if (logVal === null || logVal === "") {
+    res.redirect('/', 'login');
+  } else if (logVal !== null) {
+    res.render('index/main', {token: logVal});
+  }
+});
+
 router.post('/main', function (req, res) {
   //console.log(req.body.username);
   /*
