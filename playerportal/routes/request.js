@@ -21,6 +21,7 @@ router.get('/list/:page', function (req, res, next) {
 
 router.get('/read/:id_request', function (req, res, next) {
   var id_request = req.params.id_request;
+
   pool.getConnection(function(err,connection) {
     connection.query('SELECT id_request, title, content, date_format(modidate,\'%Y-%m-%d %H:%i:%s\'), hit from request where id_request;', function (err, rows) {
       if (err) console.error("err : " + err);

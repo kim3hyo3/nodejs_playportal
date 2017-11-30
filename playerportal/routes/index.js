@@ -8,15 +8,7 @@ router.get('/', function (req, res, next) {
 
 //log_logout
 router.get('/logout', function (req, res, next) {
-  //first login way
-  /*if(session != null) {
-    session = null;
-    res.redirect('/');
-  }else{
-    res.redirect('/');
-  }
-  */
-  //second login way
+  //login way
   if (req.session.username !== null) {
     req.session.destroy(function (err) {
       if (err) {
@@ -73,7 +65,6 @@ router.get('/main', function (req, res) {
     } else if{
     }
   */
-  // req.session.username = req.body.username;
   var logVal = req.session.username;
   // se.password = req.body.password;
   if (logVal === null || logVal === "") {

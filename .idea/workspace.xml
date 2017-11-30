@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97df2ed0-eeed-477f-bf6f-e0c9bd795e91" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/playerportal/routes/request.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/playerportal/views/request/read.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/app.js" afterPath="$PROJECT_DIR$/playerportal/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/package.json" afterPath="$PROJECT_DIR$/playerportal/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/routes/index.js" afterPath="$PROJECT_DIR$/playerportal/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/routes/request.js" afterPath="$PROJECT_DIR$/playerportal/routes/request.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/views/index/containlink.ejs" afterPath="$PROJECT_DIR$/playerportal/views/index/containlink.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" afterPath="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/views/index/main.ejs" afterPath="$PROJECT_DIR$/playerportal/views/index/main.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/views/request/list.ejs" afterPath="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,7 +31,7 @@
             <entry file="file://$PROJECT_DIR$/playerportal/views/index/login.ejs">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="309">
-                  <caret line="313" column="45" lean-forward="true" selection-start-line="313" selection-start-column="45" selection-end-line="313" selection-end-column="45" />
+                  <caret line="313" column="45" lean-forward="false" selection-start-line="313" selection-start-column="45" selection-end-line="313" selection-end-column="45" />
                   <folding />
                 </state>
               </provider>
@@ -41,8 +40,8 @@
           <file leaf-file-name="main.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/playerportal/views/index/main.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="400">
-                  <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+                <state relative-caret-position="990">
+                  <caret line="66" column="21" lean-forward="false" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -51,8 +50,8 @@
           <file leaf-file-name="containlink.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/playerportal/views/index/containlink.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+                <state relative-caret-position="690">
+                  <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -61,8 +60,8 @@
           <file leaf-file-name="culturelife.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/playerportal/views/index/culturelife.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="534">
-                  <caret line="72" column="19" lean-forward="false" selection-start-line="64" selection-start-column="14" selection-end-line="72" selection-end-column="19" />
+                <state relative-caret-position="1155">
+                  <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -71,11 +70,11 @@
           <file leaf-file-name="list.ejs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/playerportal/views/request/list.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="267">
-                  <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+                <state relative-caret-position="414">
+                  <caret line="95" column="39" lean-forward="true" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
                   <folding>
-                    <element signature="e#4818#4825#1#HTML" expanded="true" />
-                    <element signature="e#5439#5446#1#HTML" expanded="true" />
+                    <element signature="e#3928#3935#1#HTML" expanded="true" />
+                    <element signature="e#4549#4556#1#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -84,8 +83,8 @@
           <file leaf-file-name="read.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/playerportal/views/request/read.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1280">
-                  <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+                <state relative-caret-position="1569">
+                  <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
                   <folding>
                     <element signature="e#4818#4825#1#HTML" expanded="true" />
                     <element signature="e#5439#5446#1#HTML" expanded="true" />
@@ -102,7 +101,17 @@
             <entry file="file://$PROJECT_DIR$/playerportal/app.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="783">
-                  <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+                  <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/playerportal/package.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -111,8 +120,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/playerportal/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="871">
-                  <caret line="119" column="18" lean-forward="true" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
+                <state relative-caret-position="1965">
+                  <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -121,8 +130,8 @@
           <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/playerportal/routes/request.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+                <state relative-caret-position="345">
+                  <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -196,18 +205,20 @@
         <option value="$PROJECT_DIR$/AccountManage/package-lock.json" />
         <option value="$PROJECT_DIR$/AccountManage/package.json" />
         <option value="$PROJECT_DIR$/AccountManage/bin/www" />
-        <option value="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" />
-        <option value="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" />
         <option value="$PROJECT_DIR$/playerportal/views/index/support.ejs" />
         <option value="$PROJECT_DIR$/playerportal/views/index/request.ejs" />
         <option value="$PROJECT_DIR$/playerportal/app.js" />
-        <option value="$PROJECT_DIR$/playerportal/routes/index.js" />
-        <option value="$PROJECT_DIR$/playerportal/routes/index.js" />
         <option value="$PROJECT_DIR$/playerportal/views/request/write.ejs" />
         <option value="$PROJECT_DIR$/playerportal/views/index/main.ejs" />
         <option value="$PROJECT_DIR$/playerportal/views/request/read.ejs" />
-        <option value="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
+        <option value="$PROJECT_DIR$/playerportal/package.json" />
+        <option value="$PROJECT_DIR$/playerportal/views/index/containlink.ejs" />
+        <option value="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" />
+        <option value="$PROJECT_DIR$/playerportal/views/index/culturelife.ejs" />
+        <option value="$PROJECT_DIR$/playerportal/routes/index.js" />
+        <option value="$PROJECT_DIR$/playerportal/routes/index.js" />
         <option value="$PROJECT_DIR$/playerportal/routes/request.js" />
+        <option value="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
       </list>
     </option>
   </component>
@@ -424,7 +435,7 @@
       <workItem from="1511155215065" duration="66976000" />
       <workItem from="1511445054476" duration="13983000" />
       <workItem from="1511916892645" duration="6733000" />
-      <workItem from="1511938261186" duration="16658000" />
+      <workItem from="1511938261186" duration="20608000" />
     </task>
     <task id="LOCAL-00001" summary="setting express">
       <created>1510649782332</created>
@@ -489,11 +500,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511530782577</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="commit_upload">
+      <created>1511969524888</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1511969524888</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205962000" />
+    <option name="totallyTimeSpent" value="209912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="23" width="1875" height="1177" extended-state="6" />
@@ -739,14 +757,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/package-lock.json" />
-    <entry file="file://$PROJECT_DIR$/playerportal/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/views/layout/nav.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="705">
@@ -763,42 +773,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/views/index/culturelife.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="72" column="19" lean-forward="false" selection-start-line="64" selection-start-column="14" selection-end-line="72" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/views/index/containlink.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/views/index/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="313" column="45" lean-forward="true" selection-start-line="313" selection-start-column="45" selection-end-line="313" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/views/index/main.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -823,26 +801,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/playerportal/views/index/login.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="871">
-          <caret line="119" column="18" lean-forward="true" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
+        <state relative-caret-position="309">
+          <caret line="313" column="45" lean-forward="false" selection-start-line="313" selection-start-column="45" selection-end-line="313" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/app.js">
+    <entry file="file://$PROJECT_DIR$/playerportal/views/index/main.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state relative-caret-position="990">
+          <caret line="66" column="21" lean-forward="false" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerportal/views/index/containlink.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerportal/views/index/culturelife.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/views/request/read.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1280">
-          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        <state relative-caret-position="1569">
+          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
             <element signature="e#4818#4825#1#HTML" expanded="true" />
             <element signature="e#5439#5446#1#HTML" expanded="true" />
@@ -850,22 +844,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playerportal/routes/request.js">
+    <entry file="file://$PROJECT_DIR$/playerportal/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state relative-caret-position="783">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerportal/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerportal/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/views/request/list.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+        <state relative-caret-position="414">
+          <caret line="95" column="39" lean-forward="true" selection-start-line="95" selection-start-column="39" selection-end-line="95" selection-end-column="39" />
           <folding>
-            <element signature="e#4818#4825#1#HTML" expanded="true" />
-            <element signature="e#5439#5446#1#HTML" expanded="true" />
+            <element signature="e#3928#3935#1#HTML" expanded="true" />
+            <element signature="e#4549#4556#1#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playerportal/routes/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
