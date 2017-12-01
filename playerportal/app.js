@@ -10,7 +10,7 @@ var users = require('./routes/users');
 var request = require('./routes/request');
 
 var mysql = require('mysql');
-var db_config = require('./config/db-config.json');
+var db_config = require('./config/dbconfig.json');
 
 pool = mysql.createPool({
   host     : db_config.host,

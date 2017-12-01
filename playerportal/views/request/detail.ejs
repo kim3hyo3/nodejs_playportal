@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<% include ../layout/head.ejs %>
-<link rel='stylesheet' href='/stylesheets/style.css'/>
+  <% include ../layout/head.ejs %>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
 <% include ../layout/nav.ejs %>
@@ -66,23 +66,12 @@
                 </tr>
                 <%for(var i = 0; i < rows.length;i++){%>
                 <tr>
-                  <td class="col-md-1"><%=rows[i].id_request%></td>
-                  <td class="col-md-1"><%=rows[i].m_cd%></td>
-                  <td class="col-md-2"><a href="/request/detail/<%=rows[i].id_request%>"><%=rows[i].title%></a></td>
-                  <!--<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Link with href
-                  </a>
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Button with data-target
-                  </button>
-                  <div class="collapse" id="collapseExample">
-                    <div class="well">
-                      ...
-                    </div>
-                  </div>-->
-                  <td class="col-md-5"><%=rows[i].content%></td>
-                  <td class="col-md-2"><%=rows[i].modidate%></td>
-                  <td class="col-md-2"><%=rows[i].hit%></td>
+                  <td class="col-md-1"><%=detailItem[i].id_request%></td>
+                  <td class="col-md-1"><%=detailItem[i].m_cd%></td>
+                  <td class="col-md-2"><a href="/request/detail/<%=detailItem[i].id_request%>"><%=rows[i].title%></a></td>
+                  <td class="col-md-5"><%=detailItem[i].content%></td>
+                  <td class="col-md-2"><%=detailItem[i].modidate%></td>
+                  <td class="col-md-2"><%=detailItem[i].hit%></td>
                 </tr>
                 <%}%>
               </table>
@@ -131,7 +120,7 @@
               }
             }
 
-            $('#requestGet').click(function () {
+            /*$('#requestGet').click(function () {
               $.ajax({
                 url: '/products',
                 type: 'post',
@@ -147,7 +136,7 @@
                   console.log(err.toString());
                 }
               });
-            });
+            });*/
           </script>
         </div>
       </div>

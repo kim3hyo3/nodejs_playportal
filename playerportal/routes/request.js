@@ -19,14 +19,16 @@ router.get('/list/:page', function (req, res, next) {
   });
 });
 
-router.get('/read/:id_request', function (req, res, next) {
+router.get('/detail/:id_request', function (req, res, next) {
+  console.log("aaaaa"+req.params.id_request);
   var id_request = req.params.id_request;
 
   pool.getConnection(function(err,connection) {
-    connection.query('SELECT id_request, title, content, date_format(modidate,\'%Y-%m-%d %H:%i:%s\') AS modidate, hit from request where id_request;', function (err, rows) {
+  var query = 'SELECT '+id_request+', title, content, date_format(modidate,\'%Y-%m-%d %H:%i:%s\') AS modidate, hit from request where id_request;'
+    connection.query(query, function (err, rows) {
       if (err) console.error("err : " + err);
       console.log("rows : " + JSON.stringify(rows));
-      res.render('request/read', {token: req.session.username, readItem: rows});
+      res.render('request/detail', {token: req.session.username, readItem: rows});
       connection.release();
     });
   });
