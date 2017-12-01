@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
+
   font-family: 'Roboto', sans-serif;
 }
 
@@ -141,6 +140,7 @@ table {
 table {
   width: 95%;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 .first,
@@ -165,7 +165,7 @@ th {
 }
 
 .fixe {
-  background: rgb(150, 217, 255);
+  background: rgb(169, 223, 250);
   display: block;
   position: fixed;
   width: 100%;
@@ -213,4 +213,8 @@ td > input[type=text] {
 }
 .search > input[type=text] {
   width:100px;
+}
+
+.red {
+  background: rgb(255, 187, 187);
 }

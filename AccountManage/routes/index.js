@@ -145,13 +145,21 @@ router.get('/table/nodeTwo', function (req, res, next) {
   });
 });
 
-
-router.get('/attendence', function (req, res, next) {
+router.get('/attendance', function (req, res) {
   pool.getConnection(function (err, connection) {
-    var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND mode=1 order by name asc, date asc"
+    if(req.query.s_name) {
+      var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND date < '2017-12' AND name LIKE'%"+req.query.s_name+"%' AND mode=1 order by name asc, date asc"
+    } else {
+      var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND date < '2017-12' AND mode=1 order by name asc, date asc"
+    }
     connection.query(sql, function (err, am) {
-      var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND mode=2 order by name asc, date asc"
+      if(req.query.s_name) {
+        var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND date < '2017-12' AND name LIKE'%"+req.query.s_name+"%' AND mode=2 order by name asc, date asc"
+      } else {
+        var sql = "select *,DATE_FORMAT(date, '%y%m%d') as date from att where date > '2017-11' AND date < '2017-12' AND mode=2 order by name asc, date asc"
+      }
       connection.query(sql, function (err, pm) {
+        if(am && pm) {res.render('att')}
         var cname = new Array();
         var name = new Array();
         for (var i = 0; i < am.length; i++) {
@@ -169,15 +177,6 @@ router.get('/attendence', function (req, res, next) {
             j++;
           }
         }
-
-        var mon = new Date(2017,11,0).getDate();
-        var date = [];
-        var day = 171101;
-        for(var i = 0; i < mon; i++) {
-          date.push((day+i).toString());
-        }
-        if(am[1].date === date[7]) { console.log(1)} else {console.log(am[1].date, date[7])}
- 
         res.render('index/att', {
           on: am,
           off: pm,
