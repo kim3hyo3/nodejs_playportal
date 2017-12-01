@@ -12,68 +12,71 @@
       <div class="col-md-3">
         <div class="list-group">
           <li class="list-group-item active"><h4>외부링크</h4></li>
-          <!--http://books.playauto.org/-->
-
           <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="https://www.docswave.com/v2/myurl/playauto">전자결재</button>
-            </form>
+            <a class="btn btn-primary btn-lg btn-block" href="https://www.docswave.com/v2/myurl/playauto" role="button">전자결재</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://manual.playauto.co.kr/login.html" role="button">사용설명서</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://books.playauto.org" role="button">도서관리</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://www.playauto.co.kr/_mobile/seminar.php" role="button">회의실예약</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://redmine3.playauto.co.kr" role="button">플레드마인</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://dd.playauto.co.kr/ppy926/lunchbox/views/index.html" role="button">점심주문</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://bizplay.co.kr" role="button">Bizplay</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://192.168.0.11:5000/" role="button">NAS</a>
+            <a class="btn btn-primary btn-lg btn-block" href="http://members.iparking.co.kr/pages/login/login.html" role="button">주차관리</a>
           </li>
-
-          <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://manual.playauto.co.kr/login.html">사용설명서</button>
-            </form>
-          </li>
-
-          <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://www.playauto.co.kr/_mobile/seminar.php">회의실예약</button>
-            </form>
-          </li>
-
-          <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://redmine3.playauto.co.kr/login?back_url=http%3A%2F%2Fredmine3.playauto.co.kr%2F">레드마인</button>
-            </form>
-          </li>
-
-          <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://books.playauto.org/">도서</button>
-            </form>
-          </li>
-
         </div>
       </div>
       <div class="col-md-3">
         <div class="list-group">
           <li class="list-group-item active"><h4>경영지원</h4></li>
-          <a href="#" class="list-group-item">
-            <div class="caption">
-              <h3>각종규정</h3>
-              <p>contentcontentcontentcontentcontent</p>
-            </div>
-          </a>
-          <a href="#" class="list-group-item">
-            <div class="caption">
-              <h3>홍보자료</h3>
-              <p>contentcontentcontentcontentcontent</p>
-            </div>
-          </a>
-          <a href="/request" class="list-group-item">
-            <div class="caption">
-              <h3>플레이어지원센터</h3>
-              <p>구매요청, 지원요청, 명함요청</p>
-            </div>
-          </a>
+          <li class="list-group-item">
+            <a href="/request" class="list-group-item">
+              <div class="caption">
+                <h3>플레이어센터</h3>
+                <p>구매요청, 지원요청, 명함요청</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>각종규정</h3>
+                <p>content_content_content_content_content</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>회사홍보자료</h3>
+                <p>content_content_content_content_content</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>표준문서양식</h3>
+                <p>content_content_content_content_content</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>법인카드불출</h3>
+                <p>content_content_content_content_content</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>자리배치도</h3>
+                <p>content_content_content_content_content</p>
+              </div>
+            </a>
+          </li>
         </div>
       </div>
       <div class="col-md-3">
         <div class="list-group">
           <li class="list-group-item active"><h4>복리후생</h4></li>
-          <a href="/culturelife" class="list-group-item">문생비잔액확인</a>
-          <a href="#" class="list-group-item">리조트예약</a>
+          <a href="/culturelife" class="list-group-item">
+            <div class="caption">
+              <h3>문생비잔액확인</h3>
+              <p>본인의 문생비 잔액 확인</p>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col-md-3">
@@ -91,6 +94,14 @@
           </li>
           <a href="#" class="list-group-item">사이트관리</a>
           <a href="#" class="list-group-item">근태관리</a>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Button with data-target
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="well">
+              ...
+            </div>
+          </div>
         </div>
       </div>
     </div>

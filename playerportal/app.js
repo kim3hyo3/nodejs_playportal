@@ -9,14 +9,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var request = require('./routes/request');
 
-
 var mysql = require('mysql');
+var db_config = require('./config/db-config.json');
 
 pool = mysql.createPool({
-  host     : 'localhost',
-  user     : 'user01',
-  password : '24682468',
-  database : 'player_portal'
+  host     : db_config.host,
+  user     : db_config.user,
+  password : db_config.password,
+  database : db_config.database
 });
 
 var app = express();
