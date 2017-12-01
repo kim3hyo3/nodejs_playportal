@@ -6,278 +6,71 @@
 </head>
 
 <body>
-  <script>
-  </script>  
-  <section>
-    <!--for demo wrap-->
-    <div style="float:right;">
-        <div>
-            <form action="">
-                <p>
-                    
-                    이름: <input type="text" value="" name="search_name" id="search_name">
-                    날짜: <input type="text" value="" name="search_day" id="search_day">
-                    <button>검색</button>
-                    
-                </p>
-            </form>            
+  <% 
+    var mon = new Date(2017,11,0).getDate();
+    var date = [];
+    var day = 171101;
+    for(var i = 0; i < mon; i++) {
+      date.push((day+i));
+    }
+  
+  %>
+    <div class="fixe">
+      <div class="header">
+        <div class="month">
+          <h1>
+          </h1>
+          <h1>
+            <</h1>
+              <h1>11월</h1>
+              <h1>></h1>
         </div>
-    </div>
-
-    <div>
-        <h1>Daily Work</h1>
-    </div>
-    
-    <div class="tbl-header">
-      <table cellpadding="0" cellspacing="0" border="0">
-        <thead>
-          <tr>
-            <th>이름</th>
-            <%var d = parseInt(new Date(2017,11,0).getDate())+1 %>
-            <% for(var i=1; i< d; i++) {%>
-                <th><%=i %></th>
+        <div class="search">
+          이름
+          <input type="text" class="s_name">
+          <button>검색</button>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th>이름</th>
+          <% for (var i = 1 ; i < mon+1 ; i++) { %>
+            <th <% 'id="'+i+ '"'%>>
+              <%=i+'일'%>
+            </th>
             <% } %>
-          </tr>
-        </thead>
+        </tr>
       </table>
     </div>
-    <div class="tbl-content">
-      <table cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-          <tr>
-            <td>가나다라</td>
-            <td>$1.38</td>
-            <td>hi</td>
-            <td>hi</td>
-            <td>hi</td>
-            <td></td>
-            <td>hi</td>
-
-
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-          <tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <div class="block"></div>
+    <table>
+      <% var n = 0, f = 0; %>
+      <% for (var j = 1 ; j < name.length ; j++) { %>
+        <tr>
+          <td rowspan="2" class="first"><%= name[j]%></td>
+          <% for (var i = 0 ; i < mon ; i++) { %>
+            <td>
+              <% if(on[n].name === name[j] && on[n].date === date[i]) {  %>
+                <input name="<%='i'+i%>" type="text" value="<%=on[n].time%>">
+              <% n += 1 } else { %>
+                <input name="<%='i'+i%>" type="text" value="<%=date[6]%>">
+              <% } %>
+            </td>
+          <% } %>
+        </tr>
+        <tr>
+          <% for (var i = 0 ; i < mon ; i++) { %>
+            <td>
+              <% if(off[n].name === name[j] && off[n].date === date[i]) {  %>
+                <input name="<%='i'+i%>" type="text" value="<%=off[f].time%>">
+              <% f += 1 } else { %>
+                <input name="<%='i'+i%>" type="text" value="2">
+              <% } %>
+            </td>
+          <% } %>
+        </tr>
+        <% } %>
+    </table>
 </body>
 
 </html>
