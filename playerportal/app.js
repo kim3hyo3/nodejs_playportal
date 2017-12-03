@@ -10,13 +10,13 @@ var users = require('./routes/users');
 var request = require('./routes/request');
 
 var mysql = require('mysql');
-var db_config = require('./config/dbconfig.json');
+var configdb = require('./config/configdb.json');
 
 pool = mysql.createPool({
-  host     : db_config.host,
-  user     : db_config.user,
-  password : db_config.password,
-  database : db_config.database
+  host     : configdb.host,
+  user     : configdb.user,
+  password : configdb.password,
+  database : configdb.database
 });
 
 var app = express();
