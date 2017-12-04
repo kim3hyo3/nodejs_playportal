@@ -10,5 +10,5 @@ The setup information was placed in the config/configdb.json.
 "host": "localhost",
 "user": "user01",
 "password": "******",
-"database": "player_portal"
+"database": "playerportal"
 }
