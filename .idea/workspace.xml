@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97df2ed0-eeed-477f-bf6f-e0c9bd795e91" name="Default" comment="request_">
+    <list default="true" id="97df2ed0-eeed-477f-bf6f-e0c9bd795e91" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/routes/request.js" afterPath="$PROJECT_DIR$/playerportal/routes/request.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/playerportal/views/request/list.ejs" afterPath="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
@@ -46,8 +46,8 @@
           <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/playerportal/routes/request.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="575">
-                  <caret line="52" column="96" lean-forward="true" selection-start-line="52" selection-start-column="96" selection-end-line="52" selection-end-column="96" />
+                <state relative-caret-position="590">
+                  <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -89,14 +89,14 @@
                 <state relative-caret-position="310">
                   <caret line="91" column="45" lean-forward="false" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
                   <folding>
-                    <element signature="e#5738#5744#1#HTML" expanded="true" />
-                    <element signature="e#5794#5800#0#HTML" expanded="true" />
-                    <marker date="1512440185000" expanded="true" signature="3599:5056" ph="..." />
-                    <marker date="1512440185000" expanded="true" signature="8328:8964" ph="{...}" />
-                    <marker date="1512440185000" expanded="true" signature="8351:8948" ph="{&quot;url&quot;: '/request/update'...}" />
-                    <marker date="1512440185000" expanded="true" signature="8479:8685" ph="{...}" />
-                    <marker date="1512440185000" expanded="true" signature="8728:8826" ph="{...}" />
-                    <marker date="1512440185000" expanded="true" signature="8866:8932" ph="{...}" />
+                    <element signature="e#5732#5738#1#HTML" expanded="true" />
+                    <element signature="e#5788#5794#0#HTML" expanded="true" />
+                    <marker date="1512441044000" expanded="true" signature="3593:5050" ph="..." />
+                    <marker date="1512441044000" expanded="true" signature="8321:8957" ph="{...}" />
+                    <marker date="1512441044000" expanded="true" signature="8344:8941" ph="{&quot;url&quot;: '/request/update'...}" />
+                    <marker date="1512441044000" expanded="true" signature="8472:8678" ph="{...}" />
+                    <marker date="1512441044000" expanded="true" signature="8721:8819" ph="{...}" />
+                    <marker date="1512441044000" expanded="true" signature="8859:8925" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -131,12 +131,12 @@
           <file leaf-file-name="list.ejs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/playerportal/views/request/list.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="450">
-                  <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
+                <state relative-caret-position="94">
+                  <caret line="103" column="22" lean-forward="true" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
                   <folding>
-                    <element signature="e#5738#5744#1#HTML" expanded="true" />
-                    <element signature="e#5794#5800#0#HTML" expanded="true" />
-                    <element signature="e#7493#7500#1#HTML" expanded="true" />
+                    <element signature="e#5732#5738#1#HTML" expanded="true" />
+                    <element signature="e#5788#5794#0#HTML" expanded="true" />
+                    <element signature="e#7486#7493#1#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -168,6 +168,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="hjkim &lt;kim3hyo3@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -228,8 +233,8 @@
         <option value="$PROJECT_DIR$/playerportal/package.json" />
         <option value="$PROJECT_DIR$/playerportal/views/layout/head.ejs" />
         <option value="$PROJECT_DIR$/playerportal/config/configdb.json" />
-        <option value="$PROJECT_DIR$/playerportal/routes/request.js" />
         <option value="$PROJECT_DIR$/playerportal/views/request/list.ejs" />
+        <option value="$PROJECT_DIR$/playerportal/routes/request.js" />
       </list>
     </option>
   </component>
@@ -638,7 +643,7 @@
       <workItem from="1512131077219" duration="1345000" />
       <workItem from="1512294424630" duration="489000" />
       <workItem from="1512297707632" duration="5185000" />
-      <workItem from="1512350496719" duration="30785000" />
+      <workItem from="1512350496719" duration="31671000" />
     </task>
     <task id="LOCAL-00001" summary="setting express">
       <created>1510649782332</created>
@@ -738,11 +743,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512377091105</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="request_update">
+      <created>1512440336906</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1512440336906</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285469000" />
+    <option name="totallyTimeSpent" value="286355000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1878" height="1177" extended-state="6" />
@@ -827,7 +839,8 @@
     <MESSAGE value="analysis-npm_xlsx" />
     <MESSAGE value="commit-upload" />
     <MESSAGE value="commit_upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit_upload" />
+    <MESSAGE value="request_update" />
+    <option name="LAST_COMMIT_MESSAGE" value="request_update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1084,20 +1097,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/routes/request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="52" column="96" lean-forward="true" selection-start-line="52" selection-start-column="96" selection-end-line="52" selection-end-column="96" />
+        <state relative-caret-position="590">
+          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/playerportal/views/request/list.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
+        <state relative-caret-position="94">
+          <caret line="103" column="22" lean-forward="true" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
           <folding>
-            <element signature="e#5738#5744#1#HTML" expanded="true" />
-            <element signature="e#5794#5800#0#HTML" expanded="true" />
-            <element signature="e#7493#7500#1#HTML" expanded="true" />
+            <element signature="e#5732#5738#1#HTML" expanded="true" />
+            <element signature="e#5788#5794#0#HTML" expanded="true" />
+            <element signature="e#7486#7493#1#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/list/:page', function (req, res, next) {
   pool.getConnection(function(err,connection) {
-    connection.query('SELECT id_request, m_cd, title, content, date_format(modidate,\'%Y-%m-%d %H:%i:%s\') AS modidate, hit from request;', function (err, rows) {
+    connection.query('SELECT id_request, type, title, content, m_cd, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit from request;', function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
       res.render('request/list', {token: req.session.username, rows: rows});
@@ -29,7 +29,7 @@ router.post('/write', function(req, res, next){
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForInsertRequest = "INSERT into request(type, title, content) values(?,?,?);";
+    var sqlForInsertRequest = "INSERT INTO request(type, title, content) values(?,?,?);";
     connection.query(sqlForInsertRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
@@ -40,7 +40,7 @@ router.post('/write', function(req, res, next){
   });
 });
 
-router.post('/update', function(req, res, next){
+router.post('/edit', function(req, res, next){
   console.log(req.body);
   var id_request = req.body.id_request;
   var type =  req.body.type;
@@ -50,8 +50,8 @@ router.post('/update', function(req, res, next){
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForUpdateRequest = "update request set id_request=?, type=?, title=?, content=?, modidate=now() where id_request=?;";
-    connection.query(sqlForUpdateRequest, reqData, function (err, rows) {
+    var sqlForEditRequest = "UPDATE request set id_request=?, type=?, title=?, content=?, editdate=now() WHERE id_request=?;";
+    connection.query(sqlForEditRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       console.log("rows : " + JSON.stringify(rows));
       res.redirect('/request');

@@ -32,7 +32,7 @@
                     <table class="table col-md-12">
                       <tr>
                         <th class="col-md-1">종류</th>
-                        <td class="col-md-1"><input type="dropdown" name="type" id="type"/></td>
+                        <td class="col-md-1"><input type="text" name="type" id="type"/></td>
                         <th class="col-md-1">제목</th>
                         <td class="col-md-2"><input type="text" name="title" id="title"/></td>
                         <th class="col-md-1">내용</th>
@@ -68,7 +68,7 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                   <!--<form action="/request/write" method="post" onsubmit="return onWriteSubmit()">-->
-                  <form action="/request/update" method="post">
+                  <form action="/request/edit" method="post">
                     <!--onsubmit="return onUpdateSubmit()">-->
                     <table class="table col-md-12">
                       <!--<input type="hidden" name="_method" value="PUT">-->
@@ -136,7 +136,7 @@
                     </div>
                   </td>
                   <td class="col-md-1"><%=rows[i].m_cd%></td>
-                  <td class="col-md-2"><%=rows[i].modidate%></td>
+                  <td class="col-md-2"><%=rows[i].regdate%></td>
                   <td class="col-md-1"><%=rows[i].hit%></td>
                 </tr>
                 <%}%>
