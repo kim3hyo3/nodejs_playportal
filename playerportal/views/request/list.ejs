@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<% include ../layout/head.ejs %>
-<link rel='stylesheet' href='/stylesheets/style.css'/>
+  <% include ../layout/head.ejs %>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
 <% include ../layout/nav.ejs %>
@@ -22,51 +22,110 @@
         <div class="list-group">
           <li class="list-group-item active"><h4>요청 목록</h4></li>
           <li class="list-group-item">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsewrite" aria-expanded="false" aria-controls="collapsewrite">
               글쓰기
             </button>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapsewrite">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <form action="/request/write" method="post" onsubmit="return onWriteSubmit()">
-                    <table class="table">
+                    <table class="table col-md-12">
                       <tr>
-                        <th>종류</th>
+                        <th class="col-md-1">종류</th>
+                        <td class="col-md-1"><input type="dropdown" name="type" id="type"/></td>
+                        <th class="col-md-1">제목</th>
+                        <td class="col-md-2"><input type="text" name="title" id="title"/></td>
+                        <th class="col-md-1">내용</th>
+                        <td class="col-md-6">
+                          <textarea name="content" id="content"></textarea>
+                        </td>
                       </tr>
                       <tr>
-                        <td><input type="dropdown" name="type" id="type"/></td>
-                      </tr>
-                      <tr>
-                        <th>제목</th>
-                        <th>내용</th>
-                      </tr>
-                      <tr>
-                        <td><input type="text" name="title" id="title"/></td>
-                        <td><textarea name="content" id="content"></textarea></td>
                         <td colspan="2">
                           <button type="submit">글쓰기</button>
                         </td>
                       </tr>
-                      </tbody>
+                      <!--<div class="dropdown">
+                       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                         Dropdown
+                         <span class="caret"></span>
+                       </button>
+                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                       </ul>
+                      </div>-->
                     </table>
                   </form>
                 </div>
               </div>
             </div>
+            <!--글수정-->
+            <%for(var i = 0; i < rows.length;i++){%>
+            <div class="collapse" id="collapse<%=rows[i].id_request%>">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <!--<form action="/request/write" method="post" onsubmit="return onWriteSubmit()">-->
+                  <form action="/request/update" method="post">
+                    <!--onsubmit="return onUpdateSubmit()">-->
+                    <table class="table col-md-12">
+                      <!--<input type="hidden" name="_method" value="PUT">-->
+                      <tr>
+                        <th class="col-md-1">글번호</th>
+                        <th class="col-md-1">종류</th>
+                        <th class="col-md-1">제목</th>
+                        <th class="col-md-7">내용</th>
+                        <th class="col-md-2">수정시간</th>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">
+                          <input class="form-control" type="text" name="id_request" value="<%=rows[i].id_request%>" readonly>
+                        </th>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="type"/>
+                        </td>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="title"/>
+                        </td>
+                        <td class="col-md-7">
+                          <input class="form-control" name="content">
+                        </td>
+                        <th class="col-md-2">수정시간</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button type="submit">글수정</button>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <%}%>
+
             <div class="panel panel-default">
               <!-- Table -->
               <table class="table table-bordered table-hover">
                 <tr class="active">
                   <th class="col-md-1">번호</th>
-                  <th class="col-md-7">요청제목</th>
+                  <th class="col-md-1">종류</th>
+                  <th class="col-md-6">제목</th>
                   <th class="col-md-1">작성자</th>
-                  <th class="col-md-2">요청시간</th>
+                  <th class="col-md-2">등록일</th>
                   <th class="col-md-1">조회수</th>
                 </tr>
                 <%for(var i = 0; i < rows.length;i++){%>
                 <tr>
-                  <td class="col-md-1"><%=rows[i].id_request%></td>
-                  <td class="col-md-7" data-toggle="collapse" href="#collapse<%=rows[i].id_request%>" aria-expanded="true" aria-controls="collapse<%=rows[i].id_request%>">
+                  <td class="col-md-1">&nbsp;<span class="badge"><%=rows[i].id_request%></span>&nbsp;
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse<%=rows[i].id_request%>" aria-expanded="false" aria-controls="collapse<%=rows[i].id_request%>">
+                      글수정
+                    </button>
+                  </td>
+                  <td class="col-md-1"><%=rows[i].type%></td>
+                  <td class="col-md-6" data-toggle="collapse" href="#collapse<%=rows[i].id_request%>" aria-expanded="true" aria-controls="collapse<%=rows[i].id_request%>">
                     <div>
                       <%=rows[i].title%>
                     </div>
@@ -127,23 +186,28 @@
               }
             }
 
-            $('#requestGet').click(function () {
+//            $('#requestUpdate').click(function () {
+            /*function onUpdateSubmit() {
               $.ajax({
-                url: '/products',
+                url: '/request/update',
                 type: 'post',
                 dataType: 'json',
                 data: {
-                  name: $('#name').val(),
-                  price: $('#price').val()
+                  id_request: $('#id_request').val(),
+                  type: $('#type').val(),
+                  title: $('#title').val(),
+                  content: $('#content').val()
                 },
                 success: function (data) {
+                  console.log(data);
                   $('#output').val(data);
                 },
-                error : function (err) {
+                error: function (err) {
                   console.log(err.toString());
                 }
               });
-            });
+            }*/
+//            }
           </script>
         </div>
       </div>
