@@ -5,8 +5,8 @@
   <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<% include ../layout/nav.ejs %>
-<div class="container-fluid">
+  <% include ../layout/nav.ejs %>
+  <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-2">
@@ -22,6 +22,7 @@
         <div class="list-group">
           <li class="list-group-item active"><h4>요청 목록</h4></li>
           <li class="list-group-item">
+            <!--글쓰기-->
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsewrite" aria-expanded="false" aria-controls="collapsewrite">
               글쓰기
             </button>
@@ -62,6 +63,7 @@
                 </div>
               </div>
             </div>
+
             <!--글수정-->
             <%for(var i = 0; i < rows.length;i++){%>
             <div class="collapse" id="collapse<%=rows[i].id_request%>">
@@ -185,29 +187,28 @@
                 return false;
               }
             }
-
-//            $('#requestUpdate').click(function () {
-            /*function onUpdateSubmit() {
-              $.ajax({
-                url: '/request/update',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                  id_request: $('#id_request').val(),
-                  type: $('#type').val(),
-                  title: $('#title').val(),
-                  content: $('#content').val()
-                },
-                success: function (data) {
-                  console.log(data);
-                  $('#output').val(data);
-                },
-                error: function (err) {
-                  console.log(err.toString());
-                }
-              });
+            /*$('#requestUpdate').click(function () {
+              function onUpdateSubmit() {
+                $.ajax({
+                  url: '/request/update',
+                  type: 'post',
+                  dataType: 'json',
+                  data: {
+                    id_request: $('#id_request').val(),
+                    type: $('#type').val(),
+                    title: $('#title').val(),
+                    content: $('#content').val()
+                  },
+                  success: function (data) {
+                    console.log(data);
+                    $('#output').val(data);
+                  },
+                  error: function (err) {
+                    console.log(err.toString());
+                  }
+                });
+              }
             }*/
-//            }
           </script>
         </div>
       </div>

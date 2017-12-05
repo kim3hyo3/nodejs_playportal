@@ -68,23 +68,19 @@ router.get('/main', function (req, res) {
   var logVal = req.session.username;
   // se.password = req.body.password;
   if (logVal === null || logVal === "") {
-    res.redirect('/', 'login');
+    res.redirect('/');
   } else if (logVal !== null) {
     res.render('index/main', {token: logVal});
   }
 });
 
-router.post('/main', function (req, res) {
-  //console.log(req.body.username);
-  /*
-  login process
+/*router.post('/main', function (req, res) {
   //입력받은 req.body.name 하고
-  if(mysql.db.userInfo==req.body.username)
-    if(mysql.db.userInfo==req.body.password){
-    }
-    else if({
-    }
-  */
+  /!*
+  if(mysql.db.userInfo===req.body.username)
+  }else if{
+  }
+  *!/
   req.session.username = req.body.username;
   var logVal = req.session.username;
   // se.password = req.body.password;
@@ -93,14 +89,44 @@ router.post('/main', function (req, res) {
   } else if (logVal !== null) {
     res.render('index/main', {token: logVal});
   }
+});*/
+
+router.post('/main', function (req, res) {
+  console.log(req.body.username);
+  /*
+  login process
+  입력받은 req.body.username하고 db에 사원정보하고 일치하면 불러오고
+  */
+  pool.getConnection(function(err, connection) {
+    var mid = req.body.username;
+    var mpassword = req.body.password;
+    var logVal = 'SELECT m_id, m_password from member where m_id="'+mid+'"';
+
+    if (logVal !== null) {
+      connection.query(logVal, function (err, rows, fields) {
+        if (rows.m_id === mid || rows.m_password === mpassword) {
+          /*rows.forEach(function (i) {
+            console.log('SELECT i :', i);
+          });*/
+          req.session.username = req.body.username;
+
+          res.render('index/main', {token: req.session.username});
+          connection.release();
+        }else if(rows.mid !== mid){
+          res.redirect('/');
+        }
+      });
+    } else if (logVal === null || logVal === "") {
+      res.redirect('/');
+    };
+  });
 });
 
-router.post('/main/containlink', function (req, res, next) {
+/*router.post('/main/containlink', function (req, res, next) {
   console.log(req.body.containlink);
   var link = req.body.containlink;
-
   res.render('index/containlink', {token: req.session.username, link: link});
-});
+});*/
 
 router.get('/culturelife', function (req, res, next) {
   console.log(req.session);
