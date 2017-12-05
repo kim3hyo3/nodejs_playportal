@@ -11,6 +11,7 @@ var request = require('./routes/request');
 
 var mysql = require('mysql');
 var configdb = require('./config/configdb.json');
+var oledb = require('node-adodb');
 
 pool = mysql.createPool({
   host     : configdb.host,
