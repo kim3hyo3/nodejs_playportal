@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
   res.render('index/login');
 });
 
-//log_logout
+//logout
 router.get('/logout', function (req, res, next) {
   //login way
   if (req.session.username !== null) {
@@ -75,52 +75,57 @@ router.get('/main', function (req, res) {
 });
 
 router.post('/main', function (req, res) {
-  //입력받은 req.body.name 하고
-  /*
-  if(mysql.db.userInfo===req.body.username)
-  }else if{
-  }
-  */
-  req.session.username = req.body.username;
-  var logVal = req.session.username;
-  // se.password = req.body.password;
-  if (logVal === null || logVal === "") {
-    res.redirect('/', 'login');
-  } else if (logVal !== null) {
-    res.render('index/main', {token: logVal});
-  }
-});
-
-/*router.post('/main', function (req, res) {
   console.log(req.body.username);
-  /!*
+  /*
   login process
   입력받은 req.body.username하고 db에 사원정보하고 일치하면 불러오고
-  *!/
+  */
   pool.getConnection(function(err, connection) {
-    var mid = req.body.username;
-    var mpassword = req.body.password;
-    var logVal = 'SELECT m_id, m_password from member where m_id="'+mid+'"';
+    /*var inserts = ['m_id', 'm_password', 'm_id', mid];
+    var sql = 'SELECT ??, ?? from member where ?? = ?';
+    sql = connection.format(sql, inserts);*/
 
-    if (logVal !== null) {
-      connection.query(logVal, function (err, rows, fields) {
-        if (rows.m_id === mid || rows.m_password === mpassword) {
-          /!*rows.forEach(function (i) {
-            console.log('SELECT i :', i);
-          });*!/
-          req.session.username = rows.m_id;
-
-          res.render('index/main', {token: req.session.username});
-          connection.release();
-        }else if(rows.mid !== mid){
-          res.redirect('/');
-        }
-      });
-    } else if (logVal === null || logVal === "") {
-      res.redirect('/');
-    };
+    // sql = 'SELECT m_id, m_password from member where m_id = "'+mid+'"';
+    mid = req.body.username;
+    mpassword = req.body.password;
+    connection.query('SELECT m_id, m_password from member where m_id = ?',[mid], function (err, rows, fields) {
+     console.log('rows.length '+rows.length);
+      if (rows.length !== 0) {
+          console.log('question id '+mid);
+          console.log('question password '+mpassword);
+          console.log(rows[0].m_id);
+          if (rows[0].m_id === mid || rows[0].m_password === mpassword) {
+            req.session.username = rows[0].m_id;
+            res.render('index/main', {token: req.session.username});
+            connection.release();
+          }else if (rows[0].m_id !== mid) {
+            res.redirect('/');
+            connection.release();
+          }
+      } else if (rows.length === 0 || rows.length === "") {
+        res.redirect('/');
+        connection.release();
+      }
+    });
   });
-});*/
+});
+
+/*for(var i=0;i < rows.length; i++){
+          console.log('rows[0].m_id is: ', rows[0].m_id);
+          console.log('rows[0].m_password is: ', rows[0].m_password);
+        }*/
+
+/*if(rows && rows.length) {
+  console.log('failed');
+  res.redirect('/');
+  connection.release();
+}
+else {
+  console.log('success');
+  req.session.username = rows[0].m_id;
+  res.render('index/main', {token: req.session.username});
+  connection.release();
+}*/
 
 /*router.post('/main/containlink', function (req, res, next) {
   console.log(req.body.containlink);
@@ -157,6 +162,23 @@ router.get('/culturelife', function (req, res, next) {
 router.get('/attendence', function (req, res, next) {
   res.render('attendence', {title: 'Express'});
 });
+
+/*router.post('/main', function (req, res) {
+  //입력받은 req.body.name 하고
+  /!*
+  if(mysql.db.userInfo===req.body.username)
+  }else if{
+  }
+  *!/
+  req.session.username = req.body.username;
+  var logVal = req.session.username;
+  // se.password = req.body.password;
+  if (logVal === null || logVal === "") {
+    res.redirect('/', 'login');
+  } else if (logVal !== null) {
+    res.render('index/main', {token: logVal});
+  }
+});*/
 
 /*
 router.post('/attendence', function (req, res, next) {
