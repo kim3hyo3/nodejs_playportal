@@ -58,19 +58,11 @@ connection.end();
 */
 
 router.get('/main', function (req, res) {
-  //console.log(req.body.username);
-  /*
-  login process
-    if(mysql.db.userInfo==req.body.username){
-    } else if{
-    }
-  */
-  var logVal = req.session.username;
-  // se.password = req.body.password;
-  if (logVal === null || logVal === "") {
+  console.log(req.session.username);
+  if (req.session.username === undefined || req.session.username === "") {
     res.redirect('/');
-  } else if (logVal !== null) {
-    res.render('index/main', {token: logVal});
+  } else if (req.session.username !== undefined) {
+    res.render('index/main', {token: req.session.username});
   }
 });
 
@@ -96,6 +88,7 @@ router.post('/main', function (req, res) {
           console.log(rows[0].m_id);
           if (rows[0].m_id === mid || rows[0].m_password === mpassword) {
             req.session.username = rows[0].m_id;
+            console.log(req.session);
             res.render('index/main', {token: req.session.username});
             connection.release();
           }else if (rows[0].m_id !== mid) {
@@ -134,29 +127,34 @@ else {
 });*/
 
 router.get('/culturelife', function (req, res, next) {
-  console.log(req.session);
-  pool.getConnection(function(err,connection){
-  var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON  member.m_cd = culturelife_m.m_cd;';
-    connection.query(query, function (err, rows, fields) {
-      console.log(rows);
-      /*if (err) {
-        console.error('SELECT ERROR', err);
-        return;
-      }
-      if (rows) {
-        console.log('rows[0].grant is: ', rows[0].grant);
-        console.log('SELECT count :', rows.length);
-        rows.forEach(function (i) {
-          console.log('SELECT i :', i);
-        });
-      }*/
-      /*for(var i = 0; i < rows.length; i++){
-        console.log(rows[i].grant);
-      }*/
-      res.render('index/culturelife', {token: req.session.username, cultureData: rows});
-      connection.release();
+  console.log(req.session.username);
+  if (req.session.username === undefined || req.session.username === "") {
+    res.redirect('/');
+  } else if (req.session.username !== undefined) {
+    console.log(req.session);
+    pool.getConnection(function (err, connection) {
+      var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON  member.m_cd = culturelife_m.m_cd;';
+      connection.query(query, function (err, rows, fields) {
+        console.log(rows);
+        /*if (err) {
+          console.error('SELECT ERROR', err);
+          return;
+        }
+        if (rows) {
+          console.log('rows[0].grant is: ', rows[0].grant);
+          console.log('SELECT count :', rows.length);
+          rows.forEach(function (i) {
+            console.log('SELECT i :', i);
+          });
+        }*/
+        /*for(var i = 0; i < rows.length; i++){
+          console.log(rows[i].grant);
+        }*/
+        res.render('index/culturelife', {token: req.session.username, cultureData: rows});
+        connection.release();
+      });
     });
-  });
+  }
 });
 
 router.get('/attendence', function (req, res, next) {

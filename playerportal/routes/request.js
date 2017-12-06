@@ -2,21 +2,30 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
+/*
 router.get('/', function(req, res, next) {
   // 그냥 board/ 로 접속할 경우 전체 목록 표시로 리다이렉팅
   console.log('1');
   res.redirect('/request/list/1');
 });
+*/
+/*router.get('/list/:page', function (req, res, next) {
+});*/
 
-router.get('/list/:page', function (req, res, next) {
-  pool.getConnection(function(err,connection) {
-    connection.query('SELECT id_request, type, title, content, m_cd, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit from request;', function (err, rows) {
-      if (err) console.error("err : " + err);
-      // console.log("rows : " + JSON.stringify(rows));
-      res.render('request/list', {token: req.session.username, rows: rows});
-      connection.release();
+router.get('/', function(req, res, next) {
+  console.log(req.session.username);
+  if (req.session.username === undefined || req.session.username === "") {
+    res.redirect('/');
+  } else if (req.session.username !== undefined) {
+    pool.getConnection(function(err,connection) {
+      connection.query('SELECT id_request, type, title, content, m_cd, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit from request;', function (err, rows) {
+        if (err) console.error("err : " + err);
+        // console.log("rows : " + JSON.stringify(rows));
+        res.render('request/list', {token: req.session.username, rows: rows});
+        connection.release();
+      });
     });
-  });
+  }
 });
 
 router.post('/write', function(req, res, next){
