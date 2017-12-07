@@ -32,37 +32,54 @@
                   <form action="/request/write" method="post" onsubmit="return onWriteSubmit()">
                     <table class="table col-md-12">
                       <tr>
+                        <!--<th class="col-md-1">글번호</th>-->
                         <th class="col-md-1">종류</th>
-                        <td class="col-md-1"><input type="text" name="type" id="type"/></td>
                         <th class="col-md-1">제목</th>
-                        <td class="col-md-2"><input type="text" name="title" id="title"/></td>
-                        <th class="col-md-1">내용</th>
+                        <th class="col-md-6">내용</th>
+                        <th class="col-md-2">작성자</th>
+                        <th class="col-md-2">작성시간</th>
+                      </tr>
+                      <tr>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="type"/>
+                        </td>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="title"/>
+                        </td>
                         <td class="col-md-6">
-                          <textarea name="content" id="content"></textarea>
+                          <input class="form-control" type="text" name="content"/>
+                        </td>
+                        <td class="col-md-2">
+                          <input class="form-control" type="text" name="m_cd"/>
+                        </td>
+                        <td class="col-md-2">
+                          지금이순간
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="2">
+                        <!--<td colspan="2">-->
+                        <td>
                           <button type="submit">글쓰기</button>
                         </td>
                       </tr>
-                      <!--<div class="dropdown">
-                       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                         Dropdown
-                         <span class="caret"></span>
-                       </button>
-                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                       </ul>
-                      </div>-->
                     </table>
                   </form>
                 </div>
               </div>
             </div>
+
+            <!--<div class="dropdown">
+             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+               Dropdown
+               <span class="caret"></span>
+             </button>
+             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+             </ul>
+            </div>-->
 
             <!--글수정-->
             <%for(var i = 0; i < rows.length;i++){%>
@@ -73,12 +90,12 @@
                   <form action="/request/edit" method="post">
                     <!--onsubmit="return onUpdateSubmit()">-->
                     <table class="table col-md-12">
-                      <!--<input type="hidden" name="_method" value="PUT">-->
                       <tr>
                         <th class="col-md-1">글번호</th>
                         <th class="col-md-1">종류</th>
                         <th class="col-md-1">제목</th>
-                        <th class="col-md-7">내용</th>
+                        <th class="col-md-6">내용</th>
+                        <th class="col-md-1">작성자</th>
                         <th class="col-md-2">수정시간</th>
                       </tr>
                       <tr>
@@ -91,10 +108,14 @@
                         <td class="col-md-1">
                           <input class="form-control" type="text" name="title"/>
                         </td>
-                        <td class="col-md-7">
+                        <td class="col-md-6">
                           <input class="form-control" name="content">
                         </td>
-                        <th class="col-md-2">수정시간</th>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="m_cd"/>
+                        </td>
+                        <th class="col-md-2">지금이순간
+                        </th>
                       </tr>
                       <tr>
                         <td>
@@ -127,11 +148,11 @@
                     </button>
                   </td>
                   <td class="col-md-1"><%=rows[i].type%></td>
-                  <td class="col-md-6" data-toggle="collapse" href="#collapse<%=rows[i].id_request%>" aria-expanded="true" aria-controls="collapse<%=rows[i].id_request%>">
+                  <td class="col-md-6" data-toggle="collapse" href="#content<%=rows[i].id_request%>" aria-expanded="true" aria-controls="content<%=rows[i].id_request%>">
                     <div>
                       <%=rows[i].title%>
                     </div>
-                    <div class="collapse in" id="collapse<%=rows[i].id_request%>">
+                    <div class="collapse in" id="content<%=rows[i].id_request%>">
                       <div>
                         <%=rows[i].content%>
                       </div>

@@ -13,15 +13,15 @@ router.get('/', function(req, res, next) {
 });*/
 
 router.get('/', function(req, res, next) {
-  console.log(req.session.username);
-  if (req.session.username === undefined || req.session.username === "") {
+  console.log(req.session.loginid);
+  if (req.session.loginid === undefined || req.session.loginid === "") {
     res.redirect('/');
-  } else if (req.session.username !== undefined) {
+  } else if (req.session.loginid !== undefined) {
     pool.getConnection(function(err,connection) {
       connection.query('SELECT id_request, type, title, content, m_cd, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit from request;', function (err, rows) {
         if (err) console.error("err : " + err);
         // console.log("rows : " + JSON.stringify(rows));
-        res.render('request/list', {token: req.session.username, rows: rows});
+        res.render('request/list', {token: req.session.loginid, rows: rows});
         connection.release();
       });
     });
@@ -33,12 +33,13 @@ router.post('/write', function(req, res, next){
   var type =  req.body.type;
   var title = req.body.title;
   var content = req.body.content;
-  var reqData = [type, title, content];
+  var m_cd = req.body.m_cd;
+  var reqData = [type, title, content, m_cd];
 
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForInsertRequest = "INSERT INTO request(type, title, content) values(?,?,?);";
+    var sqlForInsertRequest = "INSERT INTO request(type, title, content, m_cd) values(?,?,?,?);";
     connection.query(sqlForInsertRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
