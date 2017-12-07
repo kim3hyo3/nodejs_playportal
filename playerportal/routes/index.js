@@ -30,11 +30,12 @@ router.get('/main', function (req, res) {
     res.render('index/main', {token: req.session.loginid});
   }
 });
+
 /*
 //login-scenario 1st-outline
 //개발-로그인-시나리오
 post.('/') login.ejs -> inputform -> post.('/main') -> req.body 받아온 입력정보를(구현)
-DB에 있는 회원정보를 불러와서 검증하고 일치한다면(구현-db_table_구현-연결_구현)
+DB에 있는 회원정보를 불러와서 검증하고 일치한다면(구현01-db_table_구현02-연결_구현)
 단방향 암호화 시키고(미구현)
 session에 담아서(구현)
 로그인 유지한다(구현)
@@ -45,6 +46,7 @@ session에 담아서(구현)
 req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
+
 router.post('/main', function (req, res) {
   console.log(req.body.username);
   pool.getConnection(function(err, connection) {
@@ -85,7 +87,7 @@ router.get('/culturelife', function (req, res, next) {
   } else if (req.session.loginid !== undefined) {
     console.log(req.session);
     pool.getConnection(function (err, connection) {
-      var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON  member.m_cd = culturelife_m.m_cd;';
+      var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON member.m_cd = culturelife_m.m_cd;';
       connection.query(query, function (err, rows, fields) {
         console.log(rows);
         /*if (err) {

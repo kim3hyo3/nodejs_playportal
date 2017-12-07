@@ -12,13 +12,16 @@ router.get('/', function(req, res, next) {
 /*router.get('/list/:page', function (req, res, next) {
 });*/
 
+
 router.get('/', function(req, res, next) {
   console.log(req.session.loginid);
   if (req.session.loginid === undefined || req.session.loginid === "") {
     res.redirect('/');
   } else if (req.session.loginid !== undefined) {
     pool.getConnection(function(err,connection) {
-      connection.query('SELECT id_request, type, title, content, m_cd, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit from request;', function (err, rows) {
+      connection.query('SELECT id_request, type, title, content, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit, member.m_name\n' +
+        'from request\n' +
+        'INNER join member on member.m_cd = request.m_cd;', function (err, rows) {
         if (err) console.error("err : " + err);
         // console.log("rows : " + JSON.stringify(rows));
         res.render('request/list', {token: req.session.loginid, rows: rows});
