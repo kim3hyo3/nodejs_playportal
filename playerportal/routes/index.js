@@ -26,8 +26,8 @@ req.body.username, password 하고 db-id, db-password 를 대조 해보고
 // router.get('/main', [dfdfd], function (req, res) {
 router.get('/main', function (req, res, next) {
   console.log(req.session.loginid);
-  next();
   res.render('index/main', {token: req.session.loginid});
+  // next();
 });
 
 router.post('/main', function (req, res, next) {
@@ -89,7 +89,7 @@ router.get('/culturelife', function (req, res, next) {
       connection.release();
     });
   });
-  next();
+  // next();
 });
 
 //logout
@@ -106,7 +106,7 @@ router.get('/logout', function (req, res, next) {
   } else {
     res.redirect('/');
   }
-  next();
+  // next();
 });
 
 router.get('/attendence', function (req, res, next) {

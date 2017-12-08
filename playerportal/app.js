@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var index = require('./routes/index');
-var users = require('./routes/users');
 var request = require('./routes/request');
 
 var mysql = require('mysql');
@@ -60,11 +59,10 @@ loginValidate = function (req, res, next) {
   }
 };
 
-app.use(loginValidate());
+app.use(loginValidate);
 
 app.use('/', index);
 app.use('/request', request);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
