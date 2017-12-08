@@ -23,20 +23,8 @@ req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
 
-
-// 로그인실패 로직
-loginValidate = function (req, res, next) {
-  if (req.session.loginid === undefined || req.session.loginid === "") {
-    res.redirect('/');
-  } else if (req.session.loginid !== undefined) {
-    next();
-    // res.render('index/main', {token: req.session.loginid});
-  }
-};
-
 // router.get('/main', [dfdfd], function (req, res) {
 router.get('/main', function (req, res, next) {
-  req.loginValidate();
   console.log(req.session.loginid);
   next();
   res.render('index/main', {token: req.session.loginid});
@@ -55,59 +43,53 @@ router.post('/main', function (req, res, next) {
     connection.query('SELECT m_id, m_password from member where m_id = ?',[mid], function (err, rows, fields) {
      console.log('rows.length '+rows.length);
       if (rows.length !== 0) {
-          // console.log('question id '+mid);
-          // console.log('question password '+mpassword);
-          // console.log(rows[0].m_id);
-          if (rows[0].m_id === mid && rows[0].m_password === mpassword) {
-            req.session.loginid = rows[0].m_id;
-            // console.log(req.session);
-            res.render('index/main', {token: req.session.loginid});
-            connection.release();
-          }else if (rows[0].m_id !== mid || rows[0].m_password !== mpassword) {
-            res.redirect('/');
-            connection.release();
-          }
+        console.log('question id '+mid);
+        console.log('question password '+mpassword);
+        console.log(rows[0].m_id);
+        console.log(rows[0].m_password);
+        if (rows[0].m_id === mid && rows[0].m_password === mpassword) {
+          req.session.loginid = rows[0].m_id;
+          console.log(req.session);
+          res.render('index/main', {token: req.session.loginid});
+          connection.release();
+        } else if (rows[0].m_id !== mid || rows[0].m_password !== mpassword) {
+          res.redirect('/');
+          connection.release();
+        }
       } else if (rows.length === 0 || rows.length === "") {
         res.redirect('/');
         connection.release();
       }
     });
   });
+  next();
 });
 
 router.get('/culturelife', function (req, res, next) {
   console.log(req.session.loginid);
-  if (req.session.loginid === undefined || req.session.loginid === "") {
-    res.redirect('/');
-  } else if (req.session.loginid !== undefined) {
-    console.log(req.session);
-    pool.getConnection(function (err, connection) {
-      var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON member.m_cd = culturelife_m.m_cd;';
-      connection.query(query, function (err, rows, fields) {
-        console.log(rows);
-        /*if (err) {
-          console.error('SELECT ERROR', err);
-          return;
-        }
-        if (rows) {
-          console.log('rows[0].grant is: ', rows[0].grant);
-          console.log('SELECT count :', rows.length);
-          rows.forEach(function (i) {
-            console.log('SELECT i :', i);
-          });
-        }*/
-        /*for(var i = 0; i < rows.length; i++){
-          console.log(rows[i].grant);
-        }*/
-        res.render('index/culturelife', {token: req.session.loginid, cultureData: rows});
-        connection.release();
-      });
+  pool.getConnection(function (err, connection) {
+    var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON member.m_cd = culturelife_m.m_cd;';
+    connection.query(query, function (err, rows, fields) {
+      console.log(rows);
+      /*if (err) {
+        console.error('SELECT ERROR', err);
+        return;
+      }
+      if (rows) {
+        console.log('rows[0].grant is: ', rows[0].grant);
+        console.log('SELECT count :', rows.length);
+        rows.forEach(function (i) {
+          console.log('SELECT i :', i);
+        });
+      }*/
+      /*for(var i = 0; i < rows.length; i++){
+        console.log(rows[i].grant);
+      }*/
+      res.render('index/culturelife', {token: req.session.loginid, cultureData: rows});
+      connection.release();
     });
-  }
-});
-
-router.get('/attendence', function (req, res, next) {
-  res.render('attendence', {title: 'Express'});
+  });
+  next();
 });
 
 //logout
@@ -124,6 +106,11 @@ router.get('/logout', function (req, res, next) {
   } else {
     res.redirect('/');
   }
+  next();
+});
+
+router.get('/attendence', function (req, res, next) {
+  res.render('attendence', {title: 'Express'});
 });
 /*
 router.post('/attendence', function (req, res, next) {

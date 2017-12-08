@@ -11,7 +11,6 @@ var request = require('./routes/request');
 
 var mysql = require('mysql');
 var configdb = require('./config/configdb.json');
-// var oledb = require('node-adodb');
 
 pool = mysql.createPool({
   host     : configdb.host,
@@ -50,9 +49,22 @@ app.use(session({
   }
 }));
 
+// 로그인 검증 로직
+loginValidate = function (req, res, next) {
+  if (req.session.loginid === undefined || req.session.loginid === "") {
+    console.log('validate error');
+    next();
+    res.redirect('/');
+  } else if (req.session.loginid !== undefined) {
+    next();
+  }
+};
+
+app.use(loginValidate());
+
 app.use('/', index);
-app.use('/users', users);
 app.use('/request', request);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
