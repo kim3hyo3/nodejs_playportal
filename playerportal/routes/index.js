@@ -4,31 +4,7 @@ var router = express.Router();
 //login_page
 router.get('/', function (req, res, next) {
   res.render('index/login');
-});
-
-//logout
-router.get('/logout', function (req, res, next) {
-  //login way
-  if (req.session.loginid !== null) {
-    req.session.destroy(function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.redirect('/');
-      }
-    })
-  } else {
-    res.redirect('/');
-  }
-});
-
-router.get('/main', function (req, res) {
-  console.log(req.session.loginid);
-  if (req.session.loginid === undefined || req.session.loginid === "") {
-    res.redirect('/');
-  } else if (req.session.loginid !== undefined) {
-    res.render('index/main', {token: req.session.loginid});
-  }
+  next();
 });
 
 /*
@@ -47,7 +23,26 @@ req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
 
-router.post('/main', function (req, res) {
+
+// 로그인실패 로직
+loginValidate = function (req, res, next) {
+  if (req.session.loginid === undefined || req.session.loginid === "") {
+    res.redirect('/');
+  } else if (req.session.loginid !== undefined) {
+    next();
+    // res.render('index/main', {token: req.session.loginid});
+  }
+};
+
+// router.get('/main', [dfdfd], function (req, res) {
+router.get('/main', function (req, res, next) {
+  req.loginValidate();
+  console.log(req.session.loginid);
+  next();
+  res.render('index/main', {token: req.session.loginid});
+});
+
+router.post('/main', function (req, res, next) {
   console.log(req.body.username);
   pool.getConnection(function(err, connection) {
     /*SQL injection을 방지하기 위한 Preparing Queries
@@ -63,12 +58,12 @@ router.post('/main', function (req, res) {
           // console.log('question id '+mid);
           // console.log('question password '+mpassword);
           // console.log(rows[0].m_id);
-          if (rows[0].m_id === mid || rows[0].m_password === mpassword) {
+          if (rows[0].m_id === mid && rows[0].m_password === mpassword) {
             req.session.loginid = rows[0].m_id;
             // console.log(req.session);
             res.render('index/main', {token: req.session.loginid});
             connection.release();
-          }else if (rows[0].m_id !== mid) {
+          }else if (rows[0].m_id !== mid || rows[0].m_password !== mpassword) {
             res.redirect('/');
             connection.release();
           }
@@ -115,6 +110,21 @@ router.get('/attendence', function (req, res, next) {
   res.render('attendence', {title: 'Express'});
 });
 
+//logout
+router.get('/logout', function (req, res, next) {
+  //login way
+  if (req.session.loginid !== null) {
+    req.session.destroy(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+    })
+  } else {
+    res.redirect('/');
+  }
+});
 /*
 router.post('/attendence', function (req, res, next) {
   app.post('/upload',upload.array('userfile',2), function(req, res) {
