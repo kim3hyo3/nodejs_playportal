@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 /*router.get('/list/:page', function (req, res, next) {
 });*/
 
-
 router.get('/', function(req, res, next) {
   console.log(req.session.loginid);
   if (req.session.loginid === undefined || req.session.loginid === "") {
