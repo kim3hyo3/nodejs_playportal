@@ -58,5 +58,8 @@ typings/
 # dotenv environment variables file
 .env
 
-# config files
-playerportal/configdb.json
+# ignore-config file
+configdb.json
+
+# ignore-generator file
+package-lock.json
