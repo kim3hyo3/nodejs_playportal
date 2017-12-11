@@ -1,95 +1,68 @@
 var express = require('express');
 var router = express.Router();
 
-//login_page
-router.get('/', function (req, res, next) {
-  res.render('index/login');
-  next();
-});
-
 /*
 //login-scenario 1st-outline
-//개발-로그인-시나리오
+//로그인-시나리오
 post.('/') login.ejs -> inputform -> post.('/main') -> req.body 받아온 입력정보를(구현)
 DB에 있는 회원정보를 불러와서 검증하고 일치한다면(구현01-db_table_구현02-연결_구현)
 단방향 암호화 시키고(미구현)
 session에 담아서(구현)
 로그인 유지한다(구현)
-*/
-/*
+
 //login-process 2nd-outline
 입력받은 req.body.username 하고 db-id 를 대조 해보고 일치하면 불러온다음
 req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
 
-// router.get('/main', [dfdfd], function (req, res) {
+//login_page
+router.get('/', function (req, res, next) {
+  res.render('index/login');
+});
+
+//router.get('/main', [dfdfd], function (req, res) {
 router.get('/main', function (req, res, next) {
   console.log(req.session.loginid);
   res.render('index/main', {token: req.session.loginid});
-  // next();
 });
 
 router.post('/main', function (req, res, next) {
   console.log(req.body.username);
   pool.getConnection(function(err, connection) {
-    /*SQL injection을 방지하기 위한 Preparing Queries
-    var inserts = ['m_id', 'm_password', 'm_id', mid];
-    var sql = 'SELECT ??, ?? from member where ?? = ?';
-    sql = connection.format(sql, inserts);*/
-    // sql = 'SELECT m_id, m_password from member where m_id = "'+mid+'"';
+/*SQL injection을 방지하기 위한 Preparing Queries
+var inserts = ['m_id', 'm_password', 'm_id', mid];
+var sql = 'SELECT ??, ?? from member where ?? = ?';
+sql = connection.format(sql, inserts);*/
+// sql = 'SELECT m_id, m_password from member where m_id = "'+mid+'"';
     mid = req.body.username;
     mpassword = req.body.password;
-    connection.query('SELECT m_id, m_password from member where m_id = ?',[mid], function (err, rows, fields) {
+    connection.query('SELECT m_id, m_password from member where m_id = ?', [mid], function (err, rows, fields) {
      console.log('rows.length '+rows.length);
-      if (rows.length !== 0) {
+     //통과구문
+     if (rows.length !== 0) {
         console.log('question id '+mid);
         console.log('question password '+mpassword);
         console.log(rows[0].m_id);
         console.log(rows[0].m_password);
+        //통과로직
         if (rows[0].m_id === mid && rows[0].m_password === mpassword) {
           req.session.loginid = rows[0].m_id;
           console.log(req.session);
           res.render('index/main', {token: req.session.loginid});
           connection.release();
+        //실패로직
         } else if (rows[0].m_id !== mid || rows[0].m_password !== mpassword) {
           res.redirect('/');
           connection.release();
         }
+      //실패로직
       } else if (rows.length === 0 || rows.length === "") {
         res.redirect('/');
         connection.release();
       }
     });
   });
-  next();
-});
-
-router.get('/culturelife', function (req, res, next) {
-  console.log(req.session.loginid);
-  pool.getConnection(function (err, connection) {
-    var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON member.m_cd = culturelife_m.m_cd;';
-    connection.query(query, function (err, rows, fields) {
-      console.log(rows);
-      /*if (err) {
-        console.error('SELECT ERROR', err);
-        return;
-      }
-      if (rows) {
-        console.log('rows[0].grant is: ', rows[0].grant);
-        console.log('SELECT count :', rows.length);
-        rows.forEach(function (i) {
-          console.log('SELECT i :', i);
-        });
-      }*/
-      /*for(var i = 0; i < rows.length; i++){
-        console.log(rows[i].grant);
-      }*/
-      res.render('index/culturelife', {token: req.session.loginid, cultureData: rows});
-      connection.release();
-    });
-  });
-  // next();
 });
 
 //logout
@@ -106,13 +79,13 @@ router.get('/logout', function (req, res, next) {
   } else {
     res.redirect('/');
   }
-  // next();
 });
 
+/*
 router.get('/attendence', function (req, res, next) {
   res.render('attendence', {title: 'Express'});
 });
-/*
+
 router.post('/attendence', function (req, res, next) {
   app.post('/upload',upload.array('userfile',2), function(req, res) {
     var workbook_am = XLSX.readFile('upxls/1.xls');

@@ -7,9 +7,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var index = require('./routes/index');
 var request = require('./routes/request');
+var culture = require('./routes/culture');
 
 var mysql = require('mysql');
-var configdb = require('./config/configdb.json');
+var configdb = require('./configdb.json');
 
 pool = mysql.createPool({
   host     : configdb.host,
@@ -50,19 +51,24 @@ app.use(session({
 
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
-  if (req.session.loginid === undefined || req.session.loginid === "") {
+  if (req.session.loginid !== undefined) {
+    //이 부분에 next 거는게 문제인건가..
+    // res.redirect('/main');
+    console.log('loginValidate 11111');
+    next();
+// } else if (req.session.loginid !== undefined) {
+  } else if (req.session.loginid === undefined || req.session.loginid === "") {
     console.log('validate error');
-    next();
     res.redirect('/');
-  } else if (req.session.loginid !== undefined) {
-    next();
   }
 };
 
-app.use(loginValidate);
-
 app.use('/', index);
+app.use('/main', loginValidate);
+app.use('/request', loginValidate);
 app.use('/request', request);
+app.use('/culture', loginValidate);
+app.use('/culture', culture);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

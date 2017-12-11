@@ -20,7 +20,8 @@ router.get('/', function(req, res, next) {
     pool.getConnection(function(err,connection) {
       connection.query('SELECT id_request, type, title, content, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit, member.m_name\n' +
         'from request\n' +
-        'INNER join member on member.m_cd = request.m_cd;', function (err, rows) {
+        'INNER join member on request.m_cd = member.m_cd\n' +
+        'INNER join type on request.type_cd = type.type_cd', function (err, rows) {
         if (err) console.error("err : " + err);
         // console.log("rows : " + JSON.stringify(rows));
         res.render('request/list', {token: req.session.loginid, rows: rows});
