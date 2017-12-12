@@ -18,10 +18,9 @@ router.get('/', function(req, res, next) {
     res.redirect('/');
   } else if (req.session.loginid !== undefined) {
     pool.getConnection(function(err,connection) {
-      connection.query('SELECT id_request, type, title, content, date_format(regdate,\'%Y-%m-%d %H:%i:%s\') AS regdate, hit, member.m_name\n' +
-        'from request\n' +
-        'INNER join member on request.m_cd = member.m_cd\n' +
-        'INNER join type on request.type_cd = type.type_cd', function (err, rows) {
+      // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
+      connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name from request INNER join member on request.m_cd = member.m_cd INNER join type on request.type_cd = type.type_cd;',
+        function (err, rows) {
         if (err) console.error("err : " + err);
         // console.log("rows : " + JSON.stringify(rows));
         res.render('request/list', {token: req.session.loginid, rows: rows});
@@ -33,16 +32,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/write', function(req, res, next){
   console.log(req.body);
-  var type =  req.body.type;
+  var type_cd =  req.body.type_cd;
   var title = req.body.title;
   var content = req.body.content;
   var m_cd = req.body.m_cd;
-  var reqData = [type, title, content, m_cd];
+  var reqData = [type_cd, title, content, m_cd];
 
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForInsertRequest = "INSERT INTO request(type, title, content, m_cd) values(?,?,?,?);";
+    var sqlForInsertRequest = "INSERT INTO request(type_cd, title, content, m_cd) values(?,?,?,?);";
     connection.query(sqlForInsertRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));

@@ -44,7 +44,21 @@
                           <input class="form-control" type="text" name="id_request" placeholder="자동입력" readonly>
                         </th>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="type"/>
+                          <!--<input class="form-control" type="text" name="type_cd"/>-->
+                          <select class="form-control selectpicker" name="type_cd">
+                            <optgroup label="총무업무">
+                              <option value="10001">총무업무01</option>
+                              <option value="10002">총무업무02</option>
+                            </optgroup>
+                            <optgroup label="요청지원">
+                              <option value="20001">요청지원01</option>
+                              <option value="20002">요청지원02</option>
+                            </optgroup>
+                            <optgroup label="구매지원">
+                              <option value="30001">구매지원01</option>
+                              <option value="30002">구매지원02</option>
+                            </optgroup>
+                          </select>
                         </td>
                         <td class="col-md-1">
                           <input class="form-control" type="text" name="title"/>
@@ -53,7 +67,7 @@
                           <input class="form-control" type="text" name="content"/>
                         </td>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="m_name" placeholder="너야너"/>
+                          <input class="form-control" type="text" name="m_cd" placeholder="m_cd"/>
                         </td>
                         <td class="col-md-2">
                           <input class="form-control" placeholder="지금이순간 자동입력" readonly>
@@ -107,6 +121,17 @@
                         </th>
                         <td class="col-md-1">
                           <input class="form-control" type="text" name="type"/>
+                          <!--<div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_account></a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_support></a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_order></a></li>
+                            </ul>
+                          </div>-->
                         </td>
                         <td class="col-md-1">
                           <input class="form-control" type="text" name="title"/>
@@ -136,7 +161,7 @@
             <div class="panel panel-default">
               <!-- Table -->
               <table class="table table-bordered table-hover">
-                <tr class="active">
+                <tr class="active" align="center">
                   <th class="col-md-1">번호</th>
                   <th class="col-md-1">종류</th>
                   <th class="col-md-6">제목</th>
@@ -151,7 +176,7 @@
                       글수정
                     </button>
                   </td>
-                  <td class="col-md-1"><%=rows[i].type%></td>
+                  <td class="col-md-1"><%=rows[i].type_name%></td>
                   <td class="col-md-6" data-toggle="collapse" href="#content<%=rows[i].id_request%>" aria-expanded="true" aria-controls="content<%=rows[i].id_request%>">
                     <div>
                       <%=rows[i].title%>
