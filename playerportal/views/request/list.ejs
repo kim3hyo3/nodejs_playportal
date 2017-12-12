@@ -33,17 +33,20 @@
                     <table class="table col-md-12">
                       <tr>
                         <th class="col-md-1">글번호</th>
-                        <th class="col-md-1">종류</th>
-                        <th class="col-md-1">제목</th>
-                        <th class="col-md-6">내용</th>
                         <th class="col-md-1">작성자</th>
+                        <th class="col-md-2">종류</th>
                         <th class="col-md-2">작성시간</th>
+                        <th class="col-md-1">글쓰기</th>
+                        <th class="col-md-5"></th>
                       </tr>
                       <tr>
                         <th class="col-md-1">
                           <input class="form-control" type="text" name="id_request" placeholder="자동입력" readonly>
                         </th>
                         <td class="col-md-1">
+                          <input class="form-control" type="text" name="m_cd" placeholder="m_cd"/>
+                        </td>
+                        <td class="col-md-2">
                           <!--<input class="form-control" type="text" name="type_cd"/>-->
                           <select class="form-control selectpicker" name="type_cd">
                             <optgroup label="총무업무">
@@ -60,23 +63,24 @@
                             </optgroup>
                           </select>
                         </td>
-                        <td class="col-md-1">
-                          <input class="form-control" type="text" name="title"/>
-                        </td>
-                        <td class="col-md-6">
-                          <input class="form-control" type="text" name="content"/>
-                        </td>
-                        <td class="col-md-1">
-                          <input class="form-control" type="text" name="m_cd" placeholder="m_cd"/>
-                        </td>
                         <td class="col-md-2">
-                          <input class="form-control" placeholder="지금이순간 자동입력" readonly>
+                          <input class="form-control" placeholder="자동입력" readonly>
                         </td>
+                        <td class="col-md-1">
+                          <button class="btn btn-primary" type="submit">글쓰기</button>
+                        </td>
+                        <td class="col-md-5"></td>
                       </tr>
                       <tr>
-                        <!--<td colspan="2">-->
-                        <td>
-                          <button class="btn btn-primary" type="submit">글쓰기</button>
+                        <th class="col-md-2" colspan="2">글제목</th>
+                        <th class="col-md-9" colspan="4">내용</th>
+                      </tr>
+                      <tr>
+                        <td class="col-md-2" colspan="2">
+                          <input class="form-control" type="text" name="title"/>
+                        </td>
+                        <td class="col-md-9" colspan="4">
+                          <input class="form-control" type="text" name="content"/>
                         </td>
                       </tr>
                     </table>
@@ -161,7 +165,7 @@
             <div class="panel panel-default">
               <!-- Table -->
               <table class="table table-bordered table-hover">
-                <tr class="active" align="center">
+                <tr class="active">
                   <th class="col-md-1">번호</th>
                   <th class="col-md-1">종류</th>
                   <th class="col-md-6">제목</th>
@@ -169,12 +173,12 @@
                   <th class="col-md-2">등록일</th>
                   <th class="col-md-1">조회수</th>
                 </tr>
-                <%for(var i = 0; i < rows.length;i++){%>
+                <%for(var i=0;i<rows.length;i++){%>
                 <tr>
-                  <td class="col-md-1">&nbsp;<span class="badge"><%=rows[i].id_request%></span>&nbsp;
+                  <td class="col-md-1">
                     <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse<%=rows[i].id_request%>" aria-expanded="false" aria-controls="collapse<%=rows[i].id_request%>">
                       글수정
-                    </button>
+                    </button>&nbsp;<span class="badge"><%=rows[i].id_request%></span>&nbsp;
                   </td>
                   <td class="col-md-1"><%=rows[i].type_name%></td>
                   <td class="col-md-6" data-toggle="collapse" href="#content<%=rows[i].id_request%>" aria-expanded="true" aria-controls="content<%=rows[i].id_request%>">

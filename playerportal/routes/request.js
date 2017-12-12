@@ -9,8 +9,6 @@ router.get('/', function(req, res, next) {
   res.redirect('/request/list/1');
 });
 */
-/*router.get('/list/:page', function (req, res, next) {
-});*/
 
 router.get('/', function(req, res, next) {
   console.log(req.session.loginid);
@@ -19,7 +17,10 @@ router.get('/', function(req, res, next) {
   } else if (req.session.loginid !== undefined) {
     pool.getConnection(function(err,connection) {
       // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
-      connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name from request INNER join member on request.m_cd = member.m_cd INNER join type on request.type_cd = type.type_cd;',
+      connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name ' +
+        'FROM request ' +
+        'INNER join member on request.m_cd = member.m_cd ' +
+        'INNER join type on request.type_cd = type.type_cd;',
         function (err, rows) {
         if (err) console.error("err : " + err);
         // console.log("rows : " + JSON.stringify(rows));
