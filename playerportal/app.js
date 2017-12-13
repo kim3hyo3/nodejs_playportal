@@ -45,20 +45,20 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false,
-    maxAge: 180000
+    maxAge: 300000
+    // maxAge: 180000 3분
   }
 }));
 
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
   if (req.session.loginid !== undefined) {
-    //이 부분에 next 거는게 문제인건가..
-    // res.redirect('/main');
-    console.log('loginValidate 11111');
+  //통과-세션에 로그인 아이디가 있으면 진행
+    console.log('loginValidate 11111 success'+JSON.stringify(req.session));
     next();
-// } else if (req.session.loginid !== undefined) {
   } else if (req.session.loginid === undefined || req.session.loginid === "") {
-    console.log('validate error');
+  //실패-세션에 로그인 아이디가 없으면 에러에러
+    console.log('loginValidate 00000 error');
     res.redirect('/');
   }
 };

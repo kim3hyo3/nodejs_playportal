@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
   pool.getConnection(function (err, connection) {
     var query = 'SELECT member.m_name, culturelife_m.grant, culturelife_m.use, culturelife_m.extinction, culturelife_m.balance FROM culturelife_m INNER JOIN member ON member.m_cd = culturelife_m.m_cd;';
     connection.query(query, function (err, rows, fields) {
-      console.log(rows);
+      // console.log('전체문생비보기'+rows);
       /*if (err) {
         console.error('SELECT ERROR', err);
         return;

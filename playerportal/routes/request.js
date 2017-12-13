@@ -11,24 +11,27 @@ router.get('/', function(req, res, next) {
 */
 
 router.get('/', function(req, res, next) {
-  console.log(req.session.loginid);
+  console.log('Log_loginid'+req.session.loginid);
+  console.log(req.session);
+/*
   if (req.session.loginid === undefined || req.session.loginid === "") {
     res.redirect('/');
-  } else if (req.session.loginid !== undefined) {
-    pool.getConnection(function(err,connection) {
-      // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
-      connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name ' +
-        'FROM request ' +
-        'INNER join member on request.m_cd = member.m_cd ' +
-        'INNER join type on request.type_cd = type.type_cd;',
-        function (err, rows) {
-        if (err) console.error("err : " + err);
-        // console.log("rows : " + JSON.stringify(rows));
-        res.render('request/list', {token: req.session.loginid, rows: rows});
-        connection.release();
-      });
+  } else if (req.session.loginid !== undefined) { }
+*/
+  pool.getConnection(function(err,connection) {
+    // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
+    connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name ' +
+      'FROM request_board ' +
+      'INNER join member on request_board.m_cd = member.m_cd ' +
+      'INNER join type on request_board.type_cd = type.type_cd ' +
+      'ORDER BY id_request DESC;',
+      function (err, rows) {
+      if (err) console.error("err : " + err);
+      // console.log("rows : " + JSON.stringify(rows));
+      res.render('request/list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
+      connection.release();
     });
-  }
+  });
 });
 
 router.post('/write', function(req, res, next){
@@ -36,13 +39,14 @@ router.post('/write', function(req, res, next){
   var type_cd =  req.body.type_cd;
   var title = req.body.title;
   var content = req.body.content;
-  var m_cd = req.body.m_cd;
+  //session에서 logincd을 받아와서 m_cd에 넣음.
+  var m_cd = req.session.logincd;
   var reqData = [type_cd, title, content, m_cd];
 
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForInsertRequest = "INSERT INTO request(type_cd, title, content, m_cd) values(?,?,?,?);";
+    var sqlForInsertRequest = "INSERT INTO request_board(type_cd, title, content, m_cd) values(?,?,?,?);";
     connection.query(sqlForInsertRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
@@ -63,7 +67,7 @@ router.post('/edit', function(req, res, next){
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForEditRequest = "UPDATE request set id_request=?, type=?, title=?, content=?, editdate=now() WHERE id_request=?;";
+    var sqlForEditRequest = "UPDATE request_board set id_request=?, type=?, title=?, content=?, editdate=now() WHERE id_request=?;";
     connection.query(sqlForEditRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       console.log("rows : " + JSON.stringify(rows));
