@@ -60,17 +60,20 @@ router.post('/write', function(req, res, next){
 router.post('/edit', function(req, res, next){
   console.log(req.body);
   var id_request = req.body.id_request;
-  var type =  req.body.type;
+  var type_cd =  req.body.type_cd;
   var title = req.body.title;
   var content = req.body.content;
-  var reqData = [id_request, type, title, content, id_request];
+  //session에서 logincd을 받아와서 m_cd에 넣음.
+  var m_cd = req.session.loginid;
+  var reqData = [id_request, type_cd, title, content, m_cd, id_request];
+  console.log(reqData);
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sqlForEditRequest = "UPDATE request_board set id_request=?, type=?, title=?, content=?, editdate=now() WHERE id_request=?;";
+    var sqlForEditRequest = "UPDATE request_board set id_request=?, type_cd=?, title=?, content=?, m_cd=?, editdate=now() WHERE id_request=?;";
     connection.query(sqlForEditRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
-      console.log("rows : " + JSON.stringify(rows));
+      // console.log("rows : " + JSON.stringify(rows));
       res.redirect('/request');
       connection.release();
       // Don't use the connection here, it has been returned to the pool.
