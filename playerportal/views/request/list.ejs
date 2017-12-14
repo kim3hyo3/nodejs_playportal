@@ -33,27 +33,23 @@
                     <table class="table table-bordered col-md-12">
                       <tr>
                         <th class="col-md-1">글번호</th>
-                        <th class="col-md-1">글번호</th>
                         <th class="col-md-1">작성자</th>
+                        <th class="col-md-1">작성시간</th>
                         <th class="col-md-3">종류</th>
-                        <th class="col-md-2">작성시간</th>
-                        <th class="col-md-5">
-                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                        </th>
+                        <th class="col-md-1">담당자</th>
+                        <th class="col-md-5">작업상태</th>
                       </tr>
                       <tr>
                         <td class="col-md-1">
                           <input class="form-control" type="text" name="id_request" placeholder="자동입력" disabled>
                         </td>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="id_request" placeholder="자동입력" disabled>
-                        </td>
-                        <td class="col-md-1">
                           <input class="form-control" type="text" name="<%=loginname%>" placeholder="<%=loginname%>" disabled/>
                         </td>
-
+                        <td class="col-md-1">
+                          <input class="form-control" name="regdate" placeholder="자동입력" readonly>
+                        </td>
                         <td class="col-md-3">
-                          <!--<input class="form-control" type="text" name="type_cd"/>-->
                           <select class="form-control selectpicker" name="type_cd">
                             <optgroup label="총무업무">
                               <option value="10001">문생비_연차일수_기안서_비즈플레이</option>
@@ -69,27 +65,27 @@
                             </optgroup>
                           </select>
                         </td>
-                        <td class="col-md-2">
-                          <input class="form-control" placeholder="자동입력" readonly>
+                        <td class="col-md-1">
+                          <span>담당자(구현예정)</span>
                         </td>
                         <td class="col-md-5">
-                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                          <span>작업상태(구현예정)</span>
                         </td>
                       </tr>
                       <tr>
-                        <th class="col-md-2">글제목</th>
-                        <th class="col-md-10" colspan="5">내용</th>
-                      </tr>
-                      <tr>
-                        <td class="col-md-2">
+                        <th class="col-md-1">글제목</th>
+                        <td class="col-md-11" colspan="5">
                           <input class="form-control" type="text" name="title"/>
                         </td>
-                        <td class="col-md-10" colspan="5">
-                          <input class="form-control" type="text" name="content"/>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">내용</th>
+                        <td class="col-md-11" colspan="5">
+                          <textarea class="form-control" name="content" rows="6"></textarea>
                         </td>
                       </tr>
                       <tr>
-                        <td>
+                        <td class="col-md-12" colspan="6">
                           <button class="btn btn-primary" type="submit">글쓰기</button>
                         </td>
                       </tr>
@@ -99,19 +95,6 @@
               </div>
             </div>
 
-            <!--<div class="dropdown">
-             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-               Dropdown
-               <span class="caret"></span>
-             </button>
-             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-             </ul>
-            </div>-->
-
             <!--글수정-->
             <%for(var i = 0; i < rows.length;i++){%>
             <div class="collapse" id="collapse<%=rows[i].id_request%>">
@@ -120,50 +103,59 @@
                   <!--<form action="/request/write" method="post" onsubmit="return onWriteSubmit()">-->
                   <form action="/request/edit" method="post">
                     <!--onsubmit="return onUpdateSubmit()">-->
-                    <table class="table col-md-12">
+                    <table class="table table-bordered col-md-12">
                       <tr>
                         <th class="col-md-1">글번호</th>
-                        <th class="col-md-1">종류</th>
-                        <th class="col-md-1">제목</th>
-                        <th class="col-md-6">내용</th>
                         <th class="col-md-1">작성자</th>
-                        <th class="col-md-1">
-                          작업상태변경
-                        </th>
                         <th class="col-md-1">수정시간</th>
+                        <th class="col-md-3">종류</th>
+                        <th class="col-md-1">담당자</th>
+                        <th class="col-md-5">작업상태</th>
                       </tr>
                       <tr>
                         <th class="col-md-1">
-                          <input class="form-control" type="text" name="id_request" value="<%=rows[i].id_request%>" readonly>
+                          <input class="form-control" type="text" name="id_request" value="<%=rows[i].id_request%>" disabled>
                         </th>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="type"/>
-                          <!--<div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                              Dropdown
-                              <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_account></a></li>
-                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_support></a></li>
-                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><=rows[i].request_order></a></li>
-                            </ul>
-                          </div>-->
+                          <input class="form-control" type="text" name="<%=loginname%>" placeholder="<%=loginname%>" disabled/>
                         </td>
                         <td class="col-md-1">
+                          <input class="form-control" name="regdate" placeholder="자동입력" readonly>
+                        </td>
+                        <td class="col-md-3">
+                          <select class="form-control selectpicker" name="type_cd">
+                            <optgroup label="총무업무">
+                              <option value="10001">문생비_연차일수_기안서_비즈플레이</option>
+                              <option value="10002">컴퓨터_네트워크_라이센스</option>
+                            </optgroup>
+                            <optgroup label="지원요청">
+                              <option value="20001">컴퓨터_네트워크_장비</option>
+                              <option value="20002">사무용품_비품</option>
+                            </optgroup>
+                            <optgroup label="구매요청">
+                              <option value="30001">컴퓨터_네트워크_장비</option>
+                              <option value="30002">사무용품_비품</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                        <td class="col-md-1">
+                          <span>담당자(구현예정)</span>
+                        </td>
+                        <td class="col-md-5">
+                          <span>작업상태(구현예정)</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">글제목</th>
+                        <td class="col-md-11" colspan="5">
                           <input class="form-control" type="text" name="title"/>
                         </td>
-                        <td class="col-md-6">
-                          <input class="form-control" name="content">
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">내용</th>
+                        <td class="col-md-11" colspan="5">
+                          <textarea class="form-control" name="content" rows="6"></textarea>
                         </td>
-                        <td class="col-md-1">
-                          <input class="form-control" type="text" name="m_cd"/>
-                        </td>
-                        </th>
-                        <th class="col-md-1">
-                        작업상태변경
-                        </th>
-                        <th class="col-md-1">지금이순간
                       </tr>
                       <tr>
                         <td>
