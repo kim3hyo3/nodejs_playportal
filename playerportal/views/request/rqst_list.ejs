@@ -107,19 +107,19 @@
                       <tr>
                         <th class="col-md-1">글번호</th>
                         <th class="col-md-1">작성자</th>
-                        <th class="col-md-1">수정시간</th>
+                        <th class="col-md-2">수정시간</th>
                         <th class="col-md-3">종류</th>
                         <th class="col-md-1">담당자</th>
-                        <th class="col-md-5">작업상태</th>
+                        <th class="col-md-4">작업상태</th>
                       </tr>
                       <tr>
                         <th class="col-md-1">
                           <input class="form-control" type="text" name="id_request" value="<%-rows[i].id_request%>" disabled>
                         </th>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="<%loginname%>" value="<%-loginname%>" disabled>
+                          <input class="form-control" type="text" name="loginname" value="<%=loginname%>" disabled>
                         </td>
-                        <td class="col-md-1">
+                        <td class="col-md-2">
                           <input class="form-control" name="regdate" placeholder="현재시간자동입력" disabled/>
                         </td>
                         <td class="col-md-3">
@@ -141,7 +141,7 @@
                         <td class="col-md-1">
                           <span>담당자(구현예정)</span>
                         </td>
-                        <td class="col-md-5">
+                        <td class="col-md-4">
                           <span>작업상태(구현예정)</span>
                         </td>
                       </tr>

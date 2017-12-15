@@ -8,6 +8,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var request = require('./routes/request');
 var culture = require('./routes/culture');
+var playdocs = require('./routes/playdocs');
 
 var mysql = require('mysql');
 var configdb = require('./configdb.json');
@@ -69,6 +70,7 @@ app.use('/request', loginValidate);
 app.use('/request', request);
 app.use('/culture', loginValidate);
 app.use('/culture', culture);
+app.use('/playdocs', playdocs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

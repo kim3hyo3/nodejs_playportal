@@ -1,23 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-/*
 router.get('/', function(req, res, next) {
-  // 그냥 board/ 로 접속할 경우 전체 목록 표시로 리다이렉팅
-  console.log('1');
-  res.redirect('/request/list/1');
-});
-*/
-
-router.get('/', function(req, res, next) {
-  //console.log('Log_loginid'+req.session.loginid);
-  //console.log(req.session);
-/*
-  if (req.session.loginid === undefined || req.session.loginid === "") {
-    res.redirect('/');
-  } else if (req.session.loginid !== undefined) { }
-*/
+  console.log('Log_loginid'+req.session.loginid);
+  console.log(req.session);
+  /*
+    if (req.session.loginid === undefined || req.session.loginid === "") {
+      res.redirect('/');
+    } else if (req.session.loginid !== undefined) { }
+  */
   pool.getConnection(function(err,connection) {
     // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
     connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, type.type_name ' +
@@ -26,11 +17,11 @@ router.get('/', function(req, res, next) {
       'INNER join type on request_board.type_cd = type.type_cd ' +
       'ORDER BY id_request DESC;',
       function (err, rows) {
-      if (err) console.error("err : " + err);
-      // console.log("rows : " + JSON.stringify(rows));
-      res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
-      connection.release();
-    });
+        if (err) console.error("err : " + err);
+        // console.log("rows : " + JSON.stringify(rows));
+        res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
+        connection.release();
+      });
   });
 });
 
