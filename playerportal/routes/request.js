@@ -64,7 +64,7 @@ router.post('/edit', function(req, res, next){
   var title = req.body.title;
   var content = req.body.content;
   //session에서 logincd을 받아와서 m_cd에 넣음.
-  var m_cd = req.session.loginid;
+  var m_cd = req.session.logincd;
   var reqData = [id_request, type_cd, title, content, m_cd, id_request];
   console.log(reqData);
   pool.getConnection(function (err, connection)

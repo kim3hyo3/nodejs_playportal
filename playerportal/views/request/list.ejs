@@ -114,13 +114,13 @@
                       </tr>
                       <tr>
                         <th class="col-md-1">
-                          <input class="form-control" type="text" name="id_request" value="<%=rows[i].id_request%>" disabled/>
+                          <input class="form-control" type="text" name="id_request" value="<%-rows[i].id_request%>" disabled>
                         </th>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="<%=loginname%>" placeholder="<%=loginname%>" disabled/>
+                          <input class="form-control" type="text" name="<%loginname%>" value="<%-loginname%>" disabled>
                         </td>
                         <td class="col-md-1">
-                          <input class="form-control" name="editdate" placeholder="자동입력" disabled>
+                          <input class="form-control" name="regdate" placeholder="현재시간자동입력" disabled/>
                         </td>
                         <td class="col-md-3">
                           <select class="form-control selectpicker" name="type_cd">
@@ -174,23 +174,22 @@
               <!-- Table -->
               <table class="table table-bordered table-hover">
                 <tr class="active">
-                  <th class="col-md-1">번호</th>
+                  <th class="col-md-1">글번호</th>
                   <th class="col-md-2">종류</th>
-                  <th class="col-md-4">제목</th>
+                  <th class="col-md-3">제목</th>
                   <th class="col-md-1">작성자</th>
                   <th class="col-md-2">등록일</th>
                   <th class="col-md-1">작업상태</th>
                   <th class="col-md-1">조회수</th>
+                  <th class="col-md-1">글수정</th>
                 </tr>
-                <%for(var i=0;i<rows.length;i++){%>
+                <%for(var i=0;i < rows.length; i++){%>
                 <tr>
                   <td class="col-md-1">
-                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse<%=rows[i].id_request%>" aria-expanded="false" aria-controls="collapse<%=rows[i].id_request%>">
-                      글수정
-                    </button>&nbsp;<span class="badge"><%=rows[i].id_request%></span>&nbsp;
+                    &nbsp;<span class="badge"><%=rows[i].id_request%></span>&nbsp;
                   </td>
                   <td class="col-md-2"><%=rows[i].type_name%></td>
-                  <td class="col-md-4" data-toggle="collapse" href="#content<%=rows[i].id_request%>" aria-expanded="true" aria-controls="content<%=rows[i].id_request%>">
+                  <td class="col-md-3" data-toggle="collapse" href="#content<%=rows[i].id_request%>" aria-expanded="true" aria-controls="content<%=rows[i].id_request%>">
                     <div>
                       <%=rows[i].title%>
                     </div>
@@ -203,8 +202,11 @@
                   <td class="col-md-1"><%=rows[i].m_name%></td>
                   <td class="col-md-2"><%=rows[i].regdate%>
                   <!--답변상태-->
-                  <td class="col-md-1">작업중</td>
+                  <td class="col-md-1">작업중(구현예정)</td>
                   <td class="col-md-1"><%=rows[i].hit%></td>
+                  <td class="col-md-1"><button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse<%=rows[i].id_request%>" aria-expanded="false" aria-controls="collapse<%=rows[i].id_request%>">
+                      글수정
+                    </button></td>
                 </tr>
                 <%}%>
               </table>

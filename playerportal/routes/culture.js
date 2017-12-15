@@ -21,7 +21,7 @@ router.get('/', function (req, res, next) {
       /*for(var i = 0; i < rows.length; i++){
         console.log(rows[i].grant);
       }*/
-      res.render('culture/cltr_list', {token: req.session.loginid, cultureData: rows});
+      res.render('culture/cltr_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
       connection.release();
     });
   });
