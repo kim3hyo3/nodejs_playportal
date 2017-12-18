@@ -114,13 +114,13 @@
                       </tr>
                       <tr>
                         <th class="col-md-1">
-                          <input class="form-control" type="text" name="id_request" value="<%-rows[i].id_request%>" disabled>
+                          <input class="form-control" type="text" name="id_request" value="<%=rows[i].id_request%>" readonly>
                         </th>
                         <td class="col-md-1">
-                          <input class="form-control" type="text" name="loginname" value="<%=loginname%>" disabled>
+                          <input class="form-control" type="text" name="loginname" value="<%=loginname%>" readonly>
                         </td>
                         <td class="col-md-2">
-                          <input class="form-control" name="regdate" placeholder="현재시간자동입력" disabled/>
+                          <input class="form-control" name="regdate" value="현재시간자동입력" readonly/>
                         </td>
                         <td class="col-md-3">
                           <select class="form-control selectpicker" name="type_cd">
