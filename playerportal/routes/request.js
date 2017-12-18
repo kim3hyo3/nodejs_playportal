@@ -81,4 +81,22 @@ router.post('/edit', function(req, res, next){
   });
 });
 
+router.delete('/delete', function(req, res, next){
+  console.log(req.body);
+  var id_request = req.body.id_request;
+  pool.getConnection(function (err, connection)
+  {
+    // Use the connection
+    var sqlForDeleteRequest = "DELETE FROM request_board WHERE id_request=?;";
+    connection.query(sqlForDeleteRequest, id_request, function (err, rows) {
+      if (err)
+        console.error("err : " + err);
+      res.redirect('/request');
+      connection.release();
+      // Don't use the connection here, it has been returned to the pool.
+    });
+  });
+
+});
+
 module.exports = router;

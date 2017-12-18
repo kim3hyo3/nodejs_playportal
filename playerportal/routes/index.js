@@ -16,13 +16,26 @@ req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
 
+// 로그인 검증 로직
+loginValidate = function (req, res, next) {
+  if (req.session.loginid !== undefined) {
+    //통과-세션에 로그인 아이디가 있으면 진행
+    console.log('loginValidate 11111 success'+JSON.stringify(req.session));
+    next();
+  } else if (req.session.loginid === undefined || req.session.loginid === "") {
+    //실패-세션에 로그인 아이디가 없으면 에러에러
+    console.log('loginValidate 00000 error');
+    res.redirect('/');
+  }
+};
+
 //login_page
 router.get('/', function (req, res, next) {
   res.render('index/login');
 });
 
 //router.get('/main', [dfdfd], function (req, res) {
-router.get('/main', function (req, res, next) {
+router.get('/main', loginValidate, function (req, res, next) {
   console.log('checklog '+req.session.loginid);
   res.render('index/main', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname});
 });

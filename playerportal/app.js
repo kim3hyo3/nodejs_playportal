@@ -64,13 +64,12 @@ loginValidate = function (req, res, next) {
   }
 };
 
+// app.use('/', loginValidate);
 app.use('/', index);
-app.use('/main', loginValidate);
-app.use('/request', loginValidate);
-app.use('/request', request);
-app.use('/culture', loginValidate);
-app.use('/culture', culture);
-app.use('/playdocs', playdocs);
+
+app.use('/request', loginValidate, request);
+app.use('/culture', loginValidate, culture);
+app.use('/playdocs', loginValidate, playdocs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
