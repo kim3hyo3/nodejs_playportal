@@ -64,12 +64,12 @@
                                 <option value="10002">컴퓨터_네트워크_라이센스</option>
                               </optgroup>
                               <optgroup label="지원요청">
-                                <option value="20001">컴퓨터_네트워크_장비</option>
-                                <option value="20002">사무용품_비품</option>
+                                <option value="10003">컴퓨터_네트워크_장비</option>
+                                <option value="10004">사무용품_비품</option>
                               </optgroup>
                               <optgroup label="구매요청">
-                                <option value="30001">컴퓨터_네트워크_장비</option>
-                                <option value="30002">사무용품_비품</option>
+                                <option value="10005">컴퓨터_네트워크_장비</option>
+                                <option value="10006">사무용품_비품</option>
                               </optgroup>
                             </select>
                           </td>
@@ -77,8 +77,21 @@
                             <span>담당자(구현예정)</span>
                           </td>
                           <td class="col-md-4">
-                            <span>작업상태(구현예정)</span>
+                            <select class="selectpicker" name="status_cd">
+                              <option value="20001" data-content="<span class='label label-default'><%= rows[i].status_name %></span>"><%= rows[i].status_name %></option>
+                              <option value="20002" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>"><%= rows[i].status_name %></option>
+                              <option value="20003" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업완료(success)</option>
+                              <option value="20004" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업예정(info)</option>
+                              <option value="20005" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업경고(warning)</option>
+                              <option value="20006" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업긴급(danger)</option>
+                            </select>
+                            <select class="selectpicker">
+                              <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
+                            </select>
                           </td>
+                          <select class="selectpicker" data-style="btn-<%= rows[i].status_option %>">
+                            ...
+                          </select>
                         </tr>
                         <tr>
                           <th class="col-md-1">글제목</th>
@@ -111,7 +124,8 @@
                 <tr class="active">
                   <th class="col-md-1">글번호</th>
                   <th class="col-md-2">종류</th>
-                  <th class="col-md-3">제목</th>
+                  <th class="col-md-1">담당자</th>
+                  <th class="col-md-2">제목</th>
                   <th class="col-md-1">작성자</th>
                   <th class="col-md-2">등록일</th>
                   <th class="col-md-1">작업상태</th>
@@ -124,7 +138,8 @@
                     &nbsp;<span class="badge"><%= rows[i].id_request %></span>&nbsp;
                   </td>
                   <td class="col-md-2"><%= rows[i].type_name %></td>
-                  <td class="col-md-3" data-toggle="collapse" href="#content<%= rows[i].id_request %>"
+                  <td class="col-md-1"><%= rows[i].m_cd %></td>
+                  <td class="col-md-1" data-toggle="collapse" href="#content<%= rows[i].id_request %>"
                       aria-expanded="true" aria-controls="content<%= rows[i].id_request %>">
                     <div>
                       <%= rows[i].title %>
@@ -138,7 +153,9 @@
                   <td class="col-md-1"><%= rows[i].m_name %></td>
                   <td class="col-md-2"><%= rows[i].regdate %>
                   <!--답변상태-->
-                  <td class="col-md-1">작업중(구현예정)</td>
+                  <td class="col-md-1">
+                    <span class="label label-<%= rows[i].status_option %>" <%= rows[i].status_name %>></span>
+                  </td>
                   <td class="col-md-1"><%= rows[i].hit %></td>
                   <td class="col-md-1">
                     <button class="btn btn-default" type="button" data-toggle="collapse"
@@ -151,7 +168,6 @@
                     <form action="/request/delete" method="post">
                       <button class="btn btn-default" type="submit" name="id_request" value="<%= rows[i].id_request %>">글삭제</button>
                     </form>
-                    <!--<button class="btn btn-default" type="submit" formmethod="post" value="<%= rows[i].id_request %>">글삭제</button>-->
                   </td>
                 </tr>
                 <% } %>
