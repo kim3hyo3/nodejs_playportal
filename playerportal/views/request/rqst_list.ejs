@@ -17,8 +17,8 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search for...">
           <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
         </div>
         <li class="list-group-item">
           <a class="btn btn-primary btn-lg btn-block" href="/request" role="button">구매요청 모아보기(구현예정)</a>
@@ -137,7 +137,7 @@
                   </td>
                   <td class="col-md-1"><%= rows[i].m_name %></td>
                   <td class="col-md-2"><%= rows[i].regdate %>
-                    <!--답변상태-->
+                  <!--답변상태-->
                   <td class="col-md-1">작업중(구현예정)</td>
                   <td class="col-md-1"><%= rows[i].hit %></td>
                   <td class="col-md-1">
@@ -146,6 +146,12 @@
                             aria-controls="collapse<%= rows[i].id_request %>">
                       글수정
                     </button>
+
+                    <!--글삭제 버튼-->
+                    <form action="/request/delete" method="post">
+                      <button class="btn btn-default" type="submit" name="id_request" value="<%= rows[i].id_request %>">글삭제</button>
+                    </form>
+                    <!--<button class="btn btn-default" type="submit" formmethod="post" value="<%= rows[i].id_request %>">글삭제</button>-->
                   </td>
                 </tr>
                 <% } %>
@@ -158,6 +164,7 @@
                     aria-expanded="false" aria-controls="collapsewrite">
               글쓰기
             </button>
+
             <!--글쓰기-->
             <div class="collapse" id="collapsewrite">
               <div class="panel panel-default">

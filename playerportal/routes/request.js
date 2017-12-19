@@ -81,8 +81,8 @@ router.post('/edit', function(req, res, next){
   });
 });
 
-router.delete('/delete', function(req, res, next){
-  console.log(req.body);
+router.post('/delete', function(req, res, next){
+  console.log('deleteExperiment'+req.body.id_request);
   var id_request = req.body.id_request;
   pool.getConnection(function (err, connection)
   {
