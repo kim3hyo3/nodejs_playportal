@@ -12,19 +12,15 @@ router.get('/', function(req, res, next) {
 
 //글목록 보기
 router.get('/', function(req, res, next) {
-  //console.log('Log_loginid'+req.session.loginid);
-  //console.log(req.session);
-/*
-  if (req.session.loginid === undefined || req.session.loginid === "") {
-    res.redirect('/');
-  } else if (req.session.loginid !== undefined) { }
-*/
   pool.getConnection(function(err,connection) {
     // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
-    connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, member.m_name, member.m_type, task_type.type_name, task_type.m_cd, task_status.status_name, task_status.status_option ' +
+    connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, ' +
+      'member.m_name, member.m_type, ' +
+      'task_type.name_lg, task_type.name_md, task_type.name_sm, task_type.mng_name, ' +
+      'task_status.status_name, task_status.status_option ' +
       'FROM request_board ' +
       'INNER join member on request_board.m_cd = member.m_cd ' +
-      'INNER join task_type on request_board.type_cd = task_type.type_cd ' +
+      'INNER join task_type on request_board.type_id = task_type.type_id ' +
       'INNER join task_status on request_board.status_cd = task_status.status_cd ' +
       'ORDER BY id_request DESC;',
       function (err, rows) {
@@ -34,6 +30,25 @@ router.get('/', function(req, res, next) {
       connection.release();
     });
   });
+
+  /*pool.getConnection(function(err,connection) {
+    // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
+    connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, ' +
+      'member.m_name, member.m_type, ' +
+      'task_type.name_lg, task_type.name_md, task_type.name_sm, task_type.mng_name, ' +
+      'task_status.status_name, task_status.status_option ' +
+      'FROM request_board ' +
+      'INNER join member on request_board.m_cd = member.m_cd ' +
+      'INNER join task_type on request_board.type_id = task_type.type_id ' +
+      'INNER join task_status on request_board.status_cd = task_status.status_cd ' +
+      'ORDER BY id_request DESC;',
+      function (err, rows) {
+        if (err) console.error("err : " + err);
+        // console.log("rows : " + JSON.stringify(rows));
+        res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
+        connection.release();
+      });
+  });*/
 });
 
 router.post('/write', function(req, res, next){
