@@ -15,9 +15,9 @@
         </a>
         <!--검색-->
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
+          <input type="text" class="form-control" placeholder="검색기능 구현예정">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
+            <button class="btn btn-default" type="button">검색기능 구현예정!</button>
           </span>
         </div>
         <li class="list-group-item">
@@ -77,21 +77,15 @@
                             <span>담당자(구현예정)</span>
                           </td>
                           <td class="col-md-4">
-                            <select class="selectpicker" name="status_cd">
-                              <option value="20001" data-content="<span class='label label-default'><%= rows[i].status_name %></span>"><%= rows[i].status_name %></option>
-                              <option value="20002" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>"><%= rows[i].status_name %></option>
-                              <option value="20003" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업완료(success)</option>
-                              <option value="20004" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업예정(info)</option>
-                              <option value="20005" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업경고(warning)</option>
-                              <option value="20006" data-content="<span class='label label-primary'><%= rows[i].status_name %></span>">작업긴급(danger)</option>
-                            </select>
-                            <select class="selectpicker">
-                              <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
+                            <select class="selectpicker show-tick" name="status_cd">
+                              <option value="20001" data-content="<span class='label label-default'>작업진행 progress</span>"></option>
+                              <option value="20002" data-content="<span class='label label-primary'>작업우선 primary</span>"></option>
+                              <option value="20003" data-content="<span class='label label-success'>작업완료 success</span>"></option>
+                              <option value="20004" data-content="<span class='label label-info'>작업예정 info</span>"></option>
+                              <option value="20005" data-content="<span class='label label-warning'>작업경고 warning</span>"></option>
+                              <option value="20006" data-content="<span class='label label-danger'>작업긴급 danger</span>"></option>
                             </select>
                           </td>
-                          <select class="selectpicker" data-style="btn-<%= rows[i].status_option %>">
-                            ...
-                          </select>
                         </tr>
                         <tr>
                           <th class="col-md-1">글제목</th>
@@ -127,7 +121,7 @@
                   <th class="col-md-1">담당자</th>
                   <th class="col-md-2">제목</th>
                   <th class="col-md-1">작성자</th>
-                  <th class="col-md-2">등록일</th>
+                  <th class="col-md-1">등록일</th>
                   <th class="col-md-1">작업상태</th>
                   <th class="col-md-1">조회수</th>
                   <th class="col-md-1">글수정</th>
@@ -151,10 +145,11 @@
                     </div>
                   </td>
                   <td class="col-md-1"><%= rows[i].m_name %></td>
-                  <td class="col-md-2"><%= rows[i].regdate %>
-                  <!--답변상태-->
+                  <td class="col-md-1"><%= rows[i].regdate %>
+                  <!--작업상태-->
                   <td class="col-md-1">
-                    <span class="label label-<%= rows[i].status_option %>" <%= rows[i].status_name %>></span>
+                    <h4><span class="label label-<%= rows[i].status_option %>"><%= rows[i].status_name %></span>
+                    </h4>
                   </td>
                   <td class="col-md-1"><%= rows[i].hit %></td>
                   <td class="col-md-1">

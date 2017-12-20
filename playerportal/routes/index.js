@@ -34,7 +34,6 @@ router.get('/', function (req, res, next) {
   res.render('index/login');
 });
 
-//router.get('/main', [dfdfd], function (req, res) {
 router.get('/main', loginValidate, function (req, res, next) {
   console.log('checklog '+req.session.loginid);
   res.render('index/main', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname});
@@ -89,8 +88,22 @@ router.get('/logout', function (req, res, next) {
   if (req.session.loginid !== null) {
     req.session.destroy(function (err) {
       if (err) {
+        console.log('here 000');
         console.log(err);
       } else {
+        console.log('here 111');
+        // res.clearCookie(sid);
+        /*res.clearCookie('connect.sid', {
+          path: '/',
+          secure : secureCookie,
+          httpOnly: true
+        });*/
+
+        // set response header *BEFORE* sending response body
+        res.set({
+          'Expires': 0, // For backward compatibility with HTTP/1.0
+          'Cache-Control': 'private, no-cache, no-store, must-revalidate'
+        });
         res.redirect('/');
       }
     })

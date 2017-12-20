@@ -36,6 +36,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*const secret = config('server.sessionHash');
+const secureCookie = config('server.secureCookie');*/
+
 //session
 app.use(session({
   /*genid: function(req) {
@@ -47,9 +50,26 @@ app.use(session({
   cookie: {
     secure: false,
     maxAge: 300000
-    // maxAge: 180000 3분
+    // maxAge: 180000 3분,
   }
 }));
+
+/*//session ver 1.1
+app.use(session({
+  // genid: function(req) {
+  //   return genuuid() // use UUIDs for session IDs
+  // },
+  secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    path: '/',
+    secure: secureCookie,
+    httpOnly: true,
+    maxAge: 300000
+    // maxAge: 180000 3분
+  }
+}));*/
 
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
