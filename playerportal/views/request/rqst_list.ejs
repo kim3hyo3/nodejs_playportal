@@ -21,9 +21,9 @@
           </span>
         </div>
         <li class="list-group-item">
-          <a class="btn btn-primary btn-lg btn-block" href="/request" role="button">구매요청 모아보기(구현예정)</a>
-          <a class="btn btn-primary btn-lg btn-block" href="/request" role="button">지원요청 모아보기(구현예정)</a>
-          <a class="btn btn-primary btn-lg btn-block" href="/request" role="button">요청종류 설정(구현예정)</a>
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">구매요청 모아보기(구현예정)</a>
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">지원요청 모아보기(구현예정)</a>
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">요청종류 설정(구현예정)</a>
         </li>
 
       </div>
@@ -32,7 +32,7 @@
           <div class="list-group-item active"><h4>요청게시판</h4></div>
           <div class="list-group-item">
             <!--글수정-->
-            <% for(var i = 0; i < rows.length;i++){ %>
+            <% for(var i = 0; i < rows.length; i++){ %>
               <div class="collapse" id="collapse<%= rows[i].id_request %>">
                 <div class="panel panel-default">
                   <div class="panel-body">
@@ -62,16 +62,16 @@
                           <td class="col-md-3">
                             <select class="form-control selectpicker" name="type_cd">
                               <optgroup label="총무업무">
-                                <option value="101000">문생비_연차일수_기안서_비즈플레이</option>
-                                <option value="102000">컴퓨터_네트워크_라이센스</option>
+                                <option value="10"></option>
+                                <!--<option value="102000">컴퓨터_네트워크_라이센스</option>-->
                               </optgroup>
                               <optgroup label="지원요청">
-                                <option value="103000">컴퓨터_네트워크_장비</option>
-                                <option value="104000">사무용품_비품</option>
+                                <option value="20">컴퓨터_네트워크_장비</option>
+                                <!--<option value="104000">사무용품_비품</option>-->
                               </optgroup>
                               <optgroup label="구매요청">
-                                <option value="105000">컴퓨터_네트워크_장비</option>
-                                <option value="106000">사무용품_비품</option>
+                                <option value="30">컴퓨터_네트워크_장비</option>
+                                <!--<option value="106000">사무용품_비품</option>-->
                               </optgroup>
                             </select>
                           </td>
@@ -121,7 +121,7 @@
                   <th class="col-md-1">글번호</th>
                   <th class="col-md-1">종류</th>
                   <th class="col-md-1">담당자</th>
-                  <th class="col-md-2">제목</th>
+                  <th class="col-md-1">제목</th>
                   <th class="col-md-1">작성자</th>
                   <th class="col-md-1">등록일</th>
                   <th class="col-md-1">작업상태</th>
@@ -129,18 +129,13 @@
                   <th class="col-md-1">글수정</th>
                 </tr>
                 <% for(var i = 0;i < rows.length; i++){ %>
-                <tr>
+                <tr class="<%= rows[i].status_option %>">
                   <td class="col-md-1">
                     &nbsp;<span class="badge"><%= rows[i].id_request %></span>&nbsp;
                   </td>
                   <td class="col-md-1">
-                    <ul class="list-group">
-                      <li class="list-group-item list-group-item-success"><%= rows[i].name_lg %></li>
-                      <li class="list-group-item list-group-item-info"><%= rows[i].name_md %></li>
-                      <li class="list-group-item list-group-item-warning"><%= rows[i].name_sm %></li>
-                    </ul>
+                    <%= rows[i].type_name %>
                   </td>
-
                   <td class="col-md-1"><%= rows[i].mng_name %></td>
                   <td class="col-md-1" data-toggle="collapse" href="#content<%= rows[i].id_request %>"
                       aria-expanded="true" aria-controls="content<%= rows[i].id_request %>">
@@ -162,12 +157,12 @@
                   </td>
                   <td class="col-md-1"><%= rows[i].hit %></td>
                   <td class="col-md-1">
+                    <!--글수정 버튼-->
                     <button class="btn btn-default" type="button" data-toggle="collapse"
                             data-target="#collapse<%= rows[i].id_request %>" aria-expanded="false"
                             aria-controls="collapse<%= rows[i].id_request %>">
                       글수정
                     </button>
-
                     <!--글삭제 버튼-->
                     <form action="/request/delete" method="post">
                       <button class="btn btn-default" type="submit" name="id_request" value="<%= rows[i].id_request %>">글삭제</button>
@@ -208,21 +203,21 @@
                                  placeholder="<%= loginname %>" disabled/>
                         </td>
                         <td class="col-md-1">
-                          <input class="form-control" name="regdate" placeholder="자동입력" readonly>
+                          <input class="form-control" type="text" name="regdate" placeholder="자동입력" readonly>
                         </td>
                         <td class="col-md-3">
                           <select class="form-control selectpicker" name="type_cd">
                             <optgroup label="총무업무">
-                              <option value="101000">문생비_연차일수_기안서_비즈플레이</option>
-                              <option value="102000">컴퓨터_네트워크_라이센스</option>
+                              <option value="10">총무업무</option>
+                              <!--<option value="102000">컴퓨터_네트워크_라이센스</option>-->
                             </optgroup>
                             <optgroup label="지원요청">
-                              <option value="103000">컴퓨터_네트워크_장비</option>
-                              <option value="104000">사무용품_비품</option>
+                              <option value="20">지원요청</option>
+                              <!--<option value="104000">사무용품_비품</option>-->
                             </optgroup>
                             <optgroup label="구매요청">
-                              <option value="105000">컴퓨터_네트워크_장비</option>
-                              <option value="106000">사무용품_비품</option>
+                              <option value="30">구매요청</option>
+                              <!--<option value="106000">사무용품_비품</option>-->
                             </optgroup>
                           </select>
                         </td>

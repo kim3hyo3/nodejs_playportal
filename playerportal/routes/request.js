@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     // SELECT id_request, title, content, date_format(regdate,'%Y-%m-%d %H:%i:%s')
     connection.query('SELECT id_request, title, content, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, hit, ' +
       'member.m_name, member.m_type, ' +
-      'task_type.name_lg, task_type.name_md, task_type.name_sm, task_type.mng_name, ' +
+      'task_type.type_cd, task_type.type_name, task_type.mng_name, ' +
       'task_status.status_name, task_status.status_option ' +
       'FROM request_board ' +
       'INNER join member on request_board.m_cd = member.m_cd ' +
@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
       'ORDER BY id_request DESC;',
       function (err, rows) {
       if (err) console.error("err : " + err);
-      // console.log("rows : " + JSON.stringify(rows));
+      //console.log("rows : " + JSON.stringify(rows));
       res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
       connection.release();
     });
