@@ -75,11 +75,11 @@ app.use(session({
 loginValidate = function (req, res, next) {
   if (req.session.loginid !== undefined) {
   //통과-세션에 로그인 아이디가 있으면 진행
-    console.log('loginValidate 11111 success'+JSON.stringify(req.session));
+    //console.log('loginValidate 11111 success'+JSON.stringify(req.session));
     next();
   } else if (req.session.loginid === undefined || req.session.loginid === "") {
   //실패-세션에 로그인 아이디가 없으면 에러에러
-    console.log('loginValidate 00000 error');
+    //console.log('loginValidate 00000 error');
     res.redirect('/');
   }
 };
