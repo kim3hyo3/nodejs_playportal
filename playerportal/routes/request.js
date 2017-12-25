@@ -24,22 +24,24 @@ router.get('/', function (req, res, next) {
     });
   });
 });
-/*
-// original
+
+// Original
 router.post('/write', function(req, res, next){
   console.log(req.body);
-  var type_cd =  req.body.type_cd;
+
   var title = req.body.title;
   var content = req.body.content;
   //session에서 logincd을 받아와서 m_cd에 넣음.
   var m_cd = req.session.logincd;
-  var reqData02 = [type_cd, title, content, m_cd];
+  var status_cd = req.body.status_cd;
+  var type_cd =  req.body.type_cd;
 
+  var reqData01 = [type_cd, title, content, m_cd, status_cd, type_cd];
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sql01 = "INSERT INTO request_board(type_cd, title, content, m_cd) values(?,?,?,?);";
-    connection.query(sql01, reqData02, function (err, rows) {
+    var sql01 = "INSERT INTO request_board(title, content, m_cd, status_cd, type_cd) values(??,??,?,?);";
+    connection.query(sql01, reqData01, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
       res.redirect('/request');
@@ -47,46 +49,32 @@ router.post('/write', function(req, res, next){
       // Don't use the connection here, it has been returned to the pool.
     });
   });
-});*/
+});
 
-// Upgrade
+/*
+// Upgrade02
 router.post('/write', function(req, res, next){
   //post로 req.body로 받아옴.
-  var type_cd = req.body.type_cd;
-
   var title = req.body.title;
   var content = req.body.content;
-
   //session에서 logincd 받고 m_cd에 넣음.
   var m_cd = req.session.logincd;
-
+  var status_cd = req.body.status_cd;
+  var type_cd = req.body.type_cd;
+  var reqData01 = [title, content, m_cd, status_cd, type_cd];
+  var sql01 = 'INSERT INTO request_board(title, content, m_cd, status_cd, type_id) values(?,?,?,?,?)' +
+    // '(SELECT alias.* FROM (SELECT DISTINCT task_type.type_id FROM task_type INNER JOIN request_board ON request_board.type_id = task_type.type_id WHERE task_type.type_cd = ? )alias))'
   pool.getConnection(function (err, connection) {
-    var sql01 = 'SELECT task_type.type_id ' +
-      'FROM request_board ' +
-      'INNER JOIN task_type ' +
-      'ON request_board.type_id = task_type.type_id ' +
-      'WHERE task_type.type_cd = ?';
-    console.log('here1 sql '+sql01);
-    console.log('here1 type_cd '+type_cd);
-    connection.query(sql01, [type_cd], function (err, rslt01) {
-      var type_id = rslt01;
-      console.log('here2 '+type_id);
-      var reqData02 = [type_id, title, content, m_cd];
-      // ㄴ이부분이 문제로 보임
-      // Use the connection
-      var sql02 = 'INSERT INTO request_board(type_id, title, content, m_cd) values(?,?,?,?);';
-
-      connection.query(sql02, reqData02, function (err, rows) {
-        if (err) console.error("err : " + err);
-        // console.log("rows : " + JSON.stringify(rows));
-        res.redirect('/request');
-        connection.release();
-        // Don't use the connection here, it has been returned to the pool.
-      });
+    connection.query(sql01, reqData01, function (err, rslt01) {
+      if (err) console.error("err : " + err);
+      // console.log("rows : " + JSON.stringify(rows));
+      res.redirect('/request');
+      connection.release();
+      // Don't use the connection here, it has been returned to the pool.
     });
   });
 });
-
+*/
 
 router.post('/edit', function (req, res, next) {
   console.log(req.body);
@@ -127,5 +115,37 @@ router.post('/delete', function (req, res, next) {
     });
   });
 });
+
+/*
+// Upgrade01
+'FROM request_board ' +
+'INNER JOIN task_type ' +
+'ON request_board.type_id = task_type.type_id ' +
+'WHERE task_type.type_cd = ?';
+
+router.post('/write', function(req, res, next){
+  //post로 req.body로 받아옴.
+  var title = req.body.title;
+  var content = req.body.content;
+  //session에서 logincd 받고 m_cd에 넣음.
+  var m_cd = req.session.logincd;
+  var type_cd = req.body.type_cd;
+
+  var sql01 = 'SELECT task_type.type_id FROM task_type INNER JOIN request_board ON request_board.type_id = task_type.type_id WHERE task_type.type_cd = ?;';
+  var sql02 = 'INSERT INTO request_board(title, content, m_cd, status_cd, type_id) values(?,?,?,?,?);';
+
+  pool.getConnection(function (err, connection) {
+    connection.query(sql01, reqData01, function (err, rslt01) {
+      connection.query(sql02, reqData02, function (err, rslt02) {
+        if (err) console.error("err : " + err);
+        // console.log("rows : " + JSON.stringify(rows));
+        res.redirect('/request');
+        connection.release();
+        // Don't use the connection here, it has been returned to the pool.
+      });
+    });
+  });
+});
+*/
 
 module.exports = router;
