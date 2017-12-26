@@ -36,11 +36,12 @@ router.post('/write', function(req, res, next){
   var status_cd = req.body.status_cd;
   var type_cd =  req.body.type_cd;
 
-  var reqData01 = [type_cd, title, content, m_cd, status_cd, type_cd];
+  var reqData01 = [title, content, m_cd, status_cd, type_cd];
   pool.getConnection(function (err, connection)
   {
     // Use the connection
-    var sql01 = "INSERT INTO request_board(title, content, m_cd, status_cd, type_cd) values(??,??,?,?);";
+    var sql01 = 'INSERT INTO request_board(title, content, m_cd, status_cd, type_id) values(?,?,?,?,\n' +
+      '(SELECT task_type.type_id FROM task_type WHERE task_type.type_cd = ?))';
     connection.query(sql01, reqData01, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
