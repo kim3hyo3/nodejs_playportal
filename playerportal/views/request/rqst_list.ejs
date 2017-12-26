@@ -235,7 +235,14 @@
                           <span>담당자(구현예정)</span>
                         </td>
                         <td class="col-md-5">
-                          <span>작업상태(구현예정)</span>
+                          <select class="selectpicker show-tick" name="status_cd">
+                            <option value="20001" data-content="<span class='label label-default'>작업진행 progress</span>"></option>
+                            <option value="20002" data-content="<span class='label label-primary'>작업우선 primary</span>"></option>
+                            <option value="20003" data-content="<span class='label label-success'>작업완료 success</span>"></option>
+                            <option value="20004" data-content="<span class='label label-info'>작업예정 info</span>"></option>
+                            <option value="20005" data-content="<span class='label label-warning'>작업경고 warning</span>"></option>
+                            <option value="20006" data-content="<span class='label label-danger'>작업긴급 danger</span>"></option>
+                          </select>
                         </td>
                       </tr>
                       <tr>
@@ -290,7 +297,6 @@
                   alert(message);
                   return false;
                 }
-
                 if ($("#content").val().trim() == "") {
                   var message = "본문 내용을 입력해 주세요";
                   $("#content").val("");
@@ -299,7 +305,6 @@
                   return false;
                 }
               }
-
               /*$('#requestUpdate').click(function () {
                 function onUpdateSubmit() {
                   $.ajax({
