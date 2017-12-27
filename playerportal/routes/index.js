@@ -16,15 +16,27 @@ req.body.username, password 하고 db-id, db-password 를 대조 해보고
 일치하면 db-result를 req.session.id에 넣어 세션을 유지한다.
 */
 
+// 로그인 검증 로직
+loginValidate = function (req, res, next) {
+  if (req.session.loginid !== undefined) {
+    //통과-세션에 로그인 아이디가 있으면 진행
+    console.log('loginValidate 11111 success'+JSON.stringify(req.session));
+    next();
+  } else if (req.session.loginid === undefined || req.session.loginid === "") {
+    //실패-세션에 로그인 아이디가 없으면 에러에러
+    console.log('loginValidate 00000 error');
+    res.redirect('/');
+  }
+};
+
 //login_page
 router.get('/', function (req, res, next) {
   res.render('index/login');
 });
 
-//router.get('/main', [dfdfd], function (req, res) {
-router.get('/main', function (req, res, next) {
-  console.log(req.session.loginid);
-  res.render('index/main', {token: req.session.loginid});
+router.get('/main', loginValidate, function (req, res, next) {
+  console.log('checklog '+req.session.loginid);
+  res.render('index/main', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname});
 });
 
 router.post('/main', function (req, res, next) {
@@ -37,19 +49,24 @@ sql = connection.format(sql, inserts);*/
 // sql = 'SELECT m_id, m_password from member where m_id = "'+mid+'"';
     mid = req.body.username;
     mpassword = req.body.password;
-    connection.query('SELECT m_id, m_password from member where m_id = ?', [mid], function (err, rows, fields) {
+    connection.query('SELECT m_id, m_cd, m_name, m_password from member where m_id = ?', [mid], function (err, rows, fields) {
      console.log('rows.length '+rows.length);
-     //통과구문
+     //통과로직
      if (rows.length !== 0) {
         console.log('question id '+mid);
         console.log('question password '+mpassword);
-        console.log(rows[0].m_id);
-        console.log(rows[0].m_password);
+        console.log('m_id '+rows[0].m_id);
+        console.log('m_cd '+rows[0].m_cd);
+        console.log('m_name '+rows[0].m_name);
+        console.log('m_password '+rows[0].m_password);
         //통과로직
         if (rows[0].m_id === mid && rows[0].m_password === mpassword) {
+          //sql로 받아온 m_id를 session.loginid에 넣음. m_cd도 같이 넣음. m_name도 같이 넣음.
           req.session.loginid = rows[0].m_id;
+          req.session.logincd = rows[0].m_cd;
+          req.session.loginname = rows[0].m_name;
           console.log(req.session);
-          res.render('index/main', {token: req.session.loginid});
+          res.render('index/main', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname});
           connection.release();
         //실패로직
         } else if (rows[0].m_id !== mid || rows[0].m_password !== mpassword) {
@@ -71,8 +88,22 @@ router.get('/logout', function (req, res, next) {
   if (req.session.loginid !== null) {
     req.session.destroy(function (err) {
       if (err) {
+        console.log('here 000');
         console.log(err);
       } else {
+        console.log('here 111');
+        // res.clearCookie(sid);
+        /*res.clearCookie('connect.sid', {
+          path: '/',
+          secure : secureCookie,
+          httpOnly: true
+        });*/
+
+        // set response header *BEFORE* sending response body
+        res.set({
+          'Expires': 0, // For backward compatibility with HTTP/1.0
+          'Cache-Control': 'private, no-cache, no-store, must-revalidate'
+        });
         res.redirect('/');
       }
     })

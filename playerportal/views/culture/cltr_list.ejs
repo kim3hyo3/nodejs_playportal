@@ -56,13 +56,13 @@
                 <th>extinction</th>
                 <th>balance</th>
               </tr>
-              <%for(var i = 0; i < cultureData.length;i++){%>
+              <%for(var i = 0; i < rows.length;i++){%>
               <tr>
-                <td><%= cultureData[i].m_name %></td>
-                <td><%= cultureData[i].grant %></td>
-                <td><%= cultureData[i].use %></td>
-                <td><%= cultureData[i].extinction %></td>
-                <td><%= cultureData[i].balance %></td>
+                <td><%= rows[i].m_name %></td>
+                <td><%= rows[i].grant %></td>
+                <td><%= rows[i].use %></td>
+                <td><%= rows[i].extinction %></td>
+                <td><%= rows[i].balance %></td>
               </tr>
               <%}%>
               <!--<tr>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <% include ../layout/head.ejs %>
-  <link rel='stylesheet' href='/stylesheets/style.css'/>
+<% include ../layout/head.ejs %>
+<link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
 <% include ../layout/nav.ejs %>
@@ -32,37 +32,50 @@
             <a href="/request" class="list-group-item">
               <div class="caption">
                 <h3>플레이어센터</h3>
-                <p>구매요청, 지원요청, 명함요청</p>
+                <p>구매요청, 지원요청</p>
               </div>
             </a>
+            <a href="/playerdocs" class="list-group-item">
+              <div class="caption">
+                <h3>플레이어문서</h3>
+                <p>각종규정, 회사홍보자료, 표준문서양식</p>
+              </div>
+            </a>
+
             <a href="#" class="list-group-item">
               <div class="caption">
                 <h3>각종규정</h3>
-                <p>content_content_content_content_content</p>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
               </div>
             </a>
             <a href="#" class="list-group-item">
               <div class="caption">
                 <h3>회사홍보자료</h3>
-                <p>content_content_content_content_content</p>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
               </div>
             </a>
             <a href="#" class="list-group-item">
               <div class="caption">
                 <h3>표준문서양식</h3>
-                <p>content_content_content_content_content</p>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
               </div>
             </a>
             <a href="#" class="list-group-item">
               <div class="caption">
                 <h3>법인카드불출</h3>
-                <p>content_content_content_content_content</p>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
               </div>
             </a>
             <a href="#" class="list-group-item">
               <div class="caption">
                 <h3>자리배치도</h3>
-                <p>content_content_content_content_content</p>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="caption">
+                <h3>명함요청</h3>
+                <p>구현예정_구현예정_구현예정_구현예정_구현예정_</p>
               </div>
             </a>
           </li>
@@ -76,7 +89,6 @@
               <h3>문생비잔액확인</h3>
               <p>본인의 문생비 잔액 확인</p>
             </div>
-            <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
           </a>
         </div>
       </div>
@@ -84,14 +96,10 @@
         <div class="list-group">
           <li class="list-group-item active"><h4>관리자</h4></li>
           <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://admin.playauto.co.kr/main/login">자산관리</button>
-            </form>
+            <a class="btn btn-primary btn-lg btn-block" href="http://admin.playauto.co.kr/main/login" role="button">자산관리</a>
           </li>
           <li class="list-group-item">
-            <form action="/main/containlink" method="post">
-              <button type="submit" class="btn btn-primary btn-lg btn-block" name="containlink" value="http://www.krsmart.com/">대여관리</button>
-            </form>
+            <a class="btn btn-primary btn-lg btn-block" href="http://www.krsmart.com/" role="button">대여관리</a>
           </li>
           <a href="#" class="list-group-item">사이트관리</a>
           <a href="#" class="list-group-item">근태관리</a>
@@ -102,7 +110,7 @@
 </div>
 </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/1.9.0/i18next.min.js" type="text/javascript"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/1.9.0/i18next.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   $.i18n.init({
     //lng: 'en-US',
@@ -159,5 +167,5 @@
   var changeLang = function (lang) {
     $.i18n.setLng(lang);
     $('.translation').i18n();
-  }
+  }-->
 </script>

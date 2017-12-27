@@ -8,6 +8,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var request = require('./routes/request');
 var culture = require('./routes/culture');
+var playdocs = require('./routes/playdocs');
 
 var mysql = require('mysql');
 var configdb = require('./configdb.json');
@@ -35,6 +36,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*const secret = config('server.sessionHash');
+const secureCookie = config('server.secureCookie');*/
+
 //session
 app.use(session({
   /*genid: function(req) {
@@ -45,30 +49,47 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false,
-    maxAge: 180000
+    maxAge: 300000
+    // maxAge: 180000 3분,
   }
 }));
+
+/*//session ver 1.1
+app.use(session({
+  // genid: function(req) {
+  //   return genuuid() // use UUIDs for session IDs
+  // },
+  secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    path: '/',
+    secure: secureCookie,
+    httpOnly: true,
+    maxAge: 300000
+    // maxAge: 180000 3분
+  }
+}));*/
 
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
   if (req.session.loginid !== undefined) {
-    //이 부분에 next 거는게 문제인건가..
-    // res.redirect('/main');
-    console.log('loginValidate 11111');
+  //통과-세션에 로그인 아이디가 있으면 진행
+    //console.log('loginValidate 11111 success'+JSON.stringify(req.session));
     next();
-// } else if (req.session.loginid !== undefined) {
   } else if (req.session.loginid === undefined || req.session.loginid === "") {
-    console.log('validate error');
+  //실패-세션에 로그인 아이디가 없으면 에러에러
+    //console.log('loginValidate 00000 error');
     res.redirect('/');
   }
 };
 
+// app.use('/', loginValidate);
 app.use('/', index);
-app.use('/main', loginValidate);
-app.use('/request', loginValidate);
-app.use('/request', request);
-app.use('/culture', loginValidate);
-app.use('/culture', culture);
+
+app.use('/request', loginValidate, request);
+app.use('/culture', loginValidate, culture);
+app.use('/playdocs', loginValidate, playdocs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
