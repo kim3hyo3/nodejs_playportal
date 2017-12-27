@@ -92,13 +92,15 @@ router.get('/logout', function (req, res, next) {
         console.log(err);
       } else {
         console.log('here 111');
+        //1 way
         // res.clearCookie(sid);
-        /*res.clearCookie('connect.sid', {
+        //2 way
+        res.clearCookie('connect.sid', {
           path: '/',
-          secure : secureCookie,
+          secure : true,
           httpOnly: true
-        });*/
-
+        });
+        //3 way
         // set response header *BEFORE* sending response body
         res.set({
           'Expires': 0, // For backward compatibility with HTTP/1.0
