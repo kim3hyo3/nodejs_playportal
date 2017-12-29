@@ -134,7 +134,7 @@
                   <th class="col-md-1">글수정</th>
                 </tr>
                 <% for(var i = 0;i < rows.length; i++){ %>
-                <tr class="<%= rows[i].status_option %>">
+                <tr onClick="location.href='/request/read/<%=rows[i].id_request%>'" style="cursor:pointer;" class="<%= rows[i].status_option %>" id="rqst_read"></a>
                   <td class="col-md-1">
                     &nbsp;<span class="badge"><%= rows[i].id_request %></span>&nbsp;
                   </td>
@@ -147,7 +147,7 @@
                     <div>
                       <%= rows[i].title %>
                     </div>
-                    <div class="collapse in" id="content<%= rows[i].id_request %>" name="content">
+                    <div class="collapse in" id="content<%= rows[i].id_request %>">
                       <div>
                         <%= rows[i].content %>
                       </div>

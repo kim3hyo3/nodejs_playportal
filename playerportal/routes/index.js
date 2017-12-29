@@ -85,6 +85,9 @@ sql = connection.format(sql, inserts);*/
 //logout
 router.get('/logout', function (req, res, next) {
   //login way
+  console.log("로그아웃");
+  res.setHeader('Cache-Control', 'no-cache, no-store'); // Added no-store
+  // console.log(req.session);
   if (req.session.loginid !== null) {
     req.session.destroy(function (err) {
       if (err) {
@@ -113,7 +116,7 @@ router.get('/logout', function (req, res, next) {
   } else {
     res.redirect('/');
   }
-  /3rd way
+  //3rd way
   /*req.session.destroy(function(err){
     if(err){
       console.log(err);
