@@ -40,5 +40,22 @@
 <!--&lt;!&ndash;Let browser know website is optimized for mobile&ndash;&gt;-->
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
 
+<script>
+  /*window.onpageshow = function (event) {
+    if (event.persisted) {
+      console.log('BFCahe로부터 복원됨');
+    }
+    else {
+      console.log('새로 열린 페이지');
+    }
+  };*/
+  window.addEventListener('unload', function () {});
+  window.onpageshow = function(event) {
+    if (event.persisted) {
+      window.location.reload()
+    }
+  }
+</script>
+
 <!--Import local CSS -->
 <link href="stylesheets/style.css" rel="stylesheet">

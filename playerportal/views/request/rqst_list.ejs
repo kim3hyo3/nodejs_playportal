@@ -147,14 +147,14 @@
                     <div>
                       <%= rows[i].title %>
                     </div>
-                    <div class="collapse in" id="content<%= rows[i].id_request %>">
+                    <div class="collapse in" id="content<%= rows[i].id_request %>" name="content">
                       <div>
                         <%= rows[i].content %>
                       </div>
                     </div>
                   </td>
                   <td class="col-md-1"><%= rows[i].m_name %></td>
-                  <td class="col-md-1"><%= rows[i].regdate %>
+                  <td class="col-md-1"><%= rows[i].regdate %></td>
                   <!--작업상태-->
                   <td class="col-md-1">
                     <h4><span class="label label-<%= rows[i].status_option %>"><%= rows[i].status_name %></span>
@@ -308,7 +308,7 @@
               /*$('#requestUpdate').click(function () {
                 function onUpdateSubmit() {
                   $.ajax({
-                    url: '/request/update',
+                    url: '/request/read/',
                     type: 'post',
                     dataType: 'json',
                     data: {

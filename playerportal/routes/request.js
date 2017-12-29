@@ -20,6 +20,7 @@ router.get('/', function (req, res, next) {
       if (err) console.error("err : " + err);
       //console.log("rows : " + JSON.stringify(rows));
       res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname, rows: rows});
+    // res.render('request/rqst_list', {loginid : req.session.loginid, logincd : req.session.logincd, loginname : req.session.loginname, rows : rows, page : page, leng : Object.keys(rows).length-1, page_num: 10, pass: true});
       connection.release();
     });
   });
@@ -33,7 +34,7 @@ router.post('/write', function(req, res, next){
   //session에서 logincd을 받아와서 m_cd에 넣음.
   var m_cd = req.session.logincd;
   var status_cd = req.body.status_cd;
-  var type_cd =  req.body.type_cd;
+  var type_cd = req.body.type_cd;
 
   var reqData01 = [title, content, m_cd, status_cd, type_cd];
   pool.getConnection(function (err, connection)
@@ -90,37 +91,5 @@ router.post('/delete', function (req, res, next) {
     });
   });
 });
-
-/*
-// Upgrade01
-'FROM request_board ' +
-'INNER JOIN task_type ' +
-'ON request_board.type_id = task_type.type_id ' +
-'WHERE task_type.type_cd = ?';
-
-router.post('/write', function(req, res, next){
-  //post로 req.body로 받아옴.
-  var title = req.body.title;
-  var content = req.body.content;
-  //session에서 logincd 받고 m_cd에 넣음.
-  var m_cd = req.session.logincd;
-  var type_cd = req.body.type_cd;
-
-  var sql01 = 'SELECT task_type.type_id FROM task_type INNER JOIN request_board ON request_board.type_id = task_type.type_id WHERE task_type.type_cd = ?;';
-  var sql02 = 'INSERT INTO request_board(title, content, m_cd, status_cd, type_id) values(?,?,?,?,?);';
-
-  pool.getConnection(function (err, connection) {
-    connection.query(sql01, reqData01, function (err, rslt01) {
-      connection.query(sql02, reqData02, function (err, rslt02) {
-        if (err) console.error("err : " + err);
-        // console.log("rows : " + JSON.stringify(rows));
-        res.redirect('/request');
-        connection.release();
-        // Don't use the connection here, it has been returned to the pool.
-      });
-    });
-  });
-});
-*/
 
 module.exports = router;

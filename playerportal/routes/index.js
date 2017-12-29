@@ -104,12 +104,23 @@ router.get('/logout', function (req, res, next) {
           'Expires': 0, // For backward compatibility with HTTP/1.0
           'Cache-Control': 'private, no-cache, no-store, must-revalidate'
         });
+        // 1st way
         res.redirect('/');
+        // 2nd way
+        // res.send('<script>alert("로그아웃 되었습니다");location.href="/";</script>');
       }
     })
   } else {
     res.redirect('/');
   }
+  /3rd way
+  /*req.session.destroy(function(err){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect('/');
+    }
+  })*/
 });
 
 /*
