@@ -65,7 +65,7 @@ router.post('/edit', function (req, res, next) {
   console.log(reqData);
   pool.getConnection(function (err, connection) {
     // Use the connection
-    var sqlForEditRequest = "UPDATE request_board set id_request=?, title=?, content=?, m_cd=?, status_cd=?, type_cd=?, editdate=now() WHERE id_request=?;";
+    var sqlForEditRequest = "UPDATE request_board set id_request=?, title=?, content=?, m_cd=?, status_cd=?, type_id=(SELECT task_type.type_id FROM task_type WHERE task_type.type_cd = ?), editdate=now() WHERE id_request=?;";
     connection.query(sqlForEditRequest, reqData, function (err, rows) {
       if (err) console.error("err : " + err);
       // console.log("rows : " + JSON.stringify(rows));
@@ -139,5 +139,6 @@ router.get('/read/:id_request',function (req, res, next) {
       })
     })
   })
-})
+});
+
 module.exports = router;

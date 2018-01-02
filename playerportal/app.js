@@ -54,23 +54,6 @@ app.use(session({
   }
 }));
 
-/*//session ver 1.1
-app.use(session({
-  // genid: function(req) {
-  //   return genuuid() // use UUIDs for session IDs
-  // },
-  secret,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    path: '/',
-    secure: secureCookie,
-    httpOnly: true,
-    maxAge: 300000
-    // maxAge: 180000 3분
-  }
-}));*/
-
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
   if (req.session.loginid !== undefined) {
@@ -86,7 +69,6 @@ loginValidate = function (req, res, next) {
 
 // app.use('/', loginValidate);
 app.use('/', index);
-
 app.use('/request', loginValidate, request);
 app.use('/culture', loginValidate, culture);
 app.use('/playdocs', loginValidate, playdocs);
