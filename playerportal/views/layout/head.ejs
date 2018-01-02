@@ -44,22 +44,32 @@
 
 <script>
 //1st way
-  /*window.onpageshow = function (event) {
-    if (event.persisted) {
-      console.log('BFCahe로부터 복원됨');
-    }
-    else {
-      console.log('새로 열린 페이지');
-    }
-  };*/
-//2nd way
-//  window.addEventListener('unload', function () {});
-//3rd way
-  window.onpageshow = function(event) {
-    if (event.persisted) {
-      window.location.reload()
-    }
+/*
+window.onpageshow = function (event) {
+  if (event.persisted) {
+    console.log('BFCahe로부터 복원됨');
   }
+  else {
+    console.log('새로 열린 페이지');
+  }
+};
+*/
+//2nd way
+/*
+window.onpageshow = function(event) {
+ if (event.persisted) {
+   window.location.reload()
+ }
+}
+*/
+
+//3rd way
+window.addEventListener = function(event){
+  if(event.persisted) {
+    log.innerHTML += '<br><strong>(page loaded from bfcache)</strong>'
+    window.location.reload()
+  }
+}
 </script>
 
 <!--Import local CSS -->

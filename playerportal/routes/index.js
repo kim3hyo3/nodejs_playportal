@@ -95,12 +95,16 @@ router.get('/logout', function (req, res, next) {
         //1 way
         // res.clearCookie(sid);
         //2 way
-        res.clearCookie('connect.sid', {
-          path: '/',
-          secure : true,
-          httpOnly: true
-        });
+        // res.clearCookie('connect.sid', {
+        //   path: '/',
+        //   secure : true,
+        //   httpOnly: true
+        // });
         //3 way
+        // https://mixmax.com/blog/chrome-back-button-cache-no-store
+        // res.setHeader('Cache-Control', 'no-cache, no-store'); // Added no-store
+        // res.redirect('/');
+        //4 way
         // set response header *BEFORE* sending response body
         res.set({
           'Expires': '0', // For backward compatibility with HTTP/1.0

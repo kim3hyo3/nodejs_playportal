@@ -49,7 +49,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false,
-    maxAge: 300000
+    maxAge: 600000
     // maxAge: 180000 3분,
   }
 }));
@@ -78,7 +78,7 @@ loginValidate = function (req, res, next) {
     //console.log('loginValidate 11111 success'+JSON.stringify(req.session));
     next();
   } else if (req.session.loginid === undefined || req.session.loginid === "") {
-  //실패-세션에 로그인 아이디가 없으면 에러에러
+  //실패-세션에 로그인 아이디가 없으면 에러
     //console.log('loginValidate 00000 error');
     res.redirect('/');
   }
