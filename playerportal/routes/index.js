@@ -103,7 +103,7 @@ router.get('/logout', function (req, res, next) {
         //3 way
         // set response header *BEFORE* sending response body
         res.set({
-          'Expires': 0, // For backward compatibility with HTTP/1.0
+          'Expires': '0', // For backward compatibility with HTTP/1.0
           'Cache-Control': 'private, no-cache, no-store, must-revalidate'
         });
         res.redirect('/');
