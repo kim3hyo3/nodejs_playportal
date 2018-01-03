@@ -25,7 +25,6 @@
           <a class="btn btn-default btn-lg btn-block" href="/request" role="button">지원요청 모아보기(구현예정)</a>
           <a class="btn btn-default btn-lg btn-block" href="/request" role="button">요청종류 설정(구현예정)</a>
         </li>
-
       </div>
       <div class="view col-md-10">
         <div class="list-group">
@@ -128,13 +127,13 @@
                   <th class="col-md-1">담당자</th>
                   <th class="col-md-1">제목</th>
                   <th class="col-md-1">작성자</th>
-                  <th class="col-md-1">등록일</th>
+                  <th class="col-md-1">작성일</th>
                   <th class="col-md-1">작업상태</th>
                   <th class="col-md-1">조회수</th>
                   <th class="col-md-1">글수정</th>
                 </tr>
-                <% for(var i = 0;i < rows.length; i++){ %>
-                <tr onClick="location.href='/request/read/<%=rows[i].id_request%>'" style="cursor:pointer;" class="<%= rows[i].status_option %>" id="rqst_read"></a>
+                <% for(var i = 0; i < rows.length; i++){ %>
+                <tr onClick="location.href='/request/read/<%=rows[i].id_request%>'" style="cursor:pointer;" class="<%= rows[i].status_option %>" id="rqst_read">
                   <td class="col-md-1">
                     &nbsp;<span class="badge"><%= rows[i].id_request %></span>&nbsp;
                   </td>
@@ -268,43 +267,7 @@
               </div>
             </div>
 
-            <nav>
-              <ul class="pagination justify-content-center">
-                <li>
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
             <script>
-              function onWriteSubmit() {
-                if ($("#title").val().trim() == "") {
-                  var message = "제목을 입력해 주세요";
-                  $("#title").val("");
-                  $("#title").focus();
-                  alert(message);
-                  return false;
-                }
-                if ($("#content").val().trim() == "") {
-                  var message = "본문 내용을 입력해 주세요";
-                  $("#content").val("");
-                  $("#content").focus();
-                  alert(message);
-                  return false;
-                }
-              }
               /*$('#requestUpdate').click(function () {
                 function onUpdateSubmit() {
                   $.ajax({
