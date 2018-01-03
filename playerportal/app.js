@@ -56,18 +56,22 @@ app.use(session({
 
 // 로그인 검증 로직
 loginValidate = function (req, res, next) {
+  console.log('Validate!! go to login');
   if (req.session.loginid !== undefined) {
   //통과-세션에 로그인 아이디가 있으면 진행
     //console.log('loginValidate 11111 success'+JSON.stringify(req.session));
+    res.set({
+      'Expires': 0, // For backward compatibility with HTTP/1.0
+      'Cache-Control': 'private, no-cache, no-store, must-revalidate'
+    });
     next();
-  } else if (req.session.loginid === undefined || req.session.loginid === "") {
+  }else if (req.session.loginid === undefined || req.session.loginid === "") {
   //실패-세션에 로그인 아이디가 없으면 에러
     //console.log('loginValidate 00000 error');
     res.redirect('/');
   }
 };
 
-// app.use('/', loginValidate);
 app.use('/', index);
 app.use('/request', loginValidate, request);
 app.use('/culture', loginValidate, culture);
