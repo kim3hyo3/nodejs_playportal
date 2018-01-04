@@ -94,8 +94,8 @@ router.post('/delete', function (req, res, next) {
 
 // http://develtraining.tistory.com/entry/4-%EA%B8%80-%EC%9D%BD%EA%B8%B0-%EA%B8%80-%EC%93%B0%EA%B8%B0-%ED%8E%98%EC%9D%B4%EC%A7%80?category=604742
 /* Read Page */
-
-router.get('/read/:id_request',function (req, res, next) {
+//working code
+router.get('/read/:id_request', function (req, res, next) {
   /* GET 방식의 연결이므로 read 페이지 조회에 필요한 idx 값이 url 주소에 포함되어 전송됩니다.
    이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
   * url에서 idx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*/
@@ -109,21 +109,83 @@ router.get('/read/:id_request',function (req, res, next) {
   * 아래에는 ?에 idx값이 자동으로 매핑되어 쿼리문을 실행합니다.
   * */
   /**/
+  pool.getConnection(function (err, connection) {
+    connection.beginTransaction(function (err) {
+      if (err) console.log(err);
+      connection.query('UPDATE request_board SET hit = hit+1 WHERE id_request=?', [id_request], function (err) {
+        if (err) {
+          /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
+          console.log(err);
+          connection.rollback(function () {
+            console.error('rollback error1');
+          })
+        }
+        connection.query('SELECT id_request, title, content, hit, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, ' +
+          'member.m_name, member.m_type, ' +
+          'task_type.type_cd, task_type.type_name, task_type.mng_name, ' +
+          'task_status.status_name, task_status.status_option ' +
+          'FROM request_board ' +
+          'INNER join member on request_board.m_cd = member.m_cd ' +
+          'INNER join task_type on request_board.type_id = task_type.type_id ' +
+          'INNER join task_status on request_board.status_cd = task_status.status_cd ' +
+          'WHERE id_request = ?;', [id_request],
+          function (err, rows) {
+            if (err) {
+              /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
+              console.log(err);
+              connection.rollback(function () {
+                console.error('rollback error2');
+              })
+            }
+            else {
+              connection.commit(function (err) {
+                if (err) console.log(err);
+                console.log("row : " + rows);
+                // res.render('read',{title:rows[0].title , rows : rows});
+                res.render('request/rqst_read', {
+                  loginid: req.session.loginid,
+                  logincd: req.session.logincd,
+                  loginname: req.session.loginname,
+                  rows: rows
+                });
+              })
+            }
+          })
+      })
+    })
+  })
+});
+
+/*
+router.get('/read/:page',function (req, res, next) {
+  /!* GET 방식의 연결이므로 read 페이지 조회에 필요한 idx 값이 url 주소에 포함되어 전송됩니다.
+   이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
+  * url에서 idx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*!/
+  var page = req.params.page;
+  console.log("id_request : " + page);
+  /!*
+  * Node는 JSP에서 JDBC의 sql문 PreparedStatement 처리에서와 같이 sql문을 작성할 때
+  * ? 를 활용한 편리한 쿼리문 작성을 지원합니다.
+  * Node에서 참조해야할 인자값이 있을 때 ? 로 처리하고
+  * []를 통해 리스트 객체를 만든 후 ? 의 순서대로 입력해주시면 자동으로 쿼리문에 삽입됩니다.
+  * 아래에는 ?에 idx값이 자동으로 매핑되어 쿼리문을 실행합니다.
+  * *!/
+  /!**!/
   connection.beginTransaction(function(err){
     if(err) console.log(err);
-    connection.query('update board set hit=hit+1 where id_request=?', [id_request], function (err) {
+    connection.query('update board set hit = hit+1 where id_request=?', [page], function (err) {
       if(err) {
-        /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
+        /!* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*!/
         console.log(err);
         connection.rollback(function () {
           console.error('rollback error1');
         })
       }
       connection.query('select id_request, title, content, writer, hit, DATE_FORMAT(moddate, "%Y/%m/%d %T")' +
-        ' as moddate, DATE_FORMAT(regdate, "%Y/%m/%d %T") as regdate from board where id_request=?',[id_request],function(err,rows)
+        ' as moddate,DATE_FORMAT(regdate, "%Y/%m/%d %T") as regdate from board where id_request=?', [id_request], function(err, rows)
       {
         if(err) {
-          /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
+          /!* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*!/
           console.log(err);
           connection.rollback(function () {
             console.error('rollback error2');
@@ -133,12 +195,15 @@ router.get('/read/:id_request',function (req, res, next) {
           connection.commit(function (err) {
             if(err) console.log(err);
             console.log("row : " + rows);
-            res.render('read',{title:rows[0].title , rows : rows});
+            // res.render('read',{title:rows[0].title , rows : rows});
+            res.render('request/rqst_read', {loginid : req.session.loginid, logincd : req.session.logincd, loginname : req.session.loginname, rows : rows, page : page, lngth : Object.keys(rows).length-1, page_num: 10, pass: true});
           })
         }
       })
     })
   })
 });
+*/
+
 
 module.exports = router;

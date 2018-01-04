@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../layout/head.ejs %>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% include ../layout/nav.ejs %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-2">
+        <a href="/request" class="list-group-item active">
+          <h4>검색</h4>
+        </a>
+        <!--검색-->
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="검색기능(구현예정)">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">검색기능(구현예정)</button>
+          </span>
+        </div>
+        <li class="list-group-item">
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">구매요청 모아보기(구현예정)</a>
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">지원요청 모아보기(구현예정)</a>
+          <a class="btn btn-default btn-lg btn-block" href="/request" role="button">요청종류 설정(구현예정)</a>
+        </li>
+      </div>
+      <div class="view col-md-10">
+        <div class="list-group">
+          <div class="list-group-item active"><h4>요청게시판</h4></div>
+          <div class="list-group-item">
+            <!--글수정-->
+            <% for(var i = 0; i < rows.length; i++){ %>
+            <div class="collapse" id="collapse<%= rows[i].id_request %>">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <!--<form action="/request/write" method="post" onsubmit="return onWriteSubmit()">-->
+                  <form action="/request/edit" method="post">
+                    <!--onsubmit="return onUpdateSubmit()">-->
+                    <table class="table table-bordered col-md-12">
+                      <tr>
+                        <th class="col-md-1">글번호</th>
+                        <th class="col-md-1">작성자</th>
+                        <th class="col-md-2">수정시간</th>
+                        <th class="col-md-3">분류</th>
+                        <th class="col-md-1">담당자</th>
+                        <th class="col-md-4">작업상태</th>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">
+                          <input class="form-control" type="text" name="id_request" value="<%= rows[i].id_request %>" readonly>
+                        </th>
+                        <td class="col-md-1">
+                          <input class="form-control" type="text" name="loginname" value="<%= loginname %>" readonly>
+                        </td>
+                        <td class="col-md-2">
+                          <input class="form-control" name="regdate" value="현재시간자동입력" readonly/>
+                        </td>
+                        <td class="col-md-3">
+                          <select class="form-control selectpicker" name="type_cd">
+                            <optgroup label="총무업무">
+                              <option value="1010">문생비</option>
+                              <option value="1020">연차일수</option>
+                              <option value="1030">기안서</option>
+                            </optgroup>
+                            <optgroup label="지원요청">
+                              <option value="2010">컴퓨터</option>
+                              <option value="2020">네트워크</option>
+                              <option value="2030">라이센스</option>
+                              <option value="2040">컴퓨터기타장비</option>
+                            </optgroup>
+                            <optgroup label="구매요청">
+                              <option value="3010">컴퓨터용품</option>
+                              <option value="3020">사무용품</option>
+                              <option value="3030">비품</option>
+                              <option value="3040">다트핀</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                        <td class="col-md-1">
+                          <span>담당자(구현예정)</span>
+                        </td>
+                        <td class="col-md-4">
+                          <select class="selectpicker show-tick" name="status_cd">
+                            <option value="20001" data-content="<span class='label label-default'>작업진행 progress</span>"></option>
+                            <option value="20002" data-content="<span class='label label-primary'>작업우선 primary</span>"></option>
+                            <option value="20003" data-content="<span class='label label-success'>작업완료 success</span>"></option>
+                            <option value="20004" data-content="<span class='label label-info'>작업예정 info</span>"></option>
+                            <option value="20005" data-content="<span class='label label-warning'>작업경고 warning</span>"></option>
+                            <option value="20006" data-content="<span class='label label-danger'>작업긴급 danger</span>"></option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">글제목</th>
+                        <td class="col-md-11" colspan="5">
+                          <input class="form-control" type="text" name="title"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="col-md-1">내용</th>
+                        <td class="col-md-11" colspan="5">
+                          <textarea class="form-control" name="content" rows="6"></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="btn btn-primary btn-xs" type="submit">글수정</button>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% } %>
+
+            <!--글목록-->
+            <div class="panel panel-default">
+              <!-- Table -->
+              <table class="table table-bordered">
+                <tr class="active">
+                  <th class="col-md-1" colspan="5">제목</th>
+                </tr>
+                <tr>
+                  <td class="col-md-1" colspan="5"><%= rows[0].title %></td>
+                </tr>
+                <tr class="active">
+                  <th class="col-md-1" colspan="5">내용</th>
+                </tr>
+                <tr>
+                  <td class="col-md-1" colspan="5"><%= rows[0].content %></td>
+                </tr>
+                <colgroup>
+                  <col width="10%"/>
+                  <col width="10%"/>
+                  <col width="10%"/>
+                  <col width="10%"/>
+                  <col width="10%"/>
+                </colgroup>
+                <tr class="active">
+                  <th class="col-md-1">종류</th>
+                  <th class="col-md-1">담당자</th>
+                  <th class="col-md-1">작성자</th>
+                  <th class="col-md-1">작성일</th>
+                  <th class="col-md-1">작업상태</th>
+                </tr>
+                <tr class="<%= rows[0].status_option %>" id="rqst_read">
+                  <td class="col-md-1"><%= rows[0].type_name %></td>
+                  <td class="col-md-1"><%= rows[0].mng_name %></td>
+                  <td class="col-md-1"><%= rows[0].m_name %></td>
+                  <td class="col-md-1"><%= rows[0].regdate %></td>
+                  <!--작업상태-->
+                  <td class="col-md-1">
+                    <span class="label label-<%= rows[0].status_option %>"><%= rows[0].status_name %></span>
+                  </td>
+                </tr>
+                <tr align="right">
+                  <td class="col-md-1" colspan="5">
+                    <!--글수정 버튼-->
+                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse"
+                            data-target="#collapse<%= rows[0].id_request %>" aria-expanded="false"
+                            aria-controls="collapse<%= rows[0].id_request %>">
+                      글수정
+                    </button>
+                    <!--글삭제 버튼-->
+                    <form action="/request/delete" method="post">
+                      <button class="btn btn-default btn-xs" type="submit" name="id_request" value="<%= rows[0].id_request %>">글삭제</button>
+                    </form>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <script>
+              $('#requestUpdate').click(function () {
+                function onUpdateSubmit() {
+                  $.ajax({
+                    url: '/request/read/',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                      id_request: $('#id_request').val(),
+                      type: $('#type').val(),
+                      title: $('#title').val(),
+                      content: $('#content').val()
+                    },
+                    success: function (data) {
+                      console.log(data);
+                      $('#output').val(data);
+                    },
+                    error: function (err) {
+                      console.log(err.toString());
+                    }
+                  });
+                }
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
