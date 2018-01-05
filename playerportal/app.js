@@ -55,7 +55,7 @@ app.use(session({
 }));
 
 // 로그인 검증 로직
-loginValidate = function (req, res, next) {
+exports.loginValidate = function (req, res, next) {
   console.log('Validate!! go to login');
   if (req.session.loginid !== undefined) {
   //통과-세션에 로그인 아이디가 있으면 진행
@@ -73,7 +73,21 @@ loginValidate = function (req, res, next) {
 };
 
 app.use('/', index);
+
+//original
 app.use('/request', loginValidate, request);
+// 게시판 보기 '/'
+
+//modify
+/*app.get('/request', function(req, res, next){
+  res.redirect('/request/list/1')
+});
+
+app.get('/request/list/:page', request.boardList, function(req, res, next){
+  page = req.body.param;
+  boardList(page);
+});*/
+
 app.use('/culture', loginValidate, culture);
 app.use('/playdocs', loginValidate, playdocs);
 
