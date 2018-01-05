@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var pagination = require('pagination');
+
 
 function getCurrTime() {
   var dt = new Date();
@@ -38,9 +40,6 @@ boardGetList = function(page, req, res){
           endPage = totalPage;
         }
         var max = cnt - ((page - 1) * size);
-        console.log("page"+page);
-        console.log("hhhhhhh"+begin);
-        console.log("hhhhhhh"+size);
         conn.query('SELECT id_request, title, content, hit, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, ' +
           'member.m_name, member.m_type, ' +
           'task_type.type_cd, task_type.type_name, task_type.mng_name, ' +
@@ -53,6 +52,27 @@ boardGetList = function(page, req, res){
           function(err, rows){
             if(err){console.error('err', err);}
             console.log('rows', rows);
+            var paginator = new pagination.SearchPaginator({
+              prelink:'/',
+              current: parseInt(page),
+              rowsPerPage: size,
+              totalResult: totalPage
+              //
+              // prelink: '/',
+              // current: parseInt(page),
+              // previous: 'null',
+              // next: 'null',
+              //first: 10,
+              //last: 20
+              //range: totalPage,
+              //fromResult: 401,
+              //toResult: 600,
+              //totalResult: 10020,
+              //pageCount: 51
+            });
+
+            console.log(paginator.getPaginationData());
+
             res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname,
               rows: rows,
               page: page,
@@ -60,7 +80,9 @@ boardGetList = function(page, req, res){
               startPage: startPage,
               endPage: endPage,
               totalPage: totalPage,
-              max: max
+              max: max,
+
+              paginator: paginator.getPaginationData()
             });
             console.log('here'+rows);
           conn.release();

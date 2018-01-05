@@ -188,32 +188,10 @@
                 </tr>
                 <% } %>
 
-                <nav>
-                  <ul class="pagination">
-                    <li>
-                      <a href="/request/<%= page %>>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <% for(var i = 0; i < rows.length; i++){ %>
-                    <li><a href="/request/<%= rows[0].startPage %>" class="paginator-page paginator-page-first">2</a></li>
-                    <li><a href="/request/<%= rows[0].startPage %>" class="paginator-page">3</a></li>
-                    <li><a href="/request/<%= rows[0].startPage %>" class="paginator-current">3</a></li>
-                    <li><a href="/request/<%= rows[0].startPage %>" class="paginator-page">3</a></li>
-                    <li><a href="/request/<%= rows[0].startPage %>" class="paginator-page paginator-page-end">4</a></li>
-                    <% } %>
-                    <li>
-                      <a href="/request/<%= endPage %>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-
                 <tr align="right">
                   <td colspan="9">
                     <!--글쓰기 버튼-->
-                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse"
+                    <button class="btn btn-default btn" type="button" data-toggle="collapse"
                             data-target="#collapsewrite"
                             aria-expanded="false" aria-controls="collapsewrite">
                       글쓰기
@@ -292,40 +270,44 @@
                               </tr>
                               <tr>
                                 <td class="col-md-12" colspan="6">
-                                  <button class="btn btn-primary" type="submit">글쓰기</button>
+                                  <button class="btn btn-primary" type="submit">저장</button>
+                                  <!--<button class="btn btn-primary" type="submit">취소</button>-->
                                 </td>
                               </tr>
                             </table>
                           </form>
-                          <ul class="pagination">
-                            <li class="page-item disabled">
-                              <a class="page-link" href="#">&laquo;</a>
-                            </li>
-                            <li class="page-item active">
-                              <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link" href="#">4</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link" href="#">5</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link" href="#">&raquo;</a>
-                            </li>
-                          </ul>
                         </div>
                       </div>
                     </div>
                   </td>
                 </tr>
               </table>
+
+              <nav align="center">
+                <ul class="pagination">
+                  <li>
+                    <a href="/request/<%= paginator.first %>" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <%if(paginator.range.length != 0){%>
+                    <%for(var i = 0; i < paginator.range.length; i++){%>
+                      <%if(paginator.range[i]===paginator.current){%>
+                        <li><a href="/request/<%=paginator.range[i]%>" class="paginator-current"><%=paginator.range[i]%></a></li>
+                      <%}else{%>
+                        <li><a href="/request/<%=paginator.range[i]%>" class="paginator-page"><%=paginator.range[i]%></a></li>
+                      <%}%>
+                    <%}%>
+                  <%}else{%>
+                    <li><a href="/request/<%=page%>" class="paginator-current"><%=page%></a></li>
+                  <%}%>
+                  <li>
+                    <a href="/request/<%= paginator.last %>" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
             <script>
               /*$('#requestUpdate').click(function () {
