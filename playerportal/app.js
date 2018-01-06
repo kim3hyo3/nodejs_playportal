@@ -20,6 +20,8 @@ pool = mysql.createPool({
   database : configdb.database
 });
 
+const ejsLint = require('ejs-lint');
+
 var app = express();
 
 // view engine setup

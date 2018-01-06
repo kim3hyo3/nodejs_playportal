@@ -16,7 +16,7 @@ function getCurrTime() {
 }
 
 // working code
-boardGetList = function(page, req, res){
+boardGetList = function(pageNo, req, res){
   pool.getConnection(function(err, conn){
     if(err){
       console.error('err', err);
@@ -29,17 +29,28 @@ boardGetList = function(page, req, res){
       conn.query("select count(*) cnt from request_board", [], function(err, rows){
         if(err){ console.error('err', err); }
         console.log("rows", rows); //[{cnt:1}]
+        pageNo = parseInt(pageNo);
+        //전체 글 갯수
         var cnt = rows[0].cnt;
-        var size = 10; // 보여줄 글의 수
-        var begin = (page - 1) * size; // 시작 글
+        //보여줄 글의 수
+        var size = 10;
+        //이전 페이지
+        var begin = (pageNo - 1) * size;
+        ///다음 페이지
+        var next = (pageNo + 1) * size;
+        //전체 페이지 수
         var totalPage = Math.ceil(cnt / size);
-        var pageSize = 10; // 링크 갯수
-        var startPage = Math.floor((page - 1) / pageSize) * pageSize+1;
+        //페이지 수
+        var pageSize = 5;
+        //첫번째 페이지
+        var startPage = Math.floor((pageNo - 1) / pageSize) * pageSize+1;
+        //마지막 페이지
         var endPage = startPage + (pageSize - 1);
         if(endPage > totalPage){
           endPage = totalPage;
         }
-        var max = cnt - ((page - 1) * size);
+        //최대 페이지
+        var max = cnt - ((pageNo - 1) * size);
         conn.query('SELECT id_request, title, content, hit, date_format(regdate,\'%Y-%m-%d %H:%i\') AS regdate, ' +
           'member.m_name, member.m_type, ' +
           'task_type.type_cd, task_type.type_name, task_type.mng_name, ' +
@@ -52,39 +63,30 @@ boardGetList = function(page, req, res){
           function(err, rows){
             if(err){console.error('err', err);}
             console.log('rows', rows);
-            var paginator = new pagination.SearchPaginator({
-              prelink:'/',
-              current: parseInt(page),
-              rowsPerPage: size,
-              totalResult: totalPage
-              //
-              // prelink: '/',
-              // current: parseInt(page),
-              // previous: 'null',
-              // next: 'null',
-              //first: 10,
-              //last: 20
-              //range: totalPage,
-              //fromResult: 401,
-              //toResult: 600,
-              //totalResult: 10020,
-              //pageCount: 51
-            });
 
-            console.log(paginator.getPaginationData());
-
+            console.log("pageNo "+pageNo,
+              "cnt "+cnt,
+              "size "+size,
+              "begin "+begin,
+              "next "+next,
+              "totalPage "+totalPage,
+              "pageSize "+pageSize,
+              "startPage "+startPage,
+              "endPage "+endPage,
+              "max "+max);
             res.render('request/rqst_list', {loginid: req.session.loginid, logincd: req.session.logincd, loginname: req.session.loginname,
               rows: rows,
-              page: page,
+              pageNo: parseInt(pageNo),
+              cnt: cnt,
+              size: size,
+              begin: begin,
+              next: next,
+              totalPage: totalPage,
               pageSize: pageSize,
               startPage: startPage,
               endPage: endPage,
-              totalPage: totalPage,
-              max: max,
-
-              paginator: paginator.getPaginationData()
+              max: max
             });
-            console.log('here'+rows);
           conn.release();
           // res(datas);
         });
@@ -97,10 +99,10 @@ router.get('/', function(req ,res){
   res.redirect('/request/1');
 });
 
-router.get('/:page', function(req ,res){
-  var page = req.params.page;
-  console.log(page);
-  boardGetList(page, req, res);
+router.get('/:pageNo', function(req ,res){
+  var pageNo = req.params.pageNo;
+  console.log(pageNo);
+  boardGetList(pageNo, req, res);
 });
 
 /* GET users listing. */
