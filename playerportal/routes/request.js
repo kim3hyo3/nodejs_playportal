@@ -63,7 +63,6 @@ boardGetList = function(pageNo, req, res){
           function(err, rows){
             if(err){console.error('err', err);}
             console.log('rows', rows);
-
             console.log("pageNo "+pageNo,
               "cnt "+cnt,
               "size "+size,
@@ -88,7 +87,6 @@ boardGetList = function(pageNo, req, res){
               max: max
             });
           conn.release();
-          // res(datas);
         });
       });
     });
