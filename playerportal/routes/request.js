@@ -34,10 +34,8 @@ boardGetList = function(pageNo, req, res){
         var cnt = rows[0].cnt;
         //보여줄 글의 수
         var size = 10;
-        //이전 페이지
+        //처음 페이지
         var begin = (pageNo - 1) * size;
-        ///다음 페이지
-        var next = (pageNo + 1) * size;
         //전체 페이지 수
         var totalPage = Math.ceil(cnt / size);
         //페이지 수
@@ -67,7 +65,6 @@ boardGetList = function(pageNo, req, res){
               "cnt "+cnt,
               "size "+size,
               "begin "+begin,
-              "next "+next,
               "totalPage "+totalPage,
               "pageSize "+pageSize,
               "startPage "+startPage,
@@ -79,7 +76,6 @@ boardGetList = function(pageNo, req, res){
               cnt: cnt,
               size: size,
               begin: begin,
-              next: next,
               totalPage: totalPage,
               pageSize: pageSize,
               startPage: startPage,
