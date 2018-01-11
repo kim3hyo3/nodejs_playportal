@@ -20,6 +20,8 @@ pool = mysql.createPool({
   database : configdb.database
 });
 
+const ejsLint = require('ejs-lint');
+
 var app = express();
 
 // view engine setup
@@ -49,45 +51,45 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false,
-    maxAge: 300000
+    maxAge: 1200000
     // maxAge: 180000 3분,
   }
 }));
 
-/*//session ver 1.1
-app.use(session({
-  // genid: function(req) {
-  //   return genuuid() // use UUIDs for session IDs
-  // },
-  secret,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    path: '/',
-    secure: secureCookie,
-    httpOnly: true,
-    maxAge: 300000
-    // maxAge: 180000 3분
-  }
-}));*/
-
 // 로그인 검증 로직
-loginValidate = function (req, res, next) {
+exports.loginValidate = function (req, res, next) {
+  console.log('Validate!! go to login');
   if (req.session.loginid !== undefined) {
   //통과-세션에 로그인 아이디가 있으면 진행
     //console.log('loginValidate 11111 success'+JSON.stringify(req.session));
+    res.set({
+      'Expires': 0, // For backward compatibility with HTTP/1.0
+      'Cache-Control': 'private, no-cache, no-store, must-revalidate'
+    });
     next();
-  } else if (req.session.loginid === undefined || req.session.loginid === "") {
-  //실패-세션에 로그인 아이디가 없으면 에러에러
+  }else if (req.session.loginid === undefined || req.session.loginid === "") {
+  //실패-세션에 로그인 아이디가 없으면 에러
     //console.log('loginValidate 00000 error');
     res.redirect('/');
   }
 };
 
-// app.use('/', loginValidate);
 app.use('/', index);
 
+//original
 app.use('/request', loginValidate, request);
+// 게시판 보기 '/'
+
+//modify
+/*app.get('/request', function(req, res, next){
+  res.redirect('/request/list/1')
+});
+
+app.get('/request/list/:page', request.boardList, function(req, res, next){
+  page = req.body.param;
+  boardList(page);
+});*/
+
 app.use('/culture', loginValidate, culture);
 app.use('/playdocs', loginValidate, playdocs);
 
