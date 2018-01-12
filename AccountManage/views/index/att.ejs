@@ -1,0 +1,93 @@
+<html>
+
+<head>
+  <link href="/stylesheets/att.css" rel='stylesheet' />
+
+</head>
+
+<body>
+  <% 
+    var mon = new Date(2017,11,0).getDate();
+    var date = [];
+    var day = 171101;
+    for(var i = 0; i < mon; i++) {
+      date[i] = (day+i);
+    }
+  
+  %>
+    <div class="fixe">
+      <div class="header">
+        <div class="month">
+          <h1>
+          </h1>
+          <h1>
+            <</h1>
+              <h1>11월</h1>
+              <h1>></h1>
+        </div>
+        <div class="search">
+          <form action="/attendance" method="get">
+            이름
+            <input type="text" class="s_name" name="s_name">
+            <input type="submit">
+         </form> 
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th>이름</th>
+          <% for (var i = 1 ; i < mon+1 ; i++) { %>
+            <th <% 'id="'+i+ '"'%>>
+              <%=i+'일'%>
+            </th>
+            <% } %>
+        </tr>
+      </table>
+    </div>
+    <div class="block"></div>
+    <table>
+      <%var j = 0, l = 0 %>
+        <%for(var i = 0 ; i < name.length; i++) {%>
+          <tr>
+            <td rowspan="2" class="first"><%= name[i]%></td>
+            <%for(var k = 0 ; k < date.length ; k++) {%>
+              <td>
+                <!-- name / date == data[j].name / data[j].date 
+                      ㄴ 아니라면 공백 -->
+                <%if(name[i] == on[j].name){%>
+                  <%if(date[k] == on[j].date){%>
+                    <!-- 한줄로 바꾸고싶음 -->
+                    <% if(parseInt(on[j].time) >= 9) { %>
+                      <input class='red' name="<%='i'+i%>" type="text" value="<%=on[j].time%>"> 
+                    <% } else { %>
+                      <input name="<%='i'+i%>" type="text" value="<%=on[j].time%>">
+                    <% } %>
+                  <% j++ }  else {%>
+                    <input name="<%='i'+i%>" type="text" value="">
+                  <%}%>
+                <%} else {%>
+                  <input name="<%='i'+i%>" type="text" value="">
+                <% } %>
+              </td>
+            <%}%>
+          </tr>
+          <tr>
+            <%for(var k = 0 ; k < date.length ; k++) {%>
+              <td>
+                <%if(name[i] == off[l].name){%>
+                  <%if(date[k] == off[l].date){%>
+                    <input name="<%='i'+i%>" type="text" value="<%=off[l].time%>">
+                  <% l++ }  else {%>
+                    <input name="<%='i'+i%>" type="text" value="">
+                  <%}%>
+                <%} else {%>
+                  <input name="<%='i'+i%>" type="text" value="">
+                <% } %>
+              </td>
+            <%}%>
+        </tr>
+      <% } %>
+    </table>
+</body>
+
+</html>
