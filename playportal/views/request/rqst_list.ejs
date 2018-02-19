@@ -286,17 +286,15 @@
               <nav aria-label="Page navigation example" align="center">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/request/<%= startPage %>">startPage</a></li>
-                  <li class="page-item"><a class="page-link" href="/request/<%=  %>">startPage</a></li>
                   <%if( totalPage != 0){%>
-                    if(pageNo < pageSize){
                     <%for( i = 0; i < endPage; i++){%>
                       <li class="page-item"><a class="page-link" href="/request/<%= startPage+i %>"><%= startPage+i %></a></li>
                     <%}%>
-
-                    }else(pageSize > pageNo > pageSize){
                   <%}%>
+                  <!--if(pageNo < pageSize){
+                  }else(pageSize > pageNo > pageSize){
                   pageNo 크기가 pageSize보다 높아졌을때
-                  첫번쨰 페이지에다가 5더하고 i++
+                  첫번쨰 페이지에다가 5더하고 i++-->
                   <li class="page-item"><a class="page-link" href="/request/<%= endPage %>">endPage</a></li>
                 </ul>
               </nav>

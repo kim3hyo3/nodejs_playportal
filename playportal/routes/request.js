@@ -378,7 +378,7 @@ exports.list = function(page, callback){
         var begin = (page - 1) * size; // 시작 글
         var totalPage = Math.ceil(cnt / size);
         var pageSize = 10; // 링크 갯수
-        var startPage = Math.floor((page - 1) / pageSize) * pageSize+1;
+        var startPage = Math.floor((page - 1) / pageSize) * pageSize + 1;
         var endPage = startPage + (pageSize - 1);
         if(endPage > totalPage){
           endPage = totalPage;
